@@ -4,6 +4,7 @@ import cardStyles from "./post-card.module.scss";
 import { stopPropCallback } from "uu-utils";
 import { UserProfilePic } from "../user-profile-pic";
 import { UnicornInfo } from "uu-types";
+import TransitionLink from "gatsby-plugin-transition-link";
 
 interface PostCardProps {
 	title: string; // The title of the post
@@ -52,15 +53,22 @@ export const PostCard = ({
 			role="listitem"
 		>
 			<div className={cardStyles.cardContents}>
-				<Link
+				<TransitionLink
 					to={`/posts${slug}`}
 					onClick={stopPropCallback as any}
 					className="unlink"
+					entry={{
+						state: { isEntryPage: true }
+					}}
+					exit={{
+						state: { isEntryPage: false },
+						length: 0.6
+					}}
 				>
 					<h2 className={cardStyles.header} ref={headerLink as any}>
 						{title}
 					</h2>
-				</Link>
+				</TransitionLink>
 				<p className={cardStyles.authorName}>
 					<span>by&nbsp;</span>
 					<Link

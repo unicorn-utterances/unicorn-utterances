@@ -362,7 +362,8 @@ module.exports = {
 					}
 				}
 			}
-		}
+		},
+		`gatsby-plugin-transition-link`
 	],
 	mapping: {
 		"MarkdownRemark.frontmatter.authors": `UnicornsJson`,

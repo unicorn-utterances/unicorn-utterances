@@ -16,7 +16,15 @@
 	margin: 0 auto;
 	display: flex;
 	flex-direction: row;
+	position: sticky;
+	top: 15px;
+	width: calc(100% - 30px);
 	justify-content: space-between;
+}
+
+.listViewContent,
+.postViewContent {
+	position: absolute;
 }
 
 .horizCenter {
