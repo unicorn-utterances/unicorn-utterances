@@ -44,6 +44,10 @@ https://blog.devgenius.io/analyzing-new-unique-identifier-formats-uuidv6-uuidv7-
 
 https://ietf-wg-uuidrev.github.io/rfc4122bis/draft-00/draft-ietf-uuidrev-rfc4122bis.html#name-uuid-version-7
 
+https://ietf-wg-uuidrev.github.io/rfc4122bis/draft-00/draft-ietf-uuidrev-rfc4122bis.html#name-example-of-a-uuidv7-value
+
+![// TODO: Write](./UUIDv7.svg)
+
 # Make your own UUID rules with UUIDv8 {#UUIDv8}
 
 https://blog.devgenius.io/analyzing-new-unique-identifier-formats-uuidv6-uuidv7-and-uuidv8-d6cc5cd7391a
