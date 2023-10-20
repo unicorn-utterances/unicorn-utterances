@@ -17,6 +17,8 @@ import { rehypeHeaderText } from "./rehype-header-text";
 import { rehypeHeaderClass } from "./rehype-header-class";
 import { rehypeFileTree } from "./file-tree/rehype-file-tree";
 import { rehypeTwoslashTabindex } from "./twoslash-tabindex/rehype-transform";
+import { rehypeIframeToUrl } from "./rehype-iframe-to-url";
+import { rehypeIframeTransformOEmbedSrc } from "./rehype-iframe-embed";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RehypePlugin = Plugin<any[]> | [Plugin<any[]>, any];
@@ -31,6 +33,7 @@ export function createRehypePlugins(config: MarkdownConfig): RehypePlugin[] {
 					rehypeFixTwoSlashXHTML,
 					[rehypeMakeImagePathsAbsolute, { path: config.path }] as RehypePlugin,
 					rehypeMakeHrefPathsAbsolute,
+					rehypeIframeToUrl,
 			  ]
 			: []),
 		// Do not add the tabs before the slug. We rely on some of the heading
@@ -43,6 +46,7 @@ export function createRehypePlugins(config: MarkdownConfig): RehypePlugin[] {
 				enableCustomId: true,
 			},
 		],
+		...(config.format === "html" ? [rehypeIframeTransformOEmbedSrc] : []),
 		...(config.format === "html"
 			? [
 					/**
