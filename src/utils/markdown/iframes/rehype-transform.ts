@@ -169,13 +169,13 @@ export const rehypeUnicornIFrameClickToRun: Plugin<
 				} = iframeNode.properties;
 
 				for (const replacement of srcReplacements) {
-					src = replacement(src as string, file);
+					src = replacement(src.toString(), file);
 				}
 
 				width = width ?? EMBED_SIZE.w;
 				height = height ?? EMBED_SIZE.h;
 				const info: PageInfo = (await fetchPageInfo(
-					iframeNode.properties.src.toString(),
+					src.toString(),
 				).catch(() => null)) || { icon: await fetchDefaultPageIcon() };
 
 				const [, heightPx] = /^([0-9]+)(px)?$/.exec(height + "") || [];
