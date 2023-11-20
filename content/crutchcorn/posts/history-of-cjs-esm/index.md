@@ -8,9 +8,53 @@
 }
 ---
 
-OK finally ready (I think)
+Whikle working in the NodeJS ecosystem, you may have heard of "ESM" or "EcmaScript Modules". Alternatively, maybe you've heard of "CJS" or "CommonJS Modules". They're even front-and-center in many of Node's current docs:
 
-At least ready to start telling the story
+<!-- TODO: Add docs examples -->
+
+But what is CJS and ESM?
+
+Well, the short answer is that they're competing methods of importing one JavaScript file to another:
+
+```javascript
+// CJS
+const file = require('./file');
+// ESM
+import * as file from "./file";
+```
+
+Continuing the short answer, ESM is much newer and most standard; as such is generally advised to use over CJS nowadays.
+
+But this answer ignores a lot of nuance. Not only do CJS and ESM have vastely different constraints under-the-hood, but CJS usage in the Node ecosystem is still broader than ESM usage.
+
+Why is that? How do they differ? How.did we end up here?
+
+Well, let's take a look at the history of JavaScript to answer that question.
+
+
+# Origins of JavaScript
+
+The intial release of JavaScript (then called Mocha) was famously written in a few weeks in 1995 by Brendan Eich.
+
+<!-- TODO: Link the week quote above -->
+
+> DIdn't think we'd go that far back, huh?
+
+See, Eich was contracted by Netscape Communications in order to write a scripting language companion for the browser; similar to how Visual Basic operated for C/C++ in the Microsoft/Windows world. 
+
+Little did they know how far it would go. 
+
+Mocha, then shortly renamed to Livescript, would catch the attention of Sun Microsystems - the then-owner of the quickly growing programming language Java.
+
+Through an agreement with Sun, Netscape Communciations would rename Mocha/LiveScript to JavaScript and make it the official scripting language of thier browser: NetScape Navigator 2.0.
+
+
+
+
+
+
+
+---------------------
 
 # Netscape and 90s Server-Side JavaScript
 
