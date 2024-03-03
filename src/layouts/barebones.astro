@@ -87,5 +87,10 @@ lang ??= "en";
 	</head>
 	<body>
 		<slot />
+
+		<script>
+			import { enableHrefContainers } from "utils/href-container-script";
+			window.addEventListener("load", enableHrefContainers);
+		</script>
 	</body>
 </html>

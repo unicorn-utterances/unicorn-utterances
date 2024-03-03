@@ -82,3 +82,14 @@ import { unicorns } from "utils/data";
 	import { enableParallaxScrolling } from "../../../views/collections/framework-field-guide/scripts/parallax-scrolling";
 	enableParallaxScrolling();
 </script>
+<script>
+	document.querySelectorAll("[data-scroll-to]").forEach((element) => {
+		element.addEventListener("click", (e) => {
+			e.preventDefault();
+			const scrollToElement = document.querySelector(
+				element.getAttribute("data-scroll-to"),
+			);
+			scrollToElement.scrollIntoView({ behavior: "smooth", block: "start" });
+		});
+	});
+</script>
