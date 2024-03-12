@@ -56,7 +56,7 @@ While Angular templates come in many shapes and sizes, a simple but common use f
 <p *ngIf="bool; else falseTemp">True</p>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-1-ng-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 1 Ng Template - StackBlitz" src="uu-code:./start-to-source-1-ng-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 In this example, we are creating a template and assigning it to a [template reference variable](https://blog.angulartraining.com/tutorial-the-magic-of-template-reference-variables-3183f0a0d9d1). _This template reference variable makes `falseTemp` a valid variable to use as a value for other inputs in the same template._ It then handles that variable similarly to how a variable from the component logic is handled when referenced from the template.
 
@@ -82,7 +82,7 @@ But there's a ~~simpler~~ ~~much more complex~~ another way show the same templa
 <ng-template [ngTemplateOutlet]="bool ? ifTrueCondTempl : falseTemp"></ng-template>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-2-conditional-render?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 2 Conditional Render - StackBlitz" src="uu-code:./start-to-source-2-conditional-render?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 > While this is not how the `ngIf` structural template works internally, this is a good introduction to the `ngTemplateOutlet` directive, which adds functionality to the `ng-template` tag.
 >
@@ -131,7 +131,7 @@ Here, you can see that `let-templateVariableName="contextKeyName"` is the syntax
 
 Now let's see it in action!
 
-<iframe src="https://stackblitz.com/edit/start-to-source-3-context?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 3 Context - StackBlitz" src="uu-code:./start-to-source-3-context?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 As a quick note, _I only named these template input variables differently from the context value key to make it clear that you may do so_. `let-personName="personName"` is not only valid, but it also can make the code's intentions clearer to other developers.
 
@@ -159,7 +159,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-4-viewchild?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 4 Viewchild - StackBlitz" src="uu-code:./start-to-source-4-viewchild?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 > While this example is effectively not-much-more than an alternative API to `ngTemplateOutlet`, it serves as a basis for introducing into further concepts.
 
@@ -190,7 +190,7 @@ console.log(this.myComponent.inputHere); // This will print `50`
 
 It would give you the property value on the instance of that component. Angular by default does a pretty good job at figuring out what it is that you wanted to get a reference of and returning the "correct" object for that thing.
 
-<iframe src="https://stackblitz.com/edit/start-to-source-5-view-not-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 5 View Not Template - StackBlitz" src="uu-code:./start-to-source-5-view-not-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Despite the examples thus far having only used a string as the query for `ViewChild`, you're also able to use the ComponentClass to query for a component with that component type.
 
@@ -224,7 +224,7 @@ Now that we've configured the `ViewChild` to read this as an `ElementRef` (a cla
 console.log(myComponent.nativeElement.dataset.getAttribute('data-unrelatedAttr')); // This output `"Hi there!"`
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-6-read-prop?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 6 Read Prop - StackBlitz" src="uu-code:./start-to-source-6-read-prop?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 `ViewChild` isn't an only child, though (get it?). There are other APIs similar to it that allow you to get references to other items in your templates from your component logic.
 
@@ -247,7 +247,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-7-viewchildren?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 7 Viewchildren - StackBlitz" src="uu-code:./start-to-source-7-viewchildren?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Would give you a list of all components with that base class. You're also able to use the `{read: ElementRef}` property from the `ViewChild` property decorator to get a `QueryList<ElementRef>` (to be able to get a reference to the DOM [Elements](https://developer.mozilla.org/en-US/docs/Web/API/Element) themselves) instead of a query list of `MyComponentComponent` types.
 
@@ -278,7 +278,7 @@ this.myComponents.changes.subscribe(compsQueryList => {
 });
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-8-querylist?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 8 Querylist - StackBlitz" src="uu-code:./start-to-source-8-querylist?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 It might be a good idea to gain familiarity of doing this as the Angular docs give the following warning in the [`QueryList` docs](https://angular.io/api/core/QueryList#changes):
 
@@ -358,7 +358,7 @@ export class CardsList implements AfterViewInit {
 
 Awesome, let's spin that up and… Oh.
 
-<iframe src="https://stackblitz.com/edit/start-to-source-9-cardlist-broke?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 9 Cardlist Broke - StackBlitz" src="uu-code:./start-to-source-9-cardlist-broke?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 The cards are still grey. Let's open up our terminal and see if the `console.log`s ran.
 
@@ -374,7 +374,7 @@ If we change the `ViewChildren` line to read:
 @ContentChildren(ActionCard, {read: ElementRef}) actionCards;
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-10-cardlist-fixed?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 10 Cardlist Fixed - StackBlitz" src="uu-code:./start-to-source-10-cardlist-fixed?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 We'll see that the code now runs as expected. The cards are recolored, the `consoles.log`s ran, and the developers are happy.
 
@@ -622,7 +622,7 @@ Straightforward enough example, let’s see a more difficult example:
 <ng-template [ngTemplateOutlet]="testingMessage"></ng-template>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-11-broke-template-var?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 11 Broke Template Var - StackBlitz" src="uu-code:./start-to-source-11-broke-template-var?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 If you look at the output of this example, you'll notice that `testingMessage` isn't rendering. This is because template reference variables bind to the view that they're present in; and as a result are unable to be accessed from parent views.
 
@@ -647,7 +647,7 @@ In order to fix this behavior, we'd need to move the second `ng-template` into t
 </div>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-12-fixed-template-var?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 12 Fixed Template Var - StackBlitz" src="uu-code:./start-to-source-12-fixed-template-var?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 # The Bane of All JavaScipt Developer: Timings {#timings}
 
@@ -734,7 +734,7 @@ export class AppComponent implements DoCheck, OnChanges, AfterViewInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-13-lifecycle-explain?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 13 Lifecycle Explain - StackBlitz" src="uu-code:./start-to-source-13-lifecycle-explain?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Looking at the console logs, you'll be left with the following messages in your console:
 
@@ -783,7 +783,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-14-static?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 14 Static - StackBlitz" src="uu-code:./start-to-source-14-static?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Because this example does not have the `helloThereMsg` template within another view (outside of the host view), it is able to render without the errors we found when using `static: true`). Likewise, if you were to add an `OnInit` lifecycle method, you'd be able to get a reference to that template.
 
@@ -797,7 +797,7 @@ While you might wonder "Why would you use `static: false` if you can get the acc
 
 When taking the example with the `testingMessageCompVar` prop and changing the value to `true`, it will never render the other component since it will always stay `undefined`.
 
-<iframe src="https://stackblitz.com/edit/start-to-source-15-static-first-check?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 15 Static First Check - StackBlitz" src="uu-code:./start-to-source-15-static-first-check?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 # View Manipulation {#view-manipulation}
 
@@ -839,7 +839,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-16-createembeddedview?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 16 Createembeddedview - StackBlitz" src="uu-code:./start-to-source-16-createembeddedview?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This example has a lot going on, so let's dissect it bit-by-bit.
 
@@ -910,7 +910,7 @@ ngOnInit() {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-17-see-viewcontainer-indexes?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 17 See Viewcontainer Indexes - StackBlitz" src="uu-code:./start-to-source-17-see-viewcontainer-indexes?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 #### Context
 
@@ -953,7 +953,7 @@ To get around this, we can use the `ng-container` tag, which allows us to get a 
 ```
 
 
-<iframe src="https://stackblitz.com/edit/start-to-source-18-create-embedd-context?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 18 Create Embedd Context - StackBlitz" src="uu-code:./start-to-source-18-create-embed-context?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 #### Move/Insert Template
 
@@ -967,7 +967,7 @@ const newViewIndex = 0;
 this.viewContainerRef.move(embeddRef1, newViewIndex); // This will move this view to index 1, and shift every index greater than or equal to 0 up by 1
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-19-move-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 19 Move Template - StackBlitz" src="uu-code:./start-to-source-19-move-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Angular provides many APIs to take an existing view and move it and modify it without having to create a new one and run change detection/etc again.
 
@@ -982,7 +982,7 @@ ngOnInit() {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-20-insert-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 20 Insert Template - StackBlitz" src="uu-code:./start-to-source-20-insert-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 [And in fact, this is how the `createEmbeddedView` works internally](https://github.com/angular/angular/blob/e1f6d1538784eb87f7497bef27e3c313184c2d30/packages/core/src/view/refs.ts#L174):
 
@@ -1028,7 +1028,7 @@ export class RenderTheTemplateDirective implements OnInit {
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-21-directive-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 21 Directive Template - StackBlitz" src="uu-code:./start-to-source-21-directive-template?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 You'll notice this code is almost exactly the same from some of our previous component code.
 
@@ -1060,7 +1060,7 @@ export class RenderTheTemplateDirective implements OnInit {
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-22-directive-template-reference?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 22 Directive Template Reference - StackBlitz" src="uu-code:./start-to-source-22-directive-template-reference?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## Input Shorthand {#directive-same-name-input}
 
@@ -1093,7 +1093,7 @@ export class AppComponent {}
 
 > I want to make clear that this trick is present in all directives. If you name the input the same as the directive name, it will bind the value you're passing in to that directive name while also associating the directive with the component. No need for a separate input and directive name!
 
-<iframe src="https://stackblitz.com/edit/start-to-source-23-directive-input-name?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 23 Directive Input Name - StackBlitz" src="uu-code:./start-to-source-23-directive-input-name?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Starting to look a bit more like the `ngTemplateOutlet`, no? Well, why not go even further! Let's lean into that!
 With this syntax, we can add a second input, pass an object as the context to the template we want to render, and then a template reference variable, and be able to recreate Angular's `ngTemplateOutlet`'s API almost to-a-T:
@@ -1127,7 +1127,7 @@ export class RenderTheTemplateDirective implements OnInit {
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-24-directive-outlet-alternative?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 24 Directive Outlet Alternative - StackBlitz" src="uu-code:./start-to-source-24-directive-outlet-alternative?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 The nice part is that not only does it look like the directive from its usage, [but it's also not entirely dissimilar to how Angular writes the component internally](https://github.com/angular/angular/blob/e1f6d1538784eb87f7497bef27e3c313184c2d30/packages/common/src/directives/ng_template_outlet.ts#L35):
 
@@ -1190,7 +1190,7 @@ export class RenderThisDirective implements OnInit {
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-25-structural-directive-intro?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 25 Structural Directive Intro - StackBlitz" src="uu-code:./start-to-source-25-structural-directive-intro?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 [Just as we previously used Angular's dependency injection (DI) system to get a reference to the `ViewContainerRef`](#embed-views), we're using DI to get a reference to the `TemplateRef` created by the `*` in the invocation of this directive and embedding a view.
 
@@ -1208,7 +1208,7 @@ The cool part about structural directives, though? Because they're simply direct
 </ng-template>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-26-structural-directive-manually-apply?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 26 Structural Directive Manually Apply - StackBlitz" src="uu-code:./start-to-source-26-structural-directive-manually-apply?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 It is for this reason that **only one structural directive can be applied to one element**. Otherwise, how would it know what order to wrap those directives in? What template should get what reference to what template?
 
@@ -1252,7 +1252,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-27-render-if-intro?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 27 Render If Intro - StackBlitz" src="uu-code:./start-to-source-27-render-if-intro?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Super cool! Image we kept developing this structural directive out, but you noticed while running your test (which you should totally have 👀) that toggling the checkbox doesn't actually show anything! This is because it's running the check once on `ngOnInit` and not again when the input changes. So let's change that:
 
@@ -1280,7 +1280,7 @@ export class RenderThisIfDirective {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-28-render-if-work-toggle-true?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 28 Render If Work Toggle True - StackBlitz" src="uu-code:./start-to-source-28-render-if-work-toggle-true?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 You'll notice that I removed the `OnInit` lifecycle and replaced it with an input `set`ter. We could have changed the lifecycle method to use `ngOnChanges` to listen for input changes, given that we only have one input, but as your directive adds more inputs and you want to maintain the local state, that logic can get more complex.
 
@@ -1296,7 +1296,7 @@ update(): void {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-29-render-if-fully-working?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 29 Render If Fully Working - StackBlitz" src="uu-code:./start-to-source-29-render-if-fully-working?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Here, we're using the `clear` method on the parent view ref to remove the previous view when the value is false. Because our structural directive will contain a template only used for this directive, we can safely assume that `clear` will only remove templates created within this directive and not from an external source.
 
@@ -1395,7 +1395,7 @@ export class MakePigLatinDirective {
 export class AppComponent {}
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-30-microsyntax?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 30 Microsyntax - StackBlitz" src="uu-code:./start-to-source-30-microsyntax?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This might look familiar. We're using the `$implicit` value from the context within our structural directive! However, [if you review the section we introduced that concept in](#template-context), you'll notice that the syntax here is different but similar from a template variable that would be used to bind the context from an `ng-template` tag.
 
@@ -1431,7 +1431,7 @@ export class AppComponent {}
 ```
 
 
-<iframe src="https://stackblitz.com/edit/start-to-source-31-structural-named-context?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 31 Structural Named Context - StackBlitz" src="uu-code:./start-to-source-31-structural-named-context?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Just as before, we would use semicolons to split the definitions, then bind the external (as in: from the directive) context value of `original` to the local (this template) variable of `ogMsg`.
 
@@ -1463,7 +1463,7 @@ And then call them with the following template:
 <ng-template [consoleThing]="'This is a warning from the 👻 of code future, refactor this please'" [warn]="true"></ng-template>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-32-console-non-structural-directive?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 32 Console Non Structural Directive - StackBlitz" src="uu-code:./start-to-source-32-console-non-structural-directive?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This can be super useful for both providing concise APIs as well as provide further functionalities to said directive simply. Structural directives offer similar, although it comes with its own syntax and limitations due to the microsyntax API.
 
@@ -1503,7 +1503,7 @@ export class MakePigLatinDirective implements OnInit {
 export class AppComponent { }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-33-pig-latin-microsyntax?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 33 Pig Latin Microsyntax - StackBlitz" src="uu-code:./start-to-source-33-pig-latin-microsyntax?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 You can see that I've had to tweak our previous pig latin directive example a bit.
 
@@ -1526,7 +1526,7 @@ Now, I remember when I was learning a lot of the structural directive stuff, I t
 </p>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-34-pig-latin-non-binding?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 34 Pig Latin Non Binding - StackBlitz" src="uu-code:./start-to-source-34-pig-latin-non-binding?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 I was not, however, greeted by praises on my PR making this change, but rather by an error in my console:
 
@@ -1556,7 +1556,7 @@ So if we did want to take the non-functional example above and fix it to not use
 </ng-template>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-35-pig-latin-normal-directive?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 35 Pig Latin Normal Directive - StackBlitz" src="uu-code:./start-to-source-35-pig-latin-normal-directive?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ### `as` to preserve values in template variable
 
@@ -1588,7 +1588,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-36-as-keyword?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 36 As Keyword - StackBlitz" src="uu-code:./start-to-source-36-as-keyword?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 While this example can be seen clearly with this usage of `ngIf` , let's try to add it into our `pigLatin` example:
 
@@ -1596,7 +1596,7 @@ While this example can be seen clearly with this usage of `ngIf` , let's try to 
 <p *makePiglatin="'test'; let msg; casing 'upper' | uppercase as upperInUpper">{{upperInUpper}}: {{msg}}</p>
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-37-pig-latin-as-keyword-broken?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 37 Pig Latin As Keyword Broken - StackBlitz" src="uu-code:./start-to-source-37-pig-latin-as-keyword-broken?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 In this example, we're expecting `'upper'` to be turned into `'UPPER'` by the `uppercase` pipe, then to be passed as the input to `makePiglatinCasing` and for the `$implicit` value of that context to be assigned to a local variable `msg`. If you load this, you'll noticed that the uppercased pig lattin displays as expected but the `upperInUpper` variable (which we expected to be `'UPPER'`) is undefined.
 
@@ -1610,7 +1610,7 @@ this.parentViewRef.createEmbeddedView(this.templ, {
 });
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-38-pig-latin-as-keyword?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 38 Pig Latin As Keyword - StackBlitz" src="uu-code:./start-to-source-38-pig-latin-as-keyword?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Now that we're exporting the output with the `as`, it should show on-screen as expected. So why is this? **Well, `as` exports the outputted value that it's bound to.** In this case, we're binding the value to `casing` (because that's what `'upper'` is being passed as an input to).
 
@@ -1820,7 +1820,7 @@ export class AppComponent {
 }
 ```
 
-<iframe src="https://stackblitz.com/edit/start-to-source-39-uni-for?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Start To Source 39 Uni For - StackBlitz" src="uu-code:./start-to-source-39-uni-for?embed=1&file=src/app/app.component.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 - We're starting with enabling `uniFor` as the structural directive name
 - Then we're defining an input to accept `of` as a key in the syntax (to match the `ngFor` structural directive syntax).
