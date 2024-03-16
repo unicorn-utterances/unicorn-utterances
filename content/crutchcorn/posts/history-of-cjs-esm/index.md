@@ -8,7 +8,9 @@
 }
 ---
 
-Whikle working in the NodeJS ecosystem, you may have heard of "ESM" or "EcmaScript Modules". Alternatively, maybe you've heard of "CJS" or "CommonJS Modules". They're even front-and-center in many of Node's current docs:
+Whikle working in the NodeJS ecosystem, you may have heard of "ESM" or "EcmaScript Modules". Alternatively, maybe you've heard of "CJS" or "CommonJS Modules".
+
+They're even front-and-center in many of Node's current docs:
 
 <!-- TODO: Add docs examples -->
 
@@ -48,27 +50,17 @@ Mocha, then shortly renamed to Livescript, would catch the attention of Sun Micr
 
 Through an agreement with Sun, Netscape Communciations would rename Mocha/LiveScript to JavaScript and make it the official scripting language of thier browser: NetScape Navigator 2.0.
 
-
-
-
-
-
-
----------------------
-
 # Netscape and 90s Server-Side JavaScript
 
-Rewind to 1996
+But by 1996 NetScape isn't just a browser company; they're a big deal in the software engineering space.
 
-NetScape is a big thing.
+And, important to our context, they're using JavaScript on the server through a program called "LiveWire".
 
-They're using JavaScript on the server:
+Here, [we can see a reference to NetScape's LiveWire server in a 1996 article from CNET](https://www.cnet.com/tech/tech-industry/netscape-opens-intranet-attack/) and even [a reference guide to server-side JavaScript that dates back to 1998](https://docs.oracle.com/cd/E19957-01/816-6411-10/contents.htm).
 
-https://www.cnet.com/tech/tech-industry/netscape-opens-intranet-attack/ (first reference to their LiveWire server)
+It's clear that they were all-in on JavaScript; a senseable decision given their ownership over the language.
 
-Makes sense given that they were in charge of the language
-
-As the language grew and evolved over time, ES3 found itself launching in 1999
+By 1999 JavaScript had matured enough to standardize on a stable version usable external to NetScape: ES3.
 
 Well, Netscape turned into Mozilla:
 
@@ -202,15 +194,7 @@ https://github.com/wooorm/npm-esm-vs-cjs
 
 -------------
 
-------------
 
----------------------------
-
-Oh hey look what I found
-
-https://docs.oracle.com/cd/E19957-01/816-6411-10/contents.htm
-
-The 1998 guide to writing server-side JavaScript from Netscape days
 
 
 --------------
