@@ -225,3 +225,125 @@ https://wiki.commonjs.org/wiki/Modules
 Wow. There is so much more to CommonJS and Node's origin than I outlined
 
 https://github.com/nodejs/node-v0.x-archive/issues/5132#issuecomment-15503151
+
+
+
+
+
+--------------
+
+
+
+-------------------
+
+-------------
+
+------------
+
+---------------------------
+
+
+
+--------------
+
+
+
+-------------------
+
+-------------
+
+------------
+
+---------------------------
+
+
+
+--------------
+
+
+
+-------------------
+
+-------------
+
+------------
+
+---------------------------
+
+
+
+--------------
+
+
+
+-------------------
+
+-------------
+
+------------
+
+---------------------------
+
+
+
+--------------
+
+
+
+-------------------
+
+-------------
+
+------------
+
+---------------------------
+
+
+
+--------------
+
+
+
+-------------------
+
+-------------
+
+------------
+
+---------------------------
+
+
+
+--------------
+
+
+
+-------------------
+
+-------------
+
+------------
+
+---------------------------
+
+
+
+Links to specific JS versions and releases:
+
+https://en.wikibooks.org/wiki/JavaScript/History_of_JavaScript
+
+# History
+
+- Dec 1994 Netscape Navigator 1.0 released
+- [April 1995 Brenden Eich hired to make a "Scheme-like" programming language](https://en.wikipedia.org/wiki/Brendan_Eich)
+- [May 1995 Mocha invented](https://nestify.io/blog/brief-history-of-javascript/) [in 10 days](https://web.archive.org/web/20160305202500/http://www.computer.org/csdl/mags/co/2012/02/mco2012020007.pdf)
+
+- [September 1995 Mocha renamed to Livescript & first beta release of Netscape Navigator 2.0](https://nestify.io/blog/brief-history-of-javascript/)
+
+- [December 1995 LiveScript renamed to JavaScript & Netscape 2.0 final release](https://nestify.io/blog/brief-history-of-javascript/)
+- [1996 JavaScript used on server (LiveWire)](https://www.cnet.com/tech/tech-industry/netscape-opens-intranet-attack/)
+- [1998 Mozilla founded & NetScape browser source code released](https://www.mozilla.org/en-US/about/history/)
+- [Jan 2009 CommonJS letter from Mozilla](https://www.blueskyonmars.com/2009/01/29/what-server-side-javascript-needs/)
+- [June 2009 Node.js released](https://www.youtube.com/watch?v=ztspvPYybIY )
+- Dec 2009 ES5 Spec Released
+- [2013 Thread on Node.js & CommonJS](https://github.com/nodejs/node-v0.x-archive/issues/5132#issuecomment-15432598)
