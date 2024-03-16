@@ -332,6 +332,26 @@ Links to specific JS versions and releases:
 
 https://en.wikibooks.org/wiki/JavaScript/History_of_JavaScript
 
+
+
+2008 Interview w/ Eich about Mocha -> Livescript:
+
+https://www.infoworld.com/article/2653798/javascript-creator-ponders-past-future.html 
+
+
+
+History of ECMAScript versions:
+
+https://en.wikipedia.org/wiki/ECMAScript_version_history
+
+
+
+JS History timeline:
+
+https://auth0.com/blog/the-real-story-behind-es4/#An-ECMAScript-timeline
+
+
+
 # History
 
 - Dec 1994 Netscape Navigator 1.0 released
@@ -340,10 +360,16 @@ https://en.wikibooks.org/wiki/JavaScript/History_of_JavaScript
 
 - [September 1995 Mocha renamed to Livescript & first beta release of Netscape Navigator 2.0](https://nestify.io/blog/brief-history-of-javascript/)
 
-- [December 1995 LiveScript renamed to JavaScript & Netscape 2.0 final release](https://nestify.io/blog/brief-history-of-javascript/)
+- [December 1995 LiveScript renamed to JavaScript & Netscape 2.0 final release](https://web.archive.org/web/20020606002913/http://wp.netscape.com/newsref/pr/newsrelease67.html)
 - [1996 JavaScript used on server (LiveWire)](https://www.cnet.com/tech/tech-industry/netscape-opens-intranet-attack/)
+- [November 1996 NetScape starts talks with ECMA](https://web.archive.org/web/19981203070212/http://cgi.netscape.com/newsref/pr/newsrelease289.html)
+- [June 1997 ECMAScript v1 releases](https://ecma-international.org/wp-content/uploads/ECMA-262_1st_edition_june_1997.pdf)
+- [August 1998 ECMAScript v2 releases](https://ecma-international.org/wp-content/uploads/ECMA-262_2nd_edition_august_1998.pdf)
 - [1998 Mozilla founded & NetScape browser source code released](https://www.mozilla.org/en-US/about/history/)
+  - [First edition based on JavaScript 1.1 as implemented in Netscape Navigator 3.0.](https://web.archive.org/web/19970614042441/http://home.netscape.com/eng/mozilla/3.0/handbook/javascript/index.html)
+- [December 1999 EcmaScript v3 releases](https://ecma-international.org/wp-content/uploads/ECMA-262_3rd_edition_december_1999.pdf)
+  - [Based on JavaScript 1.2 as implemented in Netscape Navigator 4.0.](https://web.archive.org/web/19990420172150/http://developer.netscape.com/docs/manuals/communicator/jsref/index.htm)
 - [Jan 2009 CommonJS letter from Mozilla](https://www.blueskyonmars.com/2009/01/29/what-server-side-javascript-needs/)
 - [June 2009 Node.js released](https://www.youtube.com/watch?v=ztspvPYybIY )
-- Dec 2009 ES5 Spec Released
+- [Dec 2009 ES5 Spec Released](https://ecma-international.org/wp-content/uploads/ECMA-262_5th_edition_december_2009.pdf)
 - [2013 Thread on Node.js & CommonJS](https://github.com/nodejs/node-v0.x-archive/issues/5132#issuecomment-15432598)
