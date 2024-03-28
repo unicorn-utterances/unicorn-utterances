@@ -57,7 +57,7 @@ const Modal = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "delete-modal",
 	standalone: true,
@@ -270,7 +270,7 @@ const FolderIcon = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -286,7 +286,7 @@ const FolderIcon = () => {
 class AppComponent {}
 ```
 
-```typescript
+```angular-ts
 @Component({
 	selector: "header-comp",
 	standalone: true,
@@ -307,7 +307,7 @@ class AppComponent {}
 class HeaderComponent {}
 ```
 
-```typescript
+```angular-ts
 @Component({
 	selector: "body-comp",
 	standalone: true,
@@ -326,7 +326,7 @@ class BodyComponent {
 }
 ```
 
-```typescript
+```angular-ts
 @Component({
 	selector: "footer-comp",
 	standalone: true,
@@ -335,7 +335,7 @@ class BodyComponent {
 class FooterComponent {}
 ```
 
-```typescript
+```angular-ts
 @Component({
 	selector: "folder-icon",
 	standalone: true,
@@ -351,7 +351,7 @@ class FooterComponent {}
 class FolderIconComponent {}
 ```
 
-```typescript
+```angular-ts
 @Component({
 	selector: "delete-icon",
 	standalone: true,
@@ -607,7 +607,7 @@ const Header = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "header-comp",
 	standalone: true,
@@ -781,7 +781,7 @@ npm i @angular/cdk
 
 From here, we can import components and utilities directly from the CDK.
 
-```typescript
+```angular-ts
 import { PortalModule, DomPortal } from "@angular/cdk/portal";
 
 @Component({
@@ -841,7 +841,7 @@ Because we're using a `div` to act as the parent element of the portal's content
 
 As such, we may want to use an `ng-template`, which does not render to the DOM in the first place:
 
-```typescript
+```angular-ts
 import { PortalModule, TemplatePortal } from "@angular/cdk/portal";
 
 @Component({
@@ -967,7 +967,7 @@ function App() {
 
 In Angular, we can use a basic service to share our instance of a `Portal` between multiple components, parent and child alike.
 
-```typescript
+```angular-ts
 import { Portal, PortalModule, TemplatePortal } from "@angular/cdk/portal";
 
 @Injectable({
@@ -1158,7 +1158,7 @@ To use a portal that attaches directly to `body` in Angular, we need to switch f
 
 We can reuse our existing global service to create one of these `DomPortalOutlet`s and attach and detach it in our `modal` component, like so:
 
-```typescript
+```angular-ts
 import { TemplatePortal, DomPortalOutlet } from "@angular/cdk/portal";
 
 @Injectable({
@@ -1411,7 +1411,7 @@ function App() {
 
 ### Angular
 
-```typescript {0-5,24,69,84,86-87,107-109,120-122}
+```angular-ts {0-5,24,69,84,86-87,107-109,120-122}
 @Injectable({
 	providedIn: "root",
 })

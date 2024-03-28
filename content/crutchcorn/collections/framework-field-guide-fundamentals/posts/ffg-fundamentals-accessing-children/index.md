@@ -132,7 +132,7 @@ In our previous example, we used them to conditionally render content using `ngI
 
 `ContentChild` is a way to query the projected content within [`ng-content`](/posts/ffg-fundamentals-passing-children) from JavaScript.
 
-```typescript
+```angular-ts
 import {
 	Component,
 	AfterContentInit,
@@ -187,7 +187,7 @@ Then you're asking the right questions!
 
 See, if we replace our usage of `ngAfterContentInit` with a `ngOnInit`, then we get `undefined` in place of `this.child`:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "parent-list",
 	standalone: true,
@@ -219,7 +219,7 @@ While `ContentChild` is useful for querying against a single item being projecte
 
 This is where [`ContentChildren`](https://angular.io/api/core/ContentChildren) comes into play:
 
-```typescript
+```angular-ts
 import {
 	Component,
 	AfterContentInit,
@@ -378,7 +378,7 @@ Since Angular's `ContentChildren` gives us an `HTMLElement` reference when using
 
 Instead, let's change our elements to `ng-template`s and render them in an `ngFor`, [similarly to what we did in our "Directives" chapter](/posts/ffg-fundamentals-directives#using-viewcontainer-to-render-a-template):
 
-```typescript
+```angular-ts
 @Component({
 	selector: "parent-list",
 	standalone: true,
@@ -480,7 +480,7 @@ const App = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "parent-list",
 	standalone: true,
@@ -686,7 +686,7 @@ const App = () => {
 
 Let's use the [ability to pass values to an ngTemplate using context](/posts/ffg-fundamentals-directives#passing-data-to-ng-template) to provide the background color to the passed template to our `ParentList` component:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "parent-list",
 	standalone: true,
@@ -900,7 +900,7 @@ function App() {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "table-comp",
 	standalone: true,

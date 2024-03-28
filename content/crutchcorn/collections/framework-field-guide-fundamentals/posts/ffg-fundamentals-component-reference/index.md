@@ -99,7 +99,7 @@ function App() {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "context-menu",
 	standalone: true,
@@ -587,7 +587,7 @@ useImperativeHandle(ref, () => someVal, [someVal]);
 
 Just as we can use `ViewChild` to access an underlying DOM node, we can do the same thing with a component reference. In fact, we can use a template reference variable just like we would to access the DOM node.
 
-```typescript {0,23,26}
+```angular-ts {0,23,26}
 import { AfterViewInit, Component, ViewChild } from "@angular/core";
 
 @Component({
@@ -631,13 +631,13 @@ Doing this, we'll see the console output:
 
 But how do we know that this is properly the `ChildComponent` instance? Simple! We'll `console.log` `childComp.constructor` and we'll see:
 
-```typescript
+```angular-ts
 class ChildComponent {}
 ```
 
 This means that, as a result, we can also call the `sayHi` method:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "parent-comp",
 	standalone: true,
@@ -877,7 +877,7 @@ function App() {
 
 ## Angular
 
-```typescript {6,13,21-23,37,46,67}
+```angular-ts {6,13,21-23,37,46,67}
 @Component({
 	selector: "context-menu",
 	standalone: true,
@@ -1112,7 +1112,7 @@ const App = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-layout",
 	standalone: true,
@@ -1271,7 +1271,7 @@ const App = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-sidebar",
 	standalone: true,
@@ -1536,7 +1536,7 @@ const App = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-sidebar",
 	standalone: true,

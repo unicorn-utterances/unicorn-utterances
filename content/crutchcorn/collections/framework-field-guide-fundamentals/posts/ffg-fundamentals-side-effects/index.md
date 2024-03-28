@@ -168,7 +168,7 @@ const Comp = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "comp-comp",
 	standalone: true,
@@ -254,7 +254,7 @@ const Parent = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "child-comp",
 	standalone: true,
@@ -362,7 +362,7 @@ We mentioned earlier that there is another hook used to handle side effects: `us
 To execute code during an initial render of a component, Angular uses a method called `ngOnInit`.
 This function is specially named so that Angular can call it on your behalf during the "rendered" lifecycle event:
 
-```typescript
+```angular-ts
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -477,7 +477,7 @@ const WindowSize = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "window-size",
 	standalone: true,
@@ -561,7 +561,7 @@ const WindowSize = () => {
 
 ## Angular
 
-```typescript {13-22}
+```angular-ts {13-22}
 @Component({
 	selector: "window-size",
 	standalone: true,
@@ -669,7 +669,7 @@ const WindowSize = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "window-size",
 	standalone: true,
@@ -860,7 +860,7 @@ function prefixZero(number) {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "clock-comp",
 	standalone: true,
@@ -970,7 +970,7 @@ function App() {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -1115,7 +1115,7 @@ function App() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "alarm-screen",
 	standalone: true,
@@ -1393,7 +1393,7 @@ When we add a mounted lifecycle to Angular, we:
 
 To add an unmounted lifecycle method to an Angular component, we do the same steps as above, but with `OnDestroy` instead:
 
-```typescript
+```angular-ts
 import { Component, OnDestroy } from "@angular/core";
 
 @Component({
@@ -1414,7 +1414,7 @@ class CleanupComponent implements OnDestroy {
 
 Let's apply this new lifecycle method to our code sample previously:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "alarm-screen",
 	standalone: true,
@@ -1669,7 +1669,7 @@ However, **this is not the same thing as emitting an event in Angular or Vue**. 
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-alert",
 	standalone: true,
@@ -1794,7 +1794,7 @@ const Comp = () => {
 
 ### Angular
 
-```typescript {6}
+```angular-ts {6}
 @Component({
 	standalone: true,
 	selector: "app-comp",
@@ -1839,7 +1839,7 @@ const App = () => {
 
 ### Angular
 
-```typescript {6-9}
+```angular-ts {6-9}
 @Component({
 	standalone: true,
 	imports: [CompComponent],
@@ -1931,7 +1931,7 @@ const App = () => {
 
 #### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-alert",
 	standalone: true,
@@ -2098,7 +2098,7 @@ const WindowSize = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "window-size",
 	standalone: true,
@@ -2428,7 +2428,7 @@ const App = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -2572,7 +2572,7 @@ _Today_, Angular does not include a method for tracking internal state changes. 
 
 Instead, we'll have to use a `setTitle` function that calls the variable mutation as well as sets the `document.title` as a side effect:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -2971,7 +2971,7 @@ const TitleChanger = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "title-changer",
 	standalone: true,
@@ -3077,7 +3077,7 @@ const TitleChanger = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "title-changer",
 	standalone: true,
@@ -3305,7 +3305,7 @@ To sidestep this detection from Zone.js in Angular, you can tell the framework t
 
 To do this, we need to use ["Dependency Injection"](/posts/ffg-fundamentals-dependency-injection) to access Angular's internal `NgZone` reference and use the `runOutsideAngular` method:
 
-```typescript {0,19-21,31-33}
+```angular-ts {0,19-21,31-33}
 import { Component, NgZone, OnDestroy, inject } from "@angular/core";
 
 @Component({
@@ -3483,7 +3483,7 @@ function DarkModeToggle() {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "dark-mode-toggle",
 	standalone: true,
@@ -3615,7 +3615,7 @@ function App() {
 
 ## Angular
 
-```typescript
+```angular-ts
 import { Component, ViewEncapsulation } from "@angular/core";
 
 @Component({
@@ -3766,7 +3766,7 @@ function DarkModeToggle() {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "dark-mode-toggle",
 	standalone: true,
@@ -3961,7 +3961,7 @@ function App() {
 
 ## Angular
 
-```typescript {36,58}
+```angular-ts {36,58}
 @Component({
 	selector: "dark-mode-toggle",
 	standalone: true,

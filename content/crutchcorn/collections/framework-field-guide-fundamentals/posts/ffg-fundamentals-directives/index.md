@@ -61,7 +61,7 @@ const App = () => {
 
 You set up a directive in Angular very similarly to how you might construct a component: using the `@Directive` decorator.
 
-```typescript
+```angular-ts
 import { Component, ElementRef, Directive } from "@angular/core";
 
 @Directive({
@@ -95,7 +95,7 @@ This isn't particularly useful, but demonstrates the most minimal version of wha
 
 It's frequently more helpful to get a reference to the element that the attribute is present on. To do this, we'll use Angular's [dependency injection](/posts/ffg-fundamentals-dependency-injection) to ask Angular for an `ElementRef` that's present within the framework's internals when you create a directive instance.
 
-```typescript
+```angular-ts
 @Directive({
 	selector: "[logElement]",
 	standalone: true,
@@ -110,7 +110,7 @@ But oh no! Our directive no longer uses the `constructor` function, which means 
 
 To fix this, we can extract our `inject` into a function that we can call from within our directive's class body:
 
-```typescript
+```angular-ts
 function findAndLogTheElement() {
 	const el = inject(ElementRef<any>);
 	// HTMLParagraphElement
@@ -216,7 +216,7 @@ const App = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 function injectElAndStyle() {
 	const el = inject(ElementRef<any>);
 	el.nativeElement.style.background = "red";
@@ -324,7 +324,7 @@ const App = () => {
 
 Angular uses the same `implements` implementation for classes to use lifecycle methods in directives as it does components.
 
-```typescript
+```angular-ts
 @Directive({
 	selector: "[focusElement]",
 	standalone: true,
@@ -417,7 +417,7 @@ However, one way that a directive's inputs differ from a component's is that you
 
 <!-- Editor's note: I am intentionally lying that you have to prefix the name. Read on. -->
 
-```typescript
+```angular-ts
 @Directive({
 	selector: "[styleBackground]",
 	standalone: true,
@@ -526,7 +526,7 @@ const App = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 class Color {
 	r: number;
 	g: number;
@@ -642,7 +642,7 @@ I have to come clean about something: when I said, "A directive's input must be 
 
 In reality, you can name an input anything you'd like, but then you need to have an empty attribute with the same name as the selector.
 
-```typescript
+```angular-ts
 @Directive({
 	selector: "[styleBackground]",
 	standalone: true,
@@ -839,7 +839,7 @@ the `ng-template`.
 
 However, because `ng-template` doesn't render anything on its own, we'll need to supply a parent to render the `ng-template`'s contents. We do this using the `ngTemplateOutlet` directive:
 
-```typescript
+```angular-ts
 import { NgTemplateOutlet } from "@angular/common";
 
 @Component({
@@ -900,7 +900,7 @@ To solve this, we can pass a "default" key called `$implicit` and bind it like s
 </ng-template>
 ```
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -924,7 +924,7 @@ class AppComponent {}
 
 While we've been using `inject` in directives to gain access to the directive's underlying HTML element, what happens if we bind a directive to an `ng-template`?
 
-```typescript
+```angular-ts
 @Directive({
 	selector: "[beOnTemplate]",
 	standalone: true,
@@ -954,7 +954,7 @@ Surprisingly, this `alert`s the `"I am alive!"` message despite nothing being sh
 
 Well, there's a hint if we try to access the underlying HTML element using `ElementRef`:
 
-```typescript
+```angular-ts
 @Directive({
 	selector: "[beOnTemplate]",
 	standalone: true,
@@ -994,7 +994,7 @@ Now that we know we can attach a template from a directive, let's go one step fu
 
 Here, we'll use dependency injection to get access to an `ng-template`'s `TemplateRef`:
 
-```typescript
+```angular-ts
 function injectTemplateAndLog() {
 	const template = inject(TemplateRef);
 	console.log(template);
@@ -1056,7 +1056,7 @@ To do this, Angular uses a compiler to create intelligent "template functions" w
 
 This means that:
 
-```typescript
+```angular-ts
 import { Component } from "@angular/core";
 @Component({
 	selector: "app-cmp",
@@ -1069,7 +1069,7 @@ class AppCmp {
 
 Might compile to something like:
 
-```typescript
+```angular-ts
 import { Component } from "@angular/core";
 import * as i0 from "@angular/core";
 class AppCmp {
@@ -1127,7 +1127,7 @@ When this compiler runs, it also creates a relationship between each component a
 
 This means that this code:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "list-comp",
 	standalone: true,
@@ -1167,7 +1167,7 @@ This isn't just theoretically helpful to learn, though; we're able to tell Angul
 
 Similarly, as a template is handled by an `EmbeddedView` in Angular's compiler, we can programmatically create an Embedded View using `ViewContainerRef.createEmbeddedView`:
 
-```typescript
+```angular-ts
 function injectAndRenderTemplate() {
 	const templToRender = inject(TemplateRef<any>);
 	const parentViewRef = inject(ViewContainerRef);
@@ -1209,7 +1209,7 @@ Now, we should be able to see the `p` tag rendering!
 
 Just as we could pass data to a template inside a component using `ngTemplateOutletContext`, we can do the same using a second argument of `createEmbeddedView`:
 
-```typescript
+```angular-ts
 function injectAndRenderTemplate() {
 	const templToRender = inject(TemplateRef<any>);
 	const parentViewRef = inject(ViewContainerRef);
@@ -1275,7 +1275,7 @@ Is functionally the same as this:
 
 Knowing this, we can take our previous code and convert it to a structural directive:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -1299,7 +1299,7 @@ class AppComponent {}
 
 Now that we have our foundation written out, we can finally build a simple `featureFlag` directive that renders nothing if a `flag` is false but renders the contents if a flag is `true`:
 
-```typescript
+```angular-ts
 const flags: Record<string, boolean> = {
 	addToCartButton: true,
 	purchaseThisItemButton: false,
@@ -1539,7 +1539,7 @@ However, to get this to work, we need to use [Angular CDK's DOMPortal](https://m
 
 We'll build out a custom PortalService that uses a `DomPortalOutlet` to enable this:
 
-```typescript
+```angular-ts
 @Injectable({
 	providedIn: "root",
 })
@@ -1560,7 +1560,7 @@ class PortalService {
 
 Then, we can bind to the `DomPortalOutput` by creating a `DOMPortal` like so:
 
-```typescript
+```angular-ts
 const viewRef = this.viewContainerRef.createEmbeddedView(this.templToRender);
 
 // We need to access the `div` itself to attach to a DomPortal; this is how you do that.
@@ -1578,7 +1578,7 @@ setTimeout(() => {
 
 Let's put it all together like so:
 
-```typescript
+```angular-ts
 @Directive({
 	selector: "[tooltip]",
 	standalone: true,

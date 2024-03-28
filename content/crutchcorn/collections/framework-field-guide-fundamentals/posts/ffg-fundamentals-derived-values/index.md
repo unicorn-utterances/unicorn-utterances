@@ -28,7 +28,7 @@ const FileDate = ({ inputDate }) => {
 
 # Angular
 
-```typescript
+```angular-ts
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -111,7 +111,7 @@ const File = ({ href, fileName, isSelected, onSelected, isFolder }) => {
 
 # Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-item",
 	standalone: true,
@@ -233,7 +233,7 @@ While we didn't touch on this lifecycle method in our previous chapter, Angular 
 
 We can use this new lifecycle method to update the value of a component's state based off of the parent's props:
 
-```typescript {0,7,13-23}
+```angular-ts {0,7,13-23}
 import { Component, OnChanges, SimpleChanges } from "@angular/core";
 
 @Component({
@@ -371,7 +371,7 @@ const AddComp = ({ baseNum, addNum }) => {
 
 To solve the derived value problem without recomputing the values manually, Angular introduces the concept of a "pipe" into the mix of things. The idea is that a pipe runs over an input (or series of inputs), just like React's `useMemo`.
 
-```typescript
+```angular-ts
 import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({ name: "formatDate", standalone: true })
@@ -391,7 +391,7 @@ class FormatReadableDatePipe implements PipeTransform {
 
 You may then use these pipes in your components directly inside the template.
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-date",
 	standalone: true,
@@ -417,7 +417,7 @@ You may notice the similarities between pipes and functions. After all, pipes ar
 
 Let's add a second input to see if the `formatDate` pipe should return a readable date or not.
 
-```typescript
+```angular-ts
 @Pipe({ name: "formatDate", standalone: true })
 class FormatDatePipe implements PipeTransform {
 	// `dateFormat` is an optional argument. If left empty, will simply `formatDate`
@@ -431,7 +431,7 @@ class FormatDatePipe implements PipeTransform {
 
 Then, we can use it in our template while passing a second argument:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-date",
 	standalone: true,
@@ -457,7 +457,7 @@ Luckily, Angular's all-in-one methodology means that there's a slew of pipes tha
 
 To use the built-in pipes, we need to import them from `CommonModule` into the component. In this case, the pipe we're looking to use is called [`DatePipe`](https://angular.io/api/common/DatePipe). This provided date pipe is, expectedly, called `date` when used in the template and can be used like so:
 
-```typescript
+```angular-ts
 import { DatePipe } from "@angular/common";
 
 @Component({
@@ -544,7 +544,7 @@ const CountAndDoubleComp = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Pipe({ name: "doubleNum", standalone: true })
 class DoubleNumPipe implements PipeTransform {
 	transform(value: number): number {
@@ -679,7 +679,7 @@ function formatBytes(bytes) {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Pipe({ name: "formatBytes", standalone: true })
 class FormatBytesPipe implements PipeTransform {
 	kilobyte = 1024;

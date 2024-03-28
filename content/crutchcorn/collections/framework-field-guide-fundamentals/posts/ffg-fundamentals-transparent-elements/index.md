@@ -72,7 +72,7 @@ const FileList = () => {
 
 # Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-item",
 	standalone: true,
@@ -553,7 +553,7 @@ const ButtonBar = ({
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-action-buttons",
 	standalone: true,
@@ -669,7 +669,7 @@ That's because when we used a `div` for our `FileActionButtons` component, it by
 
 ## Angular
 
-```typescript {4-8,10-16}
+```angular-ts {4-8,10-16}
 @Component({
 	selector: "file-action-buttons",
 	standalone: true,
@@ -695,7 +695,7 @@ class FileActionButtonsComponent {
 
 We can even simplify this by removing the `ng-container`, since Angular supports multiple elements at the root of the component template.
 
-```typescript {3-14}
+```angular-ts {3-14}
 @Component({
 	selector: "file-action-buttons",
 	standalone: true,

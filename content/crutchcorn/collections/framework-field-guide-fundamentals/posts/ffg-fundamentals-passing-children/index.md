@@ -74,7 +74,7 @@ const Container = () => {
 
 # Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "list-item",
 	standalone: true,
@@ -216,7 +216,7 @@ const ToggleButtonList = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "toggle-button",
 	standalone: true,
@@ -362,7 +362,7 @@ const ToggleButtonList = () => {
 
 Angular has a special tag called `ng-content` that acts as a pass-through for all children's content passed to a component.
 
-```typescript
+```angular-ts
 @Component({
 	selector: "toggle-button",
 	standalone: true,
@@ -532,7 +532,7 @@ function RainbowExclamationMark() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "rainbow-exclamation-mark",
 	standalone: true,
@@ -732,7 +732,7 @@ function App() {
 
 `ng-content` allows you to pass a `select` property to have specific children projected in dedicated locations. This `select` property takes [CSS selector query values](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors). Knowing this, we can pass the attribute query for `header` by wrapping the attribute name in square brackets like so:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "dropdown-comp",
 	standalone: true,
@@ -968,7 +968,7 @@ const FileTable = () => {
 
 Angular is unlike the other frameworks covered in this book. For example, let's say we port the table components from the other frameworks one-to-one into Angular.
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-item",
 	standalone: true,
@@ -1090,7 +1090,7 @@ The reason our markup isn't correct is that we're creating non-default host elem
 
 When you use a `selector` in Angular to create an element, that selector stays in the DOM:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "list-item",
 	standalone: true,
@@ -1116,7 +1116,7 @@ At first, this might seem like a roadblock to implementing our `list-item` compo
 
 Combined, this might look something like this:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "tr[file-item]",
 	standalone: true,
@@ -1145,7 +1145,7 @@ Where `host` allows us to bind our typical event handlers and attributes to the 
 
 Knowing how `host` and `selector` can properly work together, let's finally build the Angular table that we wanted to from the start:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "tr[file-item]",
 	standalone: true,
@@ -1381,7 +1381,7 @@ const FileTable = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-table-container",
 	standalone: true,
@@ -1507,7 +1507,7 @@ const FileTable = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-table-container",
 	standalone: true,
