@@ -1,8 +1,17 @@
 ---
-const [codeBlock] = await Astro.glob("../code-block/index.md");
+import { getMarkdownHtml } from "../../../../utils/markdown";
 import "../../../../styles/shiki.scss";
 import "./code-block.scss";
 import styles from "./code-block.module.scss";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+const { html } = await getMarkdownHtml({
+	kind: "post",
+	file: join(__dirname, "../code-block/index.md"),
+});
 ---
 
 <section class={styles.blockContainer} aria-labelledby="code-block">
@@ -13,7 +22,5 @@ import styles from "./code-block.module.scss";
 		You can easily select a single framework and use this series to learn it
 		front-and-back.
 	</p>
-	<div class="darkTheme dark" style="--shiki-color-background: transparent;">
-		<codeBlock.Content />
-	</div>
+	<div class="darkTheme dark" set:html={html} />
 </section>

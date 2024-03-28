@@ -48,8 +48,14 @@ export const RepeatBackground = ({
 		return Array.from({ length: repeat }, (_, i) => i);
 	}, [repeat]);
 
+	const [isClient, setIsClient] = useState(false);
+
+	useLayoutEffect(() => {
+		setIsClient(true);
+	}, []);
+
 	// Client-only
-	if (typeof globalThis.window !== "undefined") {
+	if (isClient) {
 		return (
 			<div
 				class="repeat-background-container"

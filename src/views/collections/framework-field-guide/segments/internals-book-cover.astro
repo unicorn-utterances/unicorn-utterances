@@ -11,13 +11,13 @@ import SafeArea from "../cover-layers/internals/safe-area.astro";
 import { Trees } from "../cover-layers/internals/trees";
 ---
 
-<style>
-	.background-repeat-layer {
+<style is:global>
+	.internals-cover .background-repeat-layer {
 		grid-template-columns: 1fr auto 1fr !important;
 	}
 
 	.internals-cover {
-		background-color: var(--inter-900);
+		background-color: var(--inter-900) !important;
 	}
 </style>
 

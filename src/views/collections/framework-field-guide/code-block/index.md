@@ -9,7 +9,7 @@ const Hello = () => {
 
 # Angular
 
-```typescript
+```angular-ts
 @Component({
   selector: "my-app",
   template: `<p>Hello, world!</p>`,

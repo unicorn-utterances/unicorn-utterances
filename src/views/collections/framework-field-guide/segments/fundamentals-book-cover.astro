@@ -9,13 +9,13 @@ import { BackgroundRepeat } from "../cover-layers/fundamentals/background_repeat
 import SafeArea from "../cover-layers/fundamentals/safe-area.astro";
 ---
 
-<style>
-	.background-repeat-layer {
+<style is:global>
+	.fundamentals-book-cover .background-repeat-layer {
 		grid-template-columns: 1fr auto 1fr !important;
 	}
 </style>
 
-<BookCoverContainer>
+<BookCoverContainer class="fundamentals-book-cover">
 	<BookCoverLayer moveOnScrollBy={0.3} name="mountains">
 		<div slot="left"></div>
 		<div slot="center" style="height: 100%; width: 100vw !important">
