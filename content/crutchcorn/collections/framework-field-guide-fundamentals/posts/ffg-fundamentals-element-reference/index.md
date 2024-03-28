@@ -86,7 +86,7 @@ function App() {
 
 # Angular
 
-```typescript
+```angular-ts
 /**
  * This code sample is inaccessible and generally not
  * production-grade. It's missing:
@@ -436,7 +436,7 @@ This is because `buttonRef.current` is set to `undefined` in the first render, a
 
 Using `ViewChild`, we can access an [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) that's within an Angular component's `template`:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "paragraph-tag",
 	standalone: true,
@@ -455,7 +455,7 @@ For example, the `#pTag` attribute assigns the template reference variable named
 
 Now that we have access to the underlying `<p>` element let's print it out inside a `ngOnInit`:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "paragraph-tag",
 	standalone: true,
@@ -479,7 +479,7 @@ class RenderParagraphComponent implements OnInit {
 
 Well, let's think about the following example:
 
-```typescript {5-7}
+```angular-ts {5-7}
 @Component({
 	selector: "paragraph-tag",
 	standalone: true,
@@ -511,7 +511,7 @@ To solve this, we can do one of two things:
 
 To tell Angular that there is no dynamic HTML, and it should immediately query for the elements, you can use the `{static: true}` property on `ViewChild`:
 
-```typescript {6}
+```angular-ts {6}
 @Component({
 	selector: "paragraph-tag",
 	standalone: true,
@@ -533,7 +533,7 @@ class RenderParagraphComponent implements OnInit {
 
 However, keep in mind that if you _do_ later add any dynamic HTML our element will be `undefined` once again:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "paragraph-tag",
 	standalone: true,
@@ -560,7 +560,7 @@ To solve this, we'll have to use a different lifecycle method than `ngOnInit`.
 
 While the values of a dynamic HTML may not be defined in `ngOnInit`, there is a different lifecycle method to be called when Angular has fully initialized all the child values of your dynamic HTML: `ngAfterViewInit`.
 
-```typescript
+```angular-ts
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
 import { NgIf } from "@angular/common";
 
@@ -591,7 +591,7 @@ class RenderParagraphComponent implements AfterViewInit {
 
 Now that we know how to use `ViewChild`, we can add an `addEventListener` and `removeEventListener` to manually bind a `button`'s `click` event:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "paragraph-tag",
 	standalone: true,
@@ -743,7 +743,7 @@ Just as there is a `ViewChild` to gain access to a single underlying HTML elemen
 
 Using `ViewChildren`, we can access [template reference variables](https://crutchcorn-book.vercel.app/posts/content-reference#ng-templates) in order to `scrollIntoView` the first and last elements.
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -966,7 +966,7 @@ Additionally, we'll use `ViewChild` to track the `contextMenu` element and `.foc
 
 > We need to use a `setTimeout` in our `open` method to make sure the HTML element renders before our `focus` call.
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -1200,7 +1200,7 @@ function App() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -1333,7 +1333,7 @@ function App() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -1514,7 +1514,7 @@ function App() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -1784,7 +1784,7 @@ function App() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -2090,7 +2090,7 @@ function App() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,

@@ -186,7 +186,7 @@ While React and Vue both have minimal APIs to handle dependency injection, Angul
 
 In Angular, it all starts with an `InjectionToken` of some kind. We'll start by importing Angular `InjectionToken` API and creating a new token we can use later.
 
-```typescript
+```angular-ts
 import { InjectionToken } from "@angular/core";
 
 const WELCOME_MESSAGE_TOKEN = new InjectionToken<string>("WELCOME_MESSAGE");
@@ -194,7 +194,7 @@ const WELCOME_MESSAGE_TOKEN = new InjectionToken<string>("WELCOME_MESSAGE");
 
 We'll then use this token to create a `provider` that we pass to a component's `providers` list:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -209,7 +209,7 @@ This API uses `useValue` to provide the value associated with the token we pass.
 
 Finally, we use an `inject` function in our component class to tell Angular, "We want this value in our component."
 
-```typescript
+```angular-ts
 import { inject } from "@angular/core";
 
 @Component({
@@ -313,7 +313,7 @@ const Parent = () => {
 
 Because Angular's `useValue` accepts any arbitrary value, we can pass it an object to move away from a string injection:
 
-```typescript {3,15}
+```angular-ts {3,15}
 @Component({
 	selector: "child-comp",
 	standalone: true,
@@ -348,7 +348,7 @@ Luckily for us, Angular provides a better solution for this problem than `useVal
 
 Instead, let's create a class that we mark with an `@Injectable` decorator:
 
-```typescript
+```angular-ts
 import { Injectable } from "@angular/core";
 
 @Injectable()
@@ -359,7 +359,7 @@ class InjectedValue {
 
 Here, we're telling Angular to treat our `InjectedValue` class as a `InjectionToken` that we can use by name in our `providers`.
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -372,7 +372,7 @@ class AppComponent {}
 
 Now that our `InjectedValue` is a known type, we can remove our explicit type declaration to our consuming `inject` function in `ChildComponent`
 
-```typescript
+```angular-ts
 @Component({
 	selector: "child-comp",
 	standalone: true,
@@ -474,7 +474,7 @@ When we update the `message` value, it will trigger a re-render on the `Child` c
 
 Because we've marked our `InjectedValue` class as an `Injectable`, we can have the parent component request access in the `constructor` to mutate the class instance.
 
-```typescript
+```angular-ts
 @Injectable()
 class InjectedValue {
 	message = "Initial value";
@@ -816,7 +816,7 @@ function Child() {
 
 Because we can inject a whole class instance into a child component, we can use methods in said class to mutate data of the injected class instance.
 
-```typescript
+```angular-ts
 @Injectable()
 class InjectedValue {
 	message = "Hello, world";
@@ -945,7 +945,7 @@ When this is done, `useContext` is `undefined` if no value is injected for a par
 
 In Angular, we provide values to be injected using the `providers` array on a component.
 
-```typescript
+```angular-ts
 @Injectable()
 class InjectedValue {
 	message = "Initial value";
@@ -972,7 +972,7 @@ class ParentComponent {}
 
 However, if we remove the `providers` from `ParentComponent` to test our application without any user data, like so:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -997,7 +997,7 @@ This is because our `inject` function inside `ChildComponent` is marked as a req
 
 Fortunately, there's a way to tell Angular to mark that dependency as "optional" by passing a second argument to the `inject` function:
 
-```typescript
+```angular-ts
 @Injectable()
 class InjectedValue {
 	message = "Hello, world";
@@ -1114,7 +1114,7 @@ When an `inject` function is marked as `{optional: true}`, the default value (wh
 
 As such, we can use [JavaScript's built-in "OR" operator (`||`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_OR) to default to a different value as our default:
 
-```typescript
+```angular-ts
 @Injectable()
 class InjectedValue {
 	message = "Initial value";
@@ -1312,7 +1312,7 @@ Remember when we used `@Injectable` to mark a class as an injectable class insta
 
 When you pass `{providedIn: 'root'}` to the `@Injectable` decorator, you no longer have to explicitly place the class inside a `providers` array; instead, Angular will simply provide this class to the root of your application.
 
-```typescript
+```angular-ts
 @Injectable({ providedIn: "root" })
 class InjectedValue {
 	message = "Hello, world";
@@ -1490,7 +1490,7 @@ function GreatGrandChild() {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Injectable()
 class NameValue {
 	name = "";
@@ -1688,7 +1688,7 @@ function GreatGrandChild() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Injectable()
 class NameValue {
 	name = "";
@@ -1917,7 +1917,7 @@ function GreatGrandChild() {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Injectable()
 class UserValue {
 	name = "";
@@ -2123,7 +2123,7 @@ function GreatGrandChild() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Injectable({ providedIn: "root" })
 class MessageValue {
 	greeting = "";
@@ -2460,7 +2460,7 @@ export const FileList = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 // app.component.ts
 import { Component } from "@angular/core";
 import { LayoutComponent } from "./layout.component";
@@ -2481,7 +2481,7 @@ import { FileListComponent } from "./file-list.component";
 export class AppComponent {}
 ```
 
-```typescript
+```angular-ts
 // layout.component.ts
 import { Component } from "@angular/core";
 
@@ -2508,7 +2508,7 @@ import { Component } from "@angular/core";
 export class LayoutComponent {}
 ```
 
-```typescript
+```angular-ts
 // file-list.component.ts
 import { Component } from "@angular/core";
 
@@ -2524,7 +2524,7 @@ import { Component } from "@angular/core";
 export class FileListComponent {}
 ```
 
-```typescript
+```angular-ts
 // sidebar.component.ts
 import { Component } from "@angular/core";
 
@@ -2706,7 +2706,7 @@ export const FileList = () => {
 
 Let's start by building out our `File` component with a button and a `name` input:
 
-```typescript
+```angular-ts
 // file.component.ts
 import { Component, Input } from "@angular/core";
 
@@ -2726,7 +2726,7 @@ export class FileComponent {
 
 Then, we can this component into our `Sidebar` and `FileList` components to display a static list of directories and files:
 
-```typescript
+```angular-ts
 // file-list.component.ts
 import { Component } from "@angular/core";
 import { FileComponent } from "./file.component";
@@ -2761,7 +2761,7 @@ export class FileListComponent {
 }
 ```
 
-```typescript
+```angular-ts
 // sidebar.component.ts
 import { Component } from "@angular/core";
 import { NgFor } from "@angular/common";
@@ -3133,7 +3133,7 @@ export const Sidebar = () => {
 
 Just like we did with React, let's take our previous context menu and add in the `"contextmenu"` listener and action array:
 
-```typescript {45-54,65-68,72-85}
+```angular-ts {45-54,65-68,72-85}
 @Component({
 	selector: "context-menu",
 	standalone: true,
@@ -3237,7 +3237,7 @@ export class ContextMenuComponent implements OnInit, OnDestroy, OnChanges {
 
 We'll then use this new component in our `File` component:
 
-```typescript
+```angular-ts
 // file.component.ts
 import { Component, Input, ViewChild } from "@angular/core";
 import { ContextMenuComponent } from "./context-menu.component";
@@ -3294,7 +3294,7 @@ export class FileComponent {
 
 And, again, pass the `file.id` to `<file-item [id]="file.id"/>` component:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "file-list",
 	standalone: true,
@@ -3311,7 +3311,7 @@ export class FileListComponent {
 }
 ```
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-sidebar",
 	standalone: true,
@@ -3627,7 +3627,7 @@ const FileList = () => {
 
 Let's use an `Injectable` to provide and inject the values between parts of our app:
 
-```typescript
+```angular-ts
 // context.ts
 import { Injectable } from "@angular/core";
 
@@ -3639,7 +3639,7 @@ export class ActionTypes {
 
 Then, we can use this service in our `ContextMenu` component:
 
-```typescript
+```angular-ts
 // context-menu.component.ts
 function injectAndGetActions() {
 	const context = inject(ActionTypes);
@@ -3662,7 +3662,7 @@ export class ContextMenuComponent implements OnInit, OnDestroy, OnChanges {
 
 Finally, we need to make sure to set up our `ActionTypes` provider in each of our landmarks:
 
-```typescript
+```angular-ts
 // sidebar.component.ts
 
 // ...
@@ -3701,7 +3701,7 @@ export class SidebarComponent {
 }
 ```
 
-```typescript
+```angular-ts
 // file-list.component.ts
 
 // ...
@@ -3973,7 +3973,7 @@ const FileList = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 // sidebar.component.ts
 
 // ...
@@ -4022,7 +4022,7 @@ export class SidebarComponent {
 }
 ```
 
-```typescript
+```angular-ts
 // file-list.component.ts
 
 // ...

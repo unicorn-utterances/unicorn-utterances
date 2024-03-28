@@ -158,7 +158,7 @@ To share data setup between components in Angular, we'll create an instance of a
 
 Just as we covered [in the dependency injection chapter](/posts/ffg-fundamentals-dependency-injection#basic-values), we'll use `Injectable` to create a class that can be provided to a component instance.
 
-```typescript
+```angular-ts
 @Injectable()
 class WindowSize {
 	height = window.innerHeight;
@@ -301,7 +301,7 @@ Instead, we can use a per-component injectable that uses its own `constructor` a
 >
 > The reason `Injectable`s don't have `ngOnInit` is because that method means something very specific under-the-hood, pertaining to UI data binding. Because an `Injectable` can't UI data bind, it has no need for `ngOnInit` and instead the `constructor` takes the role of setting up side effects.
 
-```typescript
+```angular-ts
 @Injectable()
 class WindowSize implements OnDestroy {
 	height = 0;
@@ -469,7 +469,7 @@ Just as we can use dependency injection to provide an instance of our `WindowSiz
 
 First, though, we need to provide a way to add behavior to our `onResize` class:
 
-```typescript
+```angular-ts
 @Injectable()
 class WindowSize implements OnDestroy {
 	height = 0;
@@ -500,7 +500,7 @@ class WindowSize implements OnDestroy {
 
 Now that we have this ability to tap into the `resize` event handler let's write our own `IsMobile` class:
 
-```typescript
+```angular-ts
 @Injectable()
 class IsMobile {
 	isMobile = false;
@@ -518,7 +518,7 @@ class IsMobile {
 
 This allows us to have an `isMobile` field that we can access from our `AppComponent` class:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -672,7 +672,7 @@ This is because our `ViewChild` element reference isn't available until `AfterVi
 
 <!-- Editor's note: This is true even with {static: true} -->
 
-```typescript
+```angular-ts
 @Injectable()
 class CloseIfOutSideContext implements OnDestroy {
 	getCloseIfOutsideFunction = (
@@ -707,7 +707,7 @@ class CloseIfOutSideContext implements OnDestroy {
 
 Let's embed this service class in our `ContextMenu` component:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "context-menu",
 	standalone: true,
@@ -922,7 +922,7 @@ function App() {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Injectable()
 class BoundsContext implements OnDestroy {
 	bounds = {
@@ -955,7 +955,7 @@ class BoundsContext implements OnDestroy {
 
 We can then use this service in our `AppComponent`:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,

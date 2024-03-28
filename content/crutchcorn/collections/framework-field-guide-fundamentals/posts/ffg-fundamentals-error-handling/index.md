@@ -48,7 +48,7 @@ const App = () => {
 
 # Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -141,7 +141,7 @@ const ErrorThrowingComponent = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "error-throwing",
 	standalone: true,
@@ -199,7 +199,7 @@ const EventErrorThrowingComponent = () => {
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "error-throwing",
 	standalone: true,
@@ -427,7 +427,7 @@ const App = () => {
 
 Despite errors thrown in a component's constructor preventing rendering:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -447,7 +447,7 @@ class AppComponent {
 
 Errors thrown in any of Angular's other lifecycle methods will not prevent a component from rendering:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-root",
 	standalone: true,
@@ -665,7 +665,7 @@ Angular uses its [dependency injection system](/posts/ffg-fundamentals-dependenc
 
 However, to provide the custom error handler service, you **must** provide it at the root of your application, meaning that you cannot simply provide it from your parent component.
 
-```typescript
+```angular-ts
 class MyErrorHandler implements ErrorHandler {
 	handleError(error: unknown) {
 		// Do something with the error
@@ -684,7 +684,7 @@ bootstrapApplication(AppComponent, {
 
 Now that we've set up our `ErrorHandler` instance, we can test that it works using a component that throws an error:
 
-```typescript
+```angular-ts
 @Component({
 	selector: "child-comp",
 	standalone: true,
@@ -863,7 +863,7 @@ Because a custom error handler is implemented using an Angular service, we can u
 
 From there, it's as simple as storing a Boolean when an error _is_ thrown and using that Boolean to render out a fallback UI when `true`.
 
-```typescript
+```angular-ts
 import { Component, inject, ErrorHandler, OnInit } from "@angular/core";
 
 class MyErrorHandler implements ErrorHandler {
@@ -986,7 +986,7 @@ class ErrorBoundary extends Component {
 
 Rather than storing a Boolean when an error occurs, we can store [the error value itself](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) within an `error` object and display the underlying value when present.
 
-```typescript
+```angular-ts
 class MyErrorHandler implements ErrorHandler {
 	error: unknown = null;
 
@@ -1124,7 +1124,7 @@ Upon rendering the sidebar, we're greeted with [a JavaScript `ReferenceError`](h
 
 ## Angular
 
-```typescript
+```angular-ts
 @Component({
 	selector: "app-sidebar",
 	standalone: true,
@@ -1321,7 +1321,7 @@ const Root = () => {
 
 ### Angular
 
-```typescript
+```angular-ts
 class MyErrorHandler implements ErrorHandler {
 	error: any = null;
 
@@ -1483,7 +1483,7 @@ class ErrorBoundary extends Component {
 
 ### Angular
 
-```typescript
+```angular-ts
 @Pipe({ name: "errorHref", standalone: true })
 class ErrorHrefPipe implements PipeTransform {
 	transform(err: Error | null): string {
