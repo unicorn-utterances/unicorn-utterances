@@ -1,10 +1,7 @@
 ---
 import SearchPage from "../views/search/search-page";
 import Document from "../layouts/document.astro";
-import { getUnicornProfilePicMap } from "../utils/get-unicorn-profile-pic-map";
 import SEO from "../components/seo/seo.astro";
-
-const unicornProfilePicMap = await getUnicornProfilePicMap();
 ---
 
 <Document lang={"en"} size="xl">
@@ -13,8 +10,5 @@ const unicornProfilePicMap = await getUnicornProfilePicMap();
 		description="Find your favorite articles and collections on Unicorn Utterances easier than ever!"
 		slot="head"
 	/>
-	<SearchPage
-		client:only="preact"
-		unicornProfilePicMap={unicornProfilePicMap}
-	/>
+	<SearchPage client:only="preact" />
 </Document>

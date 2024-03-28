@@ -1,6 +1,6 @@
 /** @jsxRuntime automatic */
 import { Element } from "hast";
-import { GetPictureResult } from "@astrojs/image/dist/lib/get-picture";
+import type { GetPictureResult } from "utils/get-picture";
 import { fromHtml } from "hast-util-from-html";
 import fs from "fs/promises";
 

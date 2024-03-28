@@ -28,30 +28,9 @@ pre.shiki, pre:not([class]) {
 	border-radius: var(--code-block_corner-radius);
 	border: var(--code-block_border_width) solid var(--code-block_border_color);
 
-	.code-title {
-		@extend .text-style-body-medium-bold;
-
-		color: var(--code-block_header_title_color);
-
-		min-height: calc(
-			var(--code-block_header_min-height) - 2 * var(--code-block_padding)
-		);
-		padding: 0 var(--code-block_header_title_margin-horizontal);
-
-		display: flex;
-		align-items: center;
-
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	.code-title ~ .code-container {
-		margin-top: var(--code-block_padding);
-	}
-
-	.code-container {
+	&> code {
 		border-radius: var(--code-block_inner-corner-radius);
 		background-color: var(--code-block_inner_background-color);
+		--shiki-dark-bg: var(--code-block_inner_background-color) !important;
 	}
 }

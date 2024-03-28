@@ -1,23 +1,28 @@
-import { GetPictureResult } from "@astrojs/image/dist/lib/get-picture";
-import { JSX } from "preact";
+import { getPictureAttrs, getPictureUrls, GetPictureOptions, GetPictureUrls } from "utils/get-picture";
+import type { JSX } from "preact";
 
-interface PictureProps {
-	picture: GetPictureResult;
+interface PictureProps extends GetPictureOptions {
+	urls?: GetPictureUrls;
 	alt: string;
 	class?: string;
-	imgAttrs?: JSX.HTMLAttributes<HTMLImageElement>;
+	pictureAttrs?: JSX.HTMLAttributes<HTMLPictureElement> & Record<string, unknown>;
+	imgAttrs?: JSX.HTMLAttributes<HTMLImageElement> & Record<string, unknown>;
 }
 
 export const Picture = ({
-	picture,
 	alt,
 	class: className,
+	pictureAttrs,
 	imgAttrs,
+	urls,
+	...props
 }: PictureProps) => {
+	const pictureUrls = urls ?? getPictureUrls(props);
+	const pictureResult = getPictureAttrs(props, pictureUrls);
 	return (
-		<picture class={`${className || ""}`}>
-			{picture?.sources.map((attrs) => <source {...attrs} />)}
-			<img {...((picture?.image as any) ?? {})} {...imgAttrs} alt={alt} />
+		<picture class={className} {...pictureAttrs}>
+			{pictureResult.sources.map((attrs) => <source {...attrs} />)}
+			<img alt={alt} {...pictureResult.image} {...imgAttrs}/>
 		</picture>
 	);
 };

@@ -1,6 +1,5 @@
 import style from "./post-card.module.scss";
 import { PostInfo, UnicornInfo } from "types/index";
-import { ProfilePictureMap } from "utils/get-unicorn-profile-pic-map";
 import { Chip } from "components/index";
 import date from "src/icons/date.svg?raw";
 import authorsSvg from "src/icons/authors.svg?raw";
@@ -12,7 +11,6 @@ interface PostCardProps {
 	post: PostInfo;
 	authors: Pick<UnicornInfo, "id" | "name">[];
 	class?: string;
-	unicornProfilePicMap: ProfilePictureMap;
 }
 
 function PostCardMeta({ post, authors }: PostCardProps) {
@@ -81,7 +79,6 @@ export const PostCardExpanded = ({
 	authors,
 	headingTag: HeadingTag = "h2",
 	class: className = "",
-	unicornProfilePicMap,
 	imageLoading = "lazy",
 }: PostCardProps & { imageLoading?: "eager" | "lazy" }) => {
 	return (
@@ -101,7 +98,7 @@ export const PostCardExpanded = ({
 				<a href={`/posts/${post.slug}`} className={`${style.postHeaderBase}`}>
 					<HeadingTag className={`text-style-headline-2`}>{post.title}</HeadingTag>
 				</a>
-				<PostCardMeta post={post} authors={authors} unicornProfilePicMap={unicornProfilePicMap} />
+				<PostCardMeta post={post} authors={authors} />
 			</div>
 		</li>
 	);
@@ -112,7 +109,6 @@ export const PostCard = ({
 	authors,
 	headingTag: HeadingTag = "h2",
 	class: className = "",
-	unicornProfilePicMap,
 }: PostCardProps) => {
 	return (
 		<li
@@ -122,7 +118,7 @@ export const PostCard = ({
 			<a href={`/posts/${post.slug}`} className={`${style.postHeaderBase}`}>
 				<HeadingTag className={`text-style-headline-5`}>{post.title}</HeadingTag>
 			</a>
-			<PostCardMeta post={post} authors={authors} unicornProfilePicMap={unicornProfilePicMap} />
+			<PostCardMeta post={post} authors={authors} />
 		</li>
 	);
 };

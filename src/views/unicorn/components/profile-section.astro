@@ -2,81 +2,82 @@
 import styles from "./profile-section.module.scss";
 import { Picture as UUPicture } from "components/index";
 import { UnicornInfo } from "types/index";
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 import * as api from "utils/api";
-import type { ProfilePictureMap } from "utils/get-unicorn-profile-pic-map";
 import { isDefined } from "utils/is-defined";
+import { desktopSmall, tabletSmall } from "src/tokens/breakpoints";
 
 interface ProfileSectionProps {
-	unicornProfilePicMap: ProfilePictureMap;
 	unicorn: UnicornInfo;
 }
 
-const { unicornProfilePicMap, unicorn } = Astro.props as ProfileSectionProps;
+const { unicorn } = Astro.props as ProfileSectionProps;
 
 const iconSize = 20;
 
-const socials = [
-	unicorn.socials.website && {
-		icon: "website",
-		name: "Website",
-		href: unicorn.socials.website,
-	},
-	unicorn.socials.github && {
-		icon: "github",
-		name: "GitHub",
-		href: `https://github.com/${unicorn.socials.github}`,
-	},
-	unicorn.socials.gitlab && {
-		icon: "gitlab",
-		name: "GitLab",
-		href: `https://gitlab.com/${unicorn.socials.gitlab}`,
-	},
-	unicorn.socials.twitter && {
-		icon: "twitter",
-		name: "Twitter",
-		href: `https://twitter.com/${unicorn.socials.twitter}`,
-	},
-	unicorn.socials.twitch && {
-		icon: "twitch",
-		name: "Twitch",
-		href: `https://www.twitch.tv/${unicorn.socials.twitch}`,
-	},
-	unicorn.socials.dribbble && {
-		icon: "ci:dribbble",
-		name: "Dribbble",
-		href: `https://dribbble.com/${unicorn.socials.dribbble}`,
-	},
-	unicorn.socials.linkedIn && {
-		icon: "linkedin",
-		name: "LinkedIn",
-		href: `https://www.linkedin.com/in/${unicorn.socials.linkedIn}`,
-	},
-	unicorn.socials.mastodon && {
-		icon: "mastodon",
-		name: "Mastodon",
-		href: unicorn.socials.mastodon,
-	},
-	unicorn.socials.threads && {
-		icon: "threads",
-		name: "Threads",
-		href: `https://www.threads.net/${unicorn.socials.threads}`,
-	},
-	unicorn.socials.youtube && {
-		icon: "youtube",
-		name: "YouTube",
-		href: unicorn.socials.youtube,
-	},
-	unicorn.socials.cohost && {
-		icon: "cohost",
-		name: "Cohost",
-		href: `https://cohost.org/${unicorn.socials.cohost}`,
-	},
-].filter((s) => !!s) as {
+interface SocialInfo {
 	icon: string;
 	name: string;
-	href: string;
-}[];
+	href: (socials: UnicornInfo["socials"]) => string | undefined;
+}
+
+const socials: SocialInfo[] = [
+	{
+		icon: "website",
+		name: "Website",
+		href: (s) => s.website,
+	},
+	{
+		icon: "github",
+		name: "GitHub",
+		href: (s) => s.github && `https://github.com/${s.github}`,
+	},
+	{
+		icon: "gitlab",
+		name: "GitLab",
+		href: (s) => s.gitlab && `https://gitlab.com/${s.gitlab}`,
+	},
+	{
+		icon: "twitter",
+		name: "Twitter",
+		href: (s) => s.twitter && `https://twitter.com/${s.twitter}`,
+	},
+	{
+		icon: "twitch",
+		name: "Twitch",
+		href: (s) => s.twitch && `https://www.twitch.tv/${s.twitch}`,
+	},
+	{
+		icon: "dribbble",
+		name: "Dribbble",
+		href: (s) => s.dribbble && `https://dribbble.com/${s.dribbble}`,
+	},
+	{
+		icon: "linkedin",
+		name: "LinkedIn",
+		href: (s) => s.linkedIn && `https://www.linkedin.com/in/${s.linkedIn}`,
+	},
+	{
+		icon: "mastodon",
+		name: "Mastodon",
+		href: (s) => s.mastodon,
+	},
+	{
+		icon: "threads",
+		name: "Threads",
+		href: (s) => s.threads && `https://www.threads.net/${s.threads}`,
+	},
+	{
+		icon: "youtube",
+		name: "YouTube",
+		href: (s) => s.youtube && s.youtube,
+	},
+	{
+		icon: "cohost",
+		name: "Cohost",
+		href: (s) => s.cohost && `https://cohost.org/${s.cohost}`,
+	},
+];
 
 const roles = unicorn.roles
 	.map((roleId) => api.getRoleById(roleId, unicorn.locale))
@@ -87,7 +88,13 @@ const roles = unicorn.roles
 	<div class={styles.cardContainer}>
 		<div class={styles.nameAndDesc}>
 			<UUPicture
-				picture={unicornProfilePicMap.find((u) => u.id === unicorn.id)!}
+				src={unicorn.profileImgMeta.relativeServerPath}
+				width={192}
+				height={192}
+				sizes={{
+					96: { maxWidth: tabletSmall },
+					128: { maxWidth: desktopSmall },
+				}}
 				alt=""
 				class={styles.authorImage}
 			/>
@@ -113,23 +120,27 @@ const roles = unicorn.roles
 			aria-label={`${unicorn.name} social media links`}
 		>
 			{
-				socials.map((social) => (
-					<li>
-						<a
-							rel="me"
-							href={social.href}
-							class={`text-style-button-regular ${styles.socialLink}`}
-						>
-							<Icon
-								width={iconSize}
-								height={iconSize}
-								name={social.icon}
-								class={styles.linkIcon}
-							/>
-							{social.name}
-						</a>
-					</li>
-				))
+				socials.map((social) => {
+					const href = social.href(unicorn.socials);
+					if (!href) return [];
+					return (
+						<li>
+							<a
+								rel="me"
+								href={href}
+								class={`text-style-button-regular ${styles.socialLink}`}
+							>
+								<Icon
+									width={iconSize}
+									height={iconSize}
+									name={social.icon as never}
+									class={styles.linkIcon}
+								/>
+								{social.name}
+							</a>
+						</li>
+					);
+				})
 			}
 		</ul>
 		<ul class={styles.rolesList} role="list" aria-label="Contributor roles">

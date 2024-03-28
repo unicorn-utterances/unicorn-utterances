@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Picture } from "components/image/picture";
 import styles from "./your-guide.module.scss";
 import { getUnicornById } from "utils/api";
 ---
@@ -9,12 +9,11 @@ import { getUnicornById } from "utils/api";
 		Your guide for the trip
 	</h2>
 	<Picture
-		class={styles.guidePicture}
+		imgAttrs={{ class: styles.guidePicture }}
 		alt=""
 		src={getUnicornById("crutchcorn", "en")!.profileImgMeta.relativeServerPath}
-		widths={[96, 72]}
-		aspectRatio={1}
-		sizes="96"
+		width={96}
+		height={96}
 	/>
 	<p class={`text-style-headline-3 ${styles.authorIntro}`}>
 		Hi, I'm <span class={styles.authorName}>Corbin Crutchley</span>, the author

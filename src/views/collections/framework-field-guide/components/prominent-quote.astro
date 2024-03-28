@@ -1,10 +1,10 @@
 ---
-import { Picture } from "@astrojs/image/components";
-import { ImageMetadata } from "@astrojs/image/dist/vite-plugin-astro-image";
+import { Picture } from "components/image/picture";
 import styles from "./prominent-quote.module.scss";
+import type { ImageMetadata } from "astro";
 
 interface QuoteCardProps {
-	avatarSrc: Promise<{ default: ImageMetadata }>;
+	avatarSrc: string | Promise<{ default: ImageMetadata }>;
 	quote: string;
 	personLink: string;
 	personTitle: string;
@@ -13,6 +13,9 @@ interface QuoteCardProps {
 
 const { avatarSrc, quote, personLink, personTitle, personName } =
 	Astro.props as QuoteCardProps;
+
+const src =
+	typeof avatarSrc === "string" ? avatarSrc : (await avatarSrc).default;
 ---
 
 <figure class={styles.quoteContainer}>
@@ -20,12 +23,11 @@ const { avatarSrc, quote, personLink, personTitle, personName } =
 		{quote}
 	</blockquote>
 	<Picture
-		class={styles.quoteAvatar}
+		imgAttrs={{ class: styles.quoteAvatar }}
 		alt=""
-		src={avatarSrc}
-		sizes="96"
-		widths={[96]}
-		aspectRatio={1}
+		src={src}
+		width={96}
+		height={96}
 		formats={["avif", "webp", "png"]}
 	/>
 	<figcaption>

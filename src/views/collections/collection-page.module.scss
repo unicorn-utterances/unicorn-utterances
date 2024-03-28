@@ -161,7 +161,6 @@
 	@include from($desktopSmall) {
 		height: 720px;
 		width: 480px;
-		image-rendering: pixelated;
 	}
 }
 

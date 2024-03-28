@@ -20,7 +20,9 @@ export interface RawCollectionInfo {
 }
 
 export interface CollectionInfo extends RawCollectionInfo {
+	kind: "collection";
 	slug: string;
+	file: string;
 	authors: string[];
 	tags: string[];
 	locales: Languages[];

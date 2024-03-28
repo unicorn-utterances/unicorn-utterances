@@ -14,7 +14,6 @@ import {
 	useQuery,
 } from "@tanstack/react-query";
 import { useDebouncedValue } from "./use-debounced-value";
-import { ProfilePictureMap } from "utils/get-unicorn-profile-pic-map";
 
 import style from "./search-page.module.scss";
 import { PostCardGrid } from "components/post-card/post-card-grid";
@@ -43,13 +42,9 @@ import { ServerReturnType } from "./types";
 import { CollectionInfo } from "types/CollectionInfo";
 import { isDefined } from "utils/is-defined";
 
-interface SearchPageProps {
-	unicornProfilePicMap: ProfilePictureMap;
-}
-
 const MAX_POSTS_PER_PAGE = 6;
 
-function SearchPageBase({ unicornProfilePicMap }: SearchPageProps) {
+function SearchPageBase() {
 	const [query, setQuery] = useSearchParams<SearchQuery>(serializeParams, deserializeParams);
 
 	const search = query.searchQuery ?? "";
@@ -307,7 +302,6 @@ function SearchPageBase({ unicornProfilePicMap }: SearchPageProps) {
 			<FilterDisplay
 				isFilterDialogOpen={isFilterDialogOpen}
 				setFilterIsDialogOpen={setFilterIsDialogOpen}
-				unicornProfilePicMap={unicornProfilePicMap}
 				collections={data.collections}
 				posts={data.posts}
 				unicornsMap={unicornsMap}
@@ -432,7 +426,6 @@ function SearchPageBase({ unicornProfilePicMap }: SearchPageProps) {
 									{filteredAndSortedCollections.map((collection) => (
 										<li>
 											<CollectionCard
-												unicornProfilePicMap={unicornProfilePicMap}
 												collection={collection}
 												authors={collection.authors.map(id => unicornsMap.get(id)).filter(isDefined)}
 												headingTag="h3"
@@ -458,7 +451,6 @@ function SearchPageBase({ unicornProfilePicMap }: SearchPageProps) {
 									postsToDisplay={posts}
 									postAuthors={unicornsMap}
 									postHeadingTag="h3"
-									unicornProfilePicMap={unicornProfilePicMap}
 								/>
 								<Pagination
 									testId="pagination"
@@ -490,10 +482,10 @@ function SearchPageBase({ unicornProfilePicMap }: SearchPageProps) {
 
 const queryClient = new QueryClient();
 
-export default function SearchPage(props: SearchPageProps) {
+export default function SearchPage() {
 	return (
 		<QueryClientProvider client={queryClient}>
-			<SearchPageBase {...props} />
+			<SearchPageBase />
 		</QueryClientProvider>
 	);
 }

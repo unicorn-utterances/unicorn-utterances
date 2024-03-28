@@ -1,29 +1,44 @@
 ---
+import * as fs from "fs/promises";
 import Document from "src/layouts/document.astro";
 import SEO from "components/seo/seo.astro";
 import AboutView from "src/views/about/about.astro";
-import {
-	getLanguageFromFilename,
-	getTranslatedPage,
-	translate,
-} from "utils/translations";
-
-const { locales } = getTranslatedPage(
-	Astro,
-	await Astro.glob("../../../content/site/about-us*.mdx"),
-);
+import { getLanguageFromFilename, translate } from "utils/translations";
+import { join } from "path";
+import { contentDirectory } from "utils/data";
+import { getMarkdownHtml } from "utils/markdown";
+import { Languages } from "types/index";
 
 export async function getStaticPaths() {
-	const globResults = await Astro.glob("../../../content/site/about-us*.mdx");
-	return globResults.map((globItem) => {
-		const locale = getLanguageFromFilename(globItem.file);
+	const files = (await fs.readdir(join(contentDirectory, "site")))
+		.filter((filename) => filename.startsWith("about-us"))
+		.map((filename) => ({
+			file: join(contentDirectory, "site", filename),
+			locale: getLanguageFromFilename(filename),
+		}));
+
+	return files.map((data) => {
 		return {
 			params: {
-				locale: locale !== "en" ? locale : undefined,
+				locale: data.locale !== "en" ? data.locale : undefined,
+			},
+			props: {
+				file: data.file,
+				locales: files.map((d) => d.locale),
+				locale: data.locale,
 			},
 		};
 	});
 }
+
+interface Props {
+	file: string;
+	locales: Languages[];
+	locale: Languages;
+}
+
+const { file, locales, locale } = Astro.props as Props;
+const fileHtml = await getMarkdownHtml({ kind: "page", file });
 ---
 
 <Document>
@@ -33,5 +48,5 @@ export async function getStaticPaths() {
 		providedLangs={locales}
 		slot="head"
 	/>
-	<AboutView />
+	<AboutView locales={locales} locale={locale} markdownHtml={fileHtml.html} />
 </Document>

@@ -1,36 +1,35 @@
 import { defineConfig, AstroUserConfig } from "astro/config";
 
-import remarkUnwrapImages from "remark-unwrap-images";
-import remarkGfm from "remark-gfm";
-import remarkEmbedder, { RemarkEmbedderOptions } from "@remark-embedder/core";
-import oembedTransformer from "@remark-embedder/transformer-oembed";
-import { TwitchTransformer } from "./src/utils/markdown/remark-embedder-twitch";
-import remarkTwoslash from "remark-shiki-twoslash";
-import { UserConfigSettings } from "shiki-twoslash";
-import { createRehypePlugins } from "./src/utils/markdown";
 import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
+import icon from "astro-icon";
 import { EnumChangefreq as ChangeFreq } from "sitemap";
 import { siteUrl } from "./src/constants/site-config";
 import vercel from "@astrojs/vercel/static";
-import image from "@astrojs/image";
-import mdx from "@astrojs/mdx";
 import symlink from "symlink-dir";
 import * as path from "path";
-import svgr from "vite-plugin-svgr";
 import { languages } from "./src/constants/index";
 import { fileToOpenGraphConverter } from "./src/utils/translations";
 import { posts } from "./src/utils/data";
+import { SUPPORTED_IMAGE_SIZES } from "./src/utils/get-picture";
 
 await symlink(path.resolve("content"), path.resolve("public/content"));
 
 export default defineConfig({
 	site: siteUrl,
-	adapter: vercel(),
+	adapter: vercel({
+		// Uses Vercel's Image Optimization API: https://vercel.com/docs/image-optimization
+		imageService: true,
+		imagesConfig: {
+			sizes: SUPPORTED_IMAGE_SIZES,
+			domains: [],
+			formats: ["image/avif", "image/webp"],
+		},
+		devImageService: "sharp",
+	}),
 	integrations: [
-		image(),
+		icon(),
 		preact({ compat: true }),
-		mdx(),
 		sitemap({
 			changefreq: ChangeFreq.DAILY,
 			priority: 0.7,
@@ -68,6 +67,9 @@ export default defineConfig({
 		}),
 	],
 	vite: {
+		optimizeDeps: {
+			exclude: ["msw", "msw/node", "sharp"],
+		},
 		ssr: {
 			external: ["svgo"],
 			noExternal: [
@@ -78,31 +80,6 @@ export default defineConfig({
 				/@react-types/,
 			],
 		},
-		plugins: [svgr()],
 	},
-	markdown: {
-		mode: "md",
-		syntaxHighlight: false,
-		smartypants: false,
-		gfm: false,
-		remarkPlugins: [
-			remarkGfm,
-			// Remove complaining about "div cannot be in p element"
-			remarkUnwrapImages,
-			/* start remark plugins here */
-			[
-				remarkEmbedder,
-				{
-					transformers: [oembedTransformer, TwitchTransformer],
-				} as RemarkEmbedderOptions,
-			],
-			[
-				remarkTwoslash,
-				{
-					themes: ["css-variables"],
-				} as UserConfigSettings,
-			],
-		],
-		rehypePlugins: createRehypePlugins({ format: "html" }),
-	} as AstroUserConfig["markdown"] as never,
+	markdown: {} as AstroUserConfig["markdown"] as never,
 });

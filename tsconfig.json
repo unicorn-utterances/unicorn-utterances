@@ -11,12 +11,13 @@
 		"isolatedModules": true,
 		"esModuleInterop": true,
 		"strict": true,
+		"noEmit": true,
 		"jsx": "react-jsx",
 		"skipLibCheck": true,
 		"jsxImportSource": "preact",
 		"allowSyntheticDefaultImports": true,
 		// Add type definitions for our Vite runtime.
-		"types": ["@astrojs/image/client", "jest", "@testing-library/jest-dom"],
+		"types": ["jest", "@testing-library/jest-dom"],
 		"lib": ["DOM"],
 		"baseUrl": ".",
 		"paths": {

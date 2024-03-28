@@ -59,3 +59,11 @@ HTMLDialogElement.prototype.showModal = jest.fn(function mock() {
 HTMLDialogElement.prototype.close = jest.fn(function mock() {
 	this.open = false;
 });
+
+const { TextDecoder, TextEncoder } = require("node:util");
+
+// eslint-disable-next-line no-undef
+Object.defineProperties(globalThis, {
+	TextDecoder: { value: TextDecoder },
+	TextEncoder: { value: TextEncoder },
+});

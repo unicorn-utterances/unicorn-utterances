@@ -1,45 +1,39 @@
 import style from "./collection-card.module.scss";
 import { Button } from "components/index";
 import { CollectionInfo } from "types/CollectionInfo";
-import { ProfilePictureMap } from "utils/get-unicorn-profile-pic-map";
 import forward from "src/icons/arrow_right.svg?raw";
 import { Picture as UUPicture } from "components/image/picture";
-import { GetPictureResult } from "@astrojs/image/dist/lib/get-picture";
 import { UnicornInfo } from "types/UnicornInfo";
 
 interface CollectionCardProps {
-	collection: CollectionInfo & { coverPicture?: GetPictureResult };
+	collection: CollectionInfo;
 	authors: UnicornInfo[];
 	headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-	unicornProfilePicMap: ProfilePictureMap;
 }
 
 export const CollectionCard = ({
 	collection,
 	authors,
 	headingTag: HeadingTag = "h2",
-	unicornProfilePicMap,
 }: CollectionCardProps) => {
+
+	const coverImgAspectRatio =
+		collection.coverImgMeta.width / collection.coverImgMeta.height;
+
+	// adjust the image width to ensure its height=240px
+	// (i.e. it shouldn't get upscaled/downscaled with `object-fit: cover`)
+	const coverImgWidth = Math.max(160, Math.ceil(240 * coverImgAspectRatio));
+
 	return (
 		<div className={style.container}>
 			<div className={style.topRow}>
-				{collection.coverPicture ? (
-					<UUPicture
-						picture={collection.coverPicture}
-						alt=""
-						class={style.coverImg}
-						imgAttrs={{loading: "lazy", width: 160, height: 240}}
-					/>
-				) : (
-					<img
-						alt=""
-						src={collection.coverImgMeta.relativeServerPath}
-						loading="lazy"
-						width={160}
-						height={240}
-						class={style.coverImg}
-					/>
-				)}
+				<UUPicture
+					src={collection.coverImgMeta.relativeServerPath}
+					width={coverImgWidth}
+					height={240}
+					alt=""
+					class={style.coverImg}
+				/>
 				<div>
 					<HeadingTag className={`text-style-headline-4 ${style.title}`}>
 						{collection.title}
@@ -56,7 +50,9 @@ export const CollectionCard = ({
 								className={`text-style-button-regular ${style.authorListItem}`}
 							>
 								<UUPicture
-									picture={unicornProfilePicMap.find((u) => u.id === author.id)!}
+									src={author.profileImgMeta.relativeServerPath}
+									width={24}
+									height={24}
 									alt=""
 									class={style.authorImage}
 								/>

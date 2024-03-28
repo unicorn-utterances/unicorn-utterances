@@ -3,7 +3,6 @@ import ProfileSection from "./components/profile-section.astro";
 import { SubHeader } from "../../components/subheader/subheader";
 import { PostCardGrid } from "components/post-card/post-card-grid";
 import { UnicornInfo, PostInfo } from "types/index";
-import { getUnicornProfilePicMap } from "utils/get-unicorn-profile-pic-map";
 import { Button } from "../../components";
 import styles from "./unicorn-page.module.scss";
 import AchievementCard from "./components/achievement-card.astro";
@@ -19,7 +18,6 @@ interface UnicornPageProps {
 }
 
 const { unicorn, posts } = Astro.props as UnicornPageProps;
-const unicornProfilePicMap = await getUnicornProfilePicMap();
 
 const achievementsMeta: Achievement[] = [];
 for await (const achievement of getAchievements(unicorn))
@@ -40,10 +38,7 @@ const postAuthors = new Map(
 ---
 
 <div class={styles.container}>
-	<ProfileSection
-		unicorn={unicorn}
-		unicornProfilePicMap={unicornProfilePicMap}
-	/>
+	<ProfileSection unicorn={unicorn} />
 	<section class={styles.contentContainer}>
 		<!-- TODO: Translate -->
 		<SubHeader tag="h2" text="Achievements" id="achievements">
@@ -106,7 +101,6 @@ const postAuthors = new Map(
 							postsToDisplay={postsToDisplay}
 							postAuthors={postAuthors}
 							postHeadingTag="h3"
-							unicornProfilePicMap={unicornProfilePicMap}
 						/>,
 				  ]
 				: undefined

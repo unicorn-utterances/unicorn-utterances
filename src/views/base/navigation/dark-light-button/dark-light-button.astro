@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { Button, IconOnlyButton } from "components/index";
 import { translate } from "utils/translations";
 
@@ -20,14 +20,12 @@ const props = Astro.props as {
 		>
 			<Icon
 				name="dark_mode"
-				height="100%"
-				width="100%"
+				style="width: 100%; height: 100%;"
 				data-theme-toggle-icon="dark"
 			/>
 			<Icon
 				name="light_mode"
-				height="100%"
-				width="100%"
+				style="width: 100%; height: 100%;"
 				data-theme-toggle-icon="light"
 				style="display: none;"
 			/>
@@ -43,15 +41,13 @@ const props = Astro.props as {
 			<Icon
 				slot="leftIcon"
 				name="dark_mode"
-				height="100%"
-				width="100%"
+				style="width: 100%; height: 100%;"
 				data-theme-toggle-icon="dark"
 			/>
 			<Icon
 				slot="leftIcon"
 				name="light_mode"
-				height="100%"
-				width="100%"
+				style="width: 100%; height: 100%;"
 				data-theme-toggle-icon="light"
 				style="display: none;"
 			/>

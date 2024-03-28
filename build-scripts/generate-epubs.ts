@@ -1,10 +1,3 @@
-import remarkParse from "remark-parse";
-import remarkToRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import remarkUnwrapImages from "remark-unwrap-images";
-import { default as remarkTwoslashDefault } from "remark-shiki-twoslash";
-import { UserConfigSettings } from "shiki-twoslash";
 import {
 	getCollectionsByLang,
 	getPostsByCollection,
@@ -14,40 +7,15 @@ import { resolve } from "path";
 import { EPub } from "@lesjoursfr/html-to-epub";
 import { unified } from "unified";
 import { CollectionInfo, PostInfo } from "types/index";
-import { createRehypePlugins } from "utils/markdown";
-import { getPostContentMarkdown } from "utils/get-post-content";
-import { contentDirectory } from "utils/data";
+import { createEpubPlugins } from "utils/markdown/createEpubPlugins";
+import { getMarkdownVFile } from "utils/markdown/getMarkdownVFile";
 
-// https://github.com/shikijs/twoslash/issues/147
-const remarkTwoslash =
-	(remarkTwoslashDefault as never as { default: typeof remarkTwoslashDefault })
-		.default ?? remarkTwoslashDefault;
+const unifiedChain = unified();
+createEpubPlugins(unifiedChain);
 
-async function generateEpubHTML(post: PostInfo, content: string) {
-	const unifiedChain = unified()
-		.use(remarkParse, { fragment: true } as never)
-		.use([
-			remarkGfm,
-			remarkUnwrapImages,
-			[
-				remarkTwoslash,
-				{
-					themes: ["github-light"],
-				} as UserConfigSettings,
-			],
-		])
-		.use(remarkToRehype, { allowDangerousHtml: true })
-		.use(
-			createRehypePlugins({
-				format: "epub",
-				path: resolve(contentDirectory, post.path),
-			}),
-		)
-		// Voids: [] is required for epub generation, and causes little/no harm for non-epub usage
-		.use(rehypeStringify, { allowDangerousHtml: true, voids: [] });
-
-	const result = await unifiedChain.process(content);
-
+async function generateEpubHTML(post: PostInfo) {
+	const vfile = await getMarkdownVFile(post);
+	const result = await unifiedChain.process(vfile);
 	return result.toString();
 }
 
@@ -115,10 +83,7 @@ async function generateCollectionEPub(
 			content: await Promise.all(
 				collectionPosts.map(async (post) => ({
 					title: post.title,
-					data: await generateEpubHTML(
-						post,
-						await getPostContentMarkdown(post),
-					),
+					data: await generateEpubHTML(post),
 				})),
 			),
 		} as Partial<EpubOptions> as EpubOptions,

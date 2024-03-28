@@ -3,7 +3,7 @@ import { hasProperty } from "hast-util-has-property";
 import { toString } from "hast-util-to-string";
 import { Root, Parent } from "hast";
 import { visit } from "unist-util-visit";
-import { AstroVFile, isAstroVFile } from "./types";
+import { isMarkdownVFile } from "./types";
 import { Plugin } from "unified";
 
 interface RehypeHeaderClassOpts {
@@ -19,10 +19,9 @@ export const rehypeHeaderClass: Plugin<[RehypeHeaderClassOpts], Root> = (
 	opts,
 ) => {
 	return (tree, file) => {
-		// hacky (temporary) fix to exclude the site/about-us*.mdx files, since
+		// exclude the site/about-us*.mdx files, since
 		// those start at a different heading level
-		if (isAstroVFile(file) && file.data.astro.frontmatter.slug === "site")
-			return;
+		if (isMarkdownVFile(file) && file.data.kind === "page") return;
 
 		// Find the minimum heading rank in the file
 		// (e.g. if it starts at h2, minDepth = 2)

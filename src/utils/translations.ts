@@ -134,7 +134,7 @@ const i18n: Partial<Record<Languages, Map<string, string>>> =
 	);
 
 // warn about any values that do not have full translations
-for (const key of i18n.en?.keys() || []) {
+/*for (const key of i18n.en?.keys() || []) {
 	const missing = Object.entries(i18n)
 		.filter(([, map]) => !map.has(key))
 		.map(([lang]) => lang);
@@ -144,7 +144,7 @@ for (const key of i18n.en?.keys() || []) {
 			`i18n: key "${key}" is missing from /content/data/i18n for languages: ${missing}`,
 		);
 	}
-}
+}*/
 
 type TranslationKey = keyof typeof import("../../content/data/i18n/en.json");
 
@@ -163,9 +163,11 @@ export function translate(
 	let value = i18n[lang]?.get(key);
 
 	if (!value) {
-		console.warn(
-			`Translation key "${key}" is not specified in /content/data/i18n/${lang}.json`,
-		);
+		if (process.argv.includes("--verbose")) {
+			console.warn(
+				`Translation key "${key}" is not specified in /content/data/i18n/${lang}.json`,
+			);
+		}
 		value = i18n.en?.get(key);
 	}
 

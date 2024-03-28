@@ -1,6 +1,5 @@
 import styles from "./filter-sidebar.module.scss";
 import { LargeButton } from "components/button/button";
-import { ProfilePictureMap } from "utils/get-unicorn-profile-pic-map";
 import { CSSProperties } from "preact/compat";
 import { FilterSection } from "./filter-section";
 import { FilterSectionItem } from "./filter-section-item";
@@ -8,11 +7,9 @@ import { Picture as UUPicture } from "components/image/picture";
 import { ExtendedTag, ExtendedUnicorn } from "./types";
 import { SortType } from "src/views/search/search";
 import { DEFAULT_TAG_EMOJI } from "./constants";
-import { Item, Select } from "components/select/select";
 import { FilterSidebarControls } from "./filter-sidebar-controls";
 
 interface FilterSidebar {
-	unicornProfilePicMap: ProfilePictureMap;
 	desktopStyle?: CSSProperties;
 	selectedTags: string[];
 	setSelectedTags: (tags: string[]) => void;
@@ -41,7 +38,6 @@ export const FilterSidebar = ({
 	onTagsChange,
 	authors,
 	tags,
-	unicornProfilePicMap,
 	searchString,
 	setContentToDisplay,
 	contentToDisplay,
@@ -113,7 +109,9 @@ export const FilterSidebar = ({
 							count={author.numPosts}
 							icon={
 								<UUPicture
-									picture={unicornProfilePicMap.find((u) => u.id === author.id)!}
+									src={author.profileImgMeta.relativeServerPath}
+									width={24}
+									height={24}
 									alt={""}
 									class={styles.authorIcon}
 								/>

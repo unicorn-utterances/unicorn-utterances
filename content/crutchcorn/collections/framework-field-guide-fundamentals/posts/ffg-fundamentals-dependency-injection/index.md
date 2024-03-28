@@ -3133,7 +3133,7 @@ export const Sidebar = () => {
 
 Just like we did with React, let's take our previous context menu and add in the `"contextmenu"` listener and action array:
 
-```typescript{45-54,65-68,72-85}
+```typescript {45-54,65-68,72-85}
 @Component({
 	selector: "context-menu",
 	standalone: true,

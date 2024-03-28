@@ -1,48 +1,36 @@
 ---
 import Document from "src/layouts/document.astro";
-
 import SEO from "components/seo/seo.astro";
-
-import type { MarkdownInstance } from "astro";
-import { Languages, PostHeadingInfo } from "types/index";
+import { Languages } from "types/index";
 import BlogPost from "src/views/blog-post/blog-post.astro";
 import * as api from "utils/api";
-import { getLanguageFromFilename } from "utils/translations";
+import { getMarkdownHtml } from "utils/markdown";
 
 export async function getStaticPaths() {
-	const posts = [
-		...(await Astro.glob("../../../../content/*/posts/*/*.md")),
-		...(await Astro.glob("../../../../content/*/collections/*/posts/*/*.md")),
-	];
+	const posts = api.getAllPosts();
 
 	return posts.map((post) => {
-		const slug = post.file.split("/").at(-2);
-		const locale = getLanguageFromFilename(post.file);
-
 		return {
 			params: {
-				locale: locale !== "en" ? locale : undefined,
+				locale: post.locale !== "en" ? post.locale : undefined,
 				postid:
-					slug +
+					post.slug +
 					// "_noindex" appended here to filter affected URLs
 					// from the sitemap
-					(post.frontmatter.noindex ? "_noindex" : ""),
+					(post.noindex ? "_noindex" : ""),
 			},
 			props: {
-				Content: post.Content,
-				slug: slug,
+				slug: post.slug,
 				// temporary hack for Table of Contents - pass headingsWithId from "rehype-header-text" as a prop
 				// TODO: in the future, this can be obtained directly from the markdown parser when invoked
-				postHeadings: post.frontmatter.headingsWithId,
+				postHeadings: [],
 			},
 		};
 	});
 }
 
-const { Content, slug, postHeadings } = Astro.props as {
-	Content: MarkdownInstance<any>["Content"];
+const { slug } = Astro.props as {
 	slug: string;
-	postHeadings: PostHeadingInfo[];
 };
 
 const params = Astro.params as {
@@ -63,6 +51,8 @@ const collectionPosts =
 	post.collection && api.getPostsByCollection(post.collection, locale);
 
 const locales = post?.locales || [];
+
+const postHtml = await getMarkdownHtml(post);
 ---
 
 <Document size="xl">
@@ -81,9 +71,9 @@ const locales = post?.locales || [];
 		noindex={post.noindex}
 	/>
 	<BlogPost
-		Content={Content}
 		post={post}
-		postHeadings={postHeadings}
+		postHtml={postHtml.html}
+		postHeadings={postHtml.headingsWithIds}
 		authors={authors}
 		collection={collection}
 		collectionPosts={collectionPosts}

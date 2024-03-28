@@ -5,7 +5,7 @@ import MailingList from "../../components/mailing-list/mailing-list.astro";
 import TranslationsHeader from "../base/translations/translations-header.astro";
 import BlogPostLayout from "./blog-post-layout/blog-post-layout.astro";
 import HeadingLinkScript from "../base/scripts/heading-link-script.astro";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 import type { MarkdownInstance } from "astro";
 import {
@@ -29,7 +29,7 @@ import { LargeButton } from "../../components/button/button";
 import styles from "./blog-post.module.scss";
 
 const {
-	Content,
+	postHtml,
 	post,
 	postHeadings,
 	authors,
@@ -43,7 +43,7 @@ const {
 	collection?: CollectionInfo;
 	collectionPosts?: PostInfo[];
 	license?: LicenseInfo;
-	Content: MarkdownInstance<any>["Content"];
+	postHtml: string;
 };
 
 const GHLink = `https://github.com/${siteMetadata.repoPath}/tree/main${siteMetadata.relativeToPosts}/${post.slug}/index.md`;
@@ -103,7 +103,7 @@ const GHLink = `https://github.com/${siteMetadata.repoPath}/tree/main${siteMetad
 			<h2 id="blog-post-contents" class="visually-hidden" data-no-heading-link>
 				Post contents
 			</h2>
-			<Content />
+			<div set:html={postHtml} />
 			{
 				collectionPosts?.length ? (
 					<ArticleNav
@@ -136,7 +136,11 @@ const GHLink = `https://github.com/${siteMetadata.repoPath}/tree/main${siteMetad
 			<MailingList />
 			<div class={styles.buttonsContainer}>
 				<LargeButton tag="a" href={GHLink} variant="primary">
-					<Icon slot="leftIcon" height="100%" width="100%" name="github" />
+					<Icon
+						slot="leftIcon"
+						style="width: 100%; height: 100%;"
+						name="github"
+					/>
 					 View this post on GitHub
 				</LargeButton>
 				<LargeButton
@@ -144,7 +148,11 @@ const GHLink = `https://github.com/${siteMetadata.repoPath}/tree/main${siteMetad
 					href="https://discord.gg/FMcvc6T"
 					variant="primary-emphasized"
 				>
-					<Icon slot="leftIcon" height="100%" width="100%" name="discord" />
+					<Icon
+						slot="leftIcon"
+						style="width: 100%; height: 100%;"
+						name="discord"
+					/>
 					 Join our Discord server
 				</LargeButton>
 			</div>

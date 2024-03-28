@@ -1,8 +1,6 @@
 ---
 import { CollectionInfo, UnicornInfo } from "../../types";
-import { MarkdownInstance } from "astro";
-import { Picture } from "@astrojs/image/components";
-import { Picture as UUPicture } from "components/image/picture";
+import { Picture } from "components/image/picture";
 import { LargeButton, Button } from "components/button/button";
 import { translate } from "src/utils/translations";
 import { getHrefContainerProps } from "utils/href-container-script";
@@ -13,21 +11,19 @@ import "../../styles/shiki.scss";
 import "../../styles/convertkit.scss";
 
 import styles from "./collection-page.module.scss";
-import { getUnicornProfilePicMap } from "utils/get-unicorn-profile-pic-map";
+import { desktopSmall } from "src/tokens/breakpoints";
 
-const unicornProfilePicMap = await getUnicornProfilePicMap();
-
-interface CollectionProps {
+interface Props {
 	collection: CollectionInfo;
+	collectionHtml: string;
 	authors: UnicornInfo[];
-	Content: MarkdownInstance<never>["Content"];
 }
 
-const { Content, collection, authors } = Astro.props as CollectionProps;
+const { collection, collectionHtml, authors } = Astro.props as Props;
 
 const coverImgAspectRatio =
 	collection.coverImgMeta.width / collection.coverImgMeta.height;
-// adjust the image width to ensure its height=240px
+// adjust the image width to ensure its height=720px
 // (i.e. it shouldn't get upscaled/downscaled with `object-fit: cover`)
 const coverImgWidth = Math.max(480, Math.ceil(720 * coverImgAspectRatio));
 ---
@@ -38,11 +34,12 @@ const coverImgWidth = Math.max(480, Math.ceil(720 * coverImgAspectRatio));
 			<Picture
 				alt=""
 				src={collection.coverImgMeta.relativeServerPath}
-				sizes={`${coverImgWidth}px`}
-				widths={[coverImgWidth]}
-				formats={["avif", "webp", "png"]}
+				width={coverImgWidth}
+				height={720}
+				sizes={{
+					360: { maxWidth: desktopSmall },
+				}}
 				loading="eager"
-				aspectRatio={coverImgAspectRatio}
 			/>
 		</div>
 		<div class={styles.titleAndDescContainer}>
@@ -54,9 +51,7 @@ const coverImgWidth = Math.max(480, Math.ceil(720 * coverImgAspectRatio));
 			</p>
 		</div>
 		<div class={styles.contentContainer}>
-			<div class={`post-body ${styles.content}`}>
-				<Content />
-			</div>
+			<div class={`post-body ${styles.content}`} set:html={collectionHtml} />
 			<div class={styles.buttonContainer}>
 				{
 					collection.buttons?.map((button, i) => (
@@ -87,10 +82,10 @@ const coverImgWidth = Math.max(480, Math.ceil(720 * coverImgAspectRatio));
 									class={styles.authorImage}
 									style={{ borderColor: author.color }}
 								>
-									<UUPicture
-										picture={
-											unicornProfilePicMap.find((u) => u.id === author.id)!
-										}
+									<Picture
+										src={author.profileImgMeta.relativeServerPath}
+										width={48}
+										height={48}
 										alt=""
 									/>
 								</div>

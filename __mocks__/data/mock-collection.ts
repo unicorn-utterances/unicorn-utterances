@@ -2,6 +2,7 @@ import { MockUnicorn } from "./mock-unicorn";
 import { CollectionInfo } from "types/index";
 
 export const MockCollection: CollectionInfo = {
+	kind: "collection",
 	authors: [MockUnicorn.id],
 	tags: [],
 	postCount: 3,
@@ -15,6 +16,7 @@ export const MockCollection: CollectionInfo = {
 	locales: ["en"],
 	locale: "en",
 	slug: "this-collection-name-here",
+	file: "path/index.md",
 	title: "Collection title",
 	description: "This is a short description dunno why this would be this short",
 	coverImg: "img.png",

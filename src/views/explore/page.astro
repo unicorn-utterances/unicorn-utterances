@@ -1,9 +1,8 @@
 ---
 import { Languages, PostInfo } from "types/index";
 import { PostCardGrid } from "src/components/post-card/post-card-grid";
-import { getUnicornProfilePicMap } from "utils/get-unicorn-profile-pic-map";
 import { Pagination } from "components/pagination/pagination";
-import { Page } from "astro";
+import type { Page } from "astro";
 import * as api from "utils/api";
 import { isDefined } from "utils/is-defined";
 
@@ -14,7 +13,6 @@ export interface PageProps {
 }
 
 const { posts, page, locale } = Astro.props as PageProps;
-const unicornProfilePicMap = await getUnicornProfilePicMap();
 
 const postAuthors = new Map(
 	[...new Set(posts.flatMap((p) => p.authors))]
@@ -31,7 +29,6 @@ const postAuthors = new Map(
 	aria-label="List of posts"
 	postsToDisplay={posts}
 	postAuthors={postAuthors}
-	unicornProfilePicMap={unicornProfilePicMap}
 />
 
 {

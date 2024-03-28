@@ -3,23 +3,21 @@ import style from "./about.module.scss";
 import "../../styles/shiki.scss";
 import * as data from "src/utils/data";
 import ContributorCard from "./contributor-card.astro";
-import {
-	getPrefixLanguageFromPath,
-	getTranslatedPage,
-	translate,
-} from "src/utils/translations";
+import { translate } from "src/utils/translations";
 import TranslationsHeader from "src/views/base/translations/translations-header.astro";
 import HeadingLinkScript from "../base/scripts/heading-link-script.astro";
 import { License } from "./license";
 import BannerSvg from "./banner-svg.astro";
 import * as api from "utils/api";
+import { Languages } from "types/index";
 
-const about = getTranslatedPage(
-	Astro,
-	await Astro.glob("../../../content/site/about-us*.mdx"),
-);
+interface Props {
+	locales: Languages[];
+	locale: Languages;
+	markdownHtml: string;
+}
 
-const locale = getPrefixLanguageFromPath(Astro.url.pathname);
+const { locales, locale, markdownHtml } = Astro.props as Props;
 
 const unicorns = api.getUnicornsByLang(locale);
 
@@ -55,9 +53,9 @@ const tags = [
 		<BannerSvg />
 	</div>
 	<div class={`${style.aboutBody} post-body`}>
-		<TranslationsHeader locales={about.locales} />
+		<TranslationsHeader locales={locales} />
 
-		<about.page.Content />
+		<div set:html={markdownHtml} />
 
 		<hr />
 

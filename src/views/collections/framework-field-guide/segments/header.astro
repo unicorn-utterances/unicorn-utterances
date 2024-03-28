@@ -1,6 +1,6 @@
 ---
 import layoutStyles from "../../../../components/layout/layout.module.scss";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 /**
  * The reason this component exists is so that we can avoid importing the DarkMode logic and styles from the FFG page.
@@ -25,7 +25,7 @@ import { Icon } from "astro-icon";
 			class={`${layoutStyles.backBtn} baseBtn`}
 			aria-label="Go back"
 		>
-			<Icon height="36" width="36" name="arrow_left" />
+			<Icon height={36} width={36} name="arrow_left" />
 		</button>
 		<div class={layoutStyles.iconList}>
 			<a
@@ -33,7 +33,7 @@ import { Icon } from "astro-icon";
 				class={`${layoutStyles.discordBtn} baseBtn`}
 				aria-label="Join the Discord"
 			>
-				<Icon height="36" width="36" name="discord" />
+				<Icon height={36} width={36} name="discord" />
 			</a>
 		</div>
 	</div>

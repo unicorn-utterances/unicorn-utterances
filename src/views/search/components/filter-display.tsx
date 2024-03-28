@@ -1,4 +1,3 @@
-import { ProfilePictureMap } from "utils/get-unicorn-profile-pic-map";
 import { PostInfo } from "types/PostInfo";
 import { CollectionInfo } from "types/CollectionInfo";
 import { useMemo } from "preact/hooks";
@@ -14,7 +13,6 @@ import { SortType } from "src/views/search/search";
 const tagsMap = new Map(Object.entries(tagsObj));
 
 interface FilterDisplayProps {
-	unicornProfilePicMap: ProfilePictureMap;
 	posts: PostInfo[];
 
 	collections: CollectionInfo[];
@@ -34,7 +32,6 @@ interface FilterDisplayProps {
 }
 
 export const FilterDisplay = ({
-	unicornProfilePicMap,
 	collections,
 	unicornsMap,
 	posts,
@@ -134,14 +131,12 @@ export const FilterDisplay = ({
 				authors={authors}
 				selectedAuthorIds={selectedAuthorIds}
 				selectedTags={selectedTags}
-				unicornProfilePicMap={unicornProfilePicMap}
 			/>
 		);
 	}
 
 	return (
 		<FilterSidebar
-			unicornProfilePicMap={unicornProfilePicMap}
 			sort={sort}
 			setSort={setSort}
 			selectedAuthorIds={selectedAuthorIds}

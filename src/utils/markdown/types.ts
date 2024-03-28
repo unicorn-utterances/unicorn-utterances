@@ -1,20 +1,29 @@
 import { VFile } from "vfile";
-import { MarkdownAstroData } from "@astrojs/markdown-remark";
+import { PostHeadingInfo } from "types/PostInfo";
 
-export type AstroVFile = VFile & {
-	data: {
-		astro: MarkdownAstroData;
-	};
+export type MarkdownKind = "post" | "collection" | "unicorn" | "page";
+
+export type MarkdownFileInfo = {
+	kind: MarkdownKind;
+	file: string;
 };
 
-export function isAstroVFile(obj: unknown): obj is AstroVFile {
+export interface MarkdownVFile extends VFile {
+	data: {
+		kind: MarkdownKind;
+		file: string;
+		headingsWithIds: PostHeadingInfo[];
+	};
+}
+
+export function isMarkdownVFile(obj: unknown): obj is MarkdownVFile {
 	return (
 		(typeof obj === "object" &&
 			obj &&
 			"data" in obj &&
 			typeof obj.data === "object" &&
 			obj.data &&
-			"astro" in obj.data) ??
+			"kind" in obj.data) ??
 		false
 	);
 }

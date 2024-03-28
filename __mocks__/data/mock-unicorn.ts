@@ -2,10 +2,12 @@ import { MockRole } from "./mock-role";
 import { UnicornInfo } from "types/index";
 
 export const MockUnicorn: UnicornInfo = {
+	kind: "unicorn",
 	name: "Joe",
 	firstName: "Joe",
 	lastName: "Other",
 	id: "joe",
+	file: "path/index.md",
 	locale: "en",
 	locales: ["en"],
 	totalPostCount: 2,
@@ -35,10 +37,12 @@ export const MockUnicorn: UnicornInfo = {
 };
 
 export const MockUnicornTwo: UnicornInfo = {
+	kind: "unicorn",
 	name: "Diane",
 	firstName: "Diane",
 	lastName: "",
 	id: "diane",
+	file: "path/index.md",
 	locale: "en",
 	locales: ["en"],
 	totalPostCount: 3,

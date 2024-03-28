@@ -1,5 +1,5 @@
 ---
-import Icon from "astro-icon";
+import { Icon } from "astro-icon/components";
 import * as data from "src/utils/data";
 import { Button, IconOnlyButton } from "components/index";
 import DarkLightButton from "./dark-light-button/dark-light-button.astro";
@@ -64,7 +64,7 @@ const props = Astro.props as {
 						aria-label={translate(Astro, "title.search")}
 						class={style.searchSmall}
 					>
-						<Icon height="100%" width="100%" name="search" />
+						<Icon style="width: 100%; height: 100%;" name="search" />
 					</IconOnlyButton>,
 				]
 			}
@@ -78,9 +78,8 @@ const props = Astro.props as {
 					>
 						<Icon
 							slot="leftIcon"
-							height="100%"
-							width="100%"
-							name={data.about.links.Discord.icon}
+							style="width: 100%; height: 100%;"
+							name={data.about.links.Discord.icon as never}
 						/>
 						{translate(Astro, "action.join_discord")}
 					</Button>,
@@ -91,9 +90,8 @@ const props = Astro.props as {
 						class={style.discordSmall}
 					>
 						<Icon
-							height="100%"
-							width="100%"
-							name={data.about.links.Discord.icon}
+							style="width: 100%; height: 100%;"
+							name={data.about.links.Discord.icon as never}
 						/>
 					</IconOnlyButton>,
 				]

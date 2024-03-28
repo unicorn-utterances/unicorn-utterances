@@ -26,7 +26,9 @@ export interface RawUnicornInfo {
 }
 
 export interface UnicornInfo extends Required<RawUnicornInfo> {
+	kind: "unicorn";
 	id: string;
+	file: string;
 	locale: Languages;
 	locales: Languages[];
 	totalPostCount: number;

@@ -1,7 +1,7 @@
 ---
 import style from "./post-title-header.module.scss";
 import { PostInfo, UnicornInfo } from "types/index";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { Chip } from "components/index";
 import dayjs from "dayjs";
 import { buildSearchQuery } from "../../search/search";
@@ -29,7 +29,7 @@ const originalLinkStr = post.originalLink && new URL(post.originalLink).host;
 		<div class={style.details}>
 			<div class={style.date}>
 				<div class={style.date__published}>
-					<Icon width="24" height="24" name="date" aria-hidden="true" />
+					<Icon width={24} height={24} name="date" aria-hidden="true" />
 					<p class="text-style-button-regular">{publishedStr}</p>
 				</div>
 
@@ -43,7 +43,7 @@ const originalLinkStr = post.originalLink && new URL(post.originalLink).host;
 			</div>
 
 			<div class={style.authors}>
-				<Icon width="24" height="24" name="authors" aria-hidden="true" />
+				<Icon width={24} height={24} name="authors" aria-hidden="true" />
 				<ul aria-label="Post authors" role="list" class={style.authors__list}>
 					{
 						authors.map((author, i) => (
@@ -58,7 +58,7 @@ const originalLinkStr = post.originalLink && new URL(post.originalLink).host;
 			</div>
 
 			<div class={style.wordCount}>
-				<Icon width="24" height="24" name="words" aria-hidden="true" />
+				<Icon width={24} height={24} name="words" aria-hidden="true" />
 				<p class="text-style-button-regular">
 					{
 						translate(
@@ -73,7 +73,7 @@ const originalLinkStr = post.originalLink && new URL(post.originalLink).host;
 			{
 				post.originalLink ? (
 					<div class={style.originalLink}>
-						<Icon width="24" height="24" name="website" aria-hidden="true" />
+						<Icon width={24} height={24} name="website" aria-hidden="true" />
 						<p class="text-style-button-regular">
 							{translate(Astro, "desc.original_link")}
 							<a

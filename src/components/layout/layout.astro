@@ -1,7 +1,7 @@
 ---
 import layoutStyles from "./layout.module.scss";
 import DarkLightButton from "src/views/base/navigation/dark-light-button/dark-light-button.astro";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 // const { back } = useHistory();
 
@@ -35,7 +35,7 @@ const { disableThemeToggle } = Astro.props as LayoutProps;
 							class={`${layoutStyles.backBtn} baseBtn`}
 							aria-label="Go back"
 						>
-							<Icon height="36" width="36" name="arrow_left" />
+							<Icon height={36} width={36} name="arrow_left" />
 						</button>
 					</>
 				) : (
@@ -48,7 +48,7 @@ const { disableThemeToggle } = Astro.props as LayoutProps;
 					class={`${layoutStyles.discordBtn} baseBtn`}
 					aria-label="Join the Discord"
 				>
-					<Icon height="36" width="36" name="discord" />
+					<Icon height={36} width={36} name="discord" />
 				</a>
 				{!disableThemeToggle && <DarkLightButton />}
 			</div>

@@ -4,7 +4,7 @@ import PageView from "src/views/explore/page.astro";
 import { getPostsByLang } from "utils/api";
 import { PostInfo } from "types/index";
 import SEO from "components/seo/seo.astro";
-import { Page } from "astro";
+import type { Page } from "astro";
 import { GetStaticPaths } from "astro";
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {

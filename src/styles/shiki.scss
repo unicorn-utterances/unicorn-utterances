@@ -1,5 +1,38 @@
 @import "src/tokens/index";
 
+:root {
+	--shiki_padding: 12px;
+}
+
+// Prevents the --shiki variables from inheriting
+// (otherwise all nested spans apply the same background as its parent)
+.shiki * {
+	--shiki-dark: initial;
+	--shiki-dark-bg: initial;
+}
+.shiki {
+	@include darkTheme {
+		color: var(--shiki-dark) !important;
+	}
+}
+.shiki span {
+	@include darkTheme {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+	}
+}
+
+/*
+Code blocks structurally look like:
+
+<pre class='shiki [themes]'>
+	<code>
+		<span class="line">const id = "1";</span>
+		<span class="line highlight">console.log(id + 1);</span>
+	</code>
+</pre>
+*/
+
 /*
  * This code handles line of code counting
  */
@@ -11,6 +44,18 @@ pre code {
 	position: relative;
 	padding-left: 2.5rem;
 	tab-size: 4;
+
+	/* Important to allow the code to move horizontally; */
+	overflow-x: auto;
+	position: relative;
+
+	/* Give it some space to breathe */
+	padding-top: var(--shiki_padding);
+	padding-bottom: var(--shiki_padding);
+
+	font-size: 0.9rem;
+	font-family: var(--uu-font-family-code);
+	-webkit-overflow-scrolling: touch;
 }
 
 pre code .line::before {
@@ -33,345 +78,40 @@ pre code .line.highlight::before {
 	color: var(--foreground_emphasis-medium);
 }
 
-/*  Start of Shiki Twoslash CSS:
-
-Code blocks structurally look like:
-
-<pre class='shiki lsp twoslash [theme-name]'>
-  <div class='language-id'>[lang-id]</div>
-    <div class='code-container'>
-      <code>[the code as a series of spans]</code>
-      <a href='playground...'>Try</a> (optional)
-    </div>
-  </pre>
-*/
-
-// Provides the github-light and github-dark themes as CSS variables
-// using https://github.com/sdorra/convert-sh-theme
-.shiki {
-	--shiki-color-text: #24292e;
-	--shiki-color-background: #fff;
-
-	--shiki-token-constant: #005cc5;
-	--shiki-token-string: #032f62;
-	--shiki-token-comment: #6a737d;
-	--shiki-token-keyword: #d73a49;
-	--shiki-token-parameter: #24292e;
-	--shiki-token-function: #24292e;
-	--shiki-token-string-expression: #22863a;
-	--shiki-token-punctuation: #24292e;
-	--shiki-token-link: #24292e;
-
-	--shiki_padding: 12px;
-
-	@include darkTheme {
-		--shiki-color-text: #e1e4e8;
-		--shiki-color-background: #24292e;
-
-		--shiki-token-constant: #79b8ff;
-		--shiki-token-string: #9ecbff;
-		--shiki-token-comment: #6a737d;
-		--shiki-token-keyword: #f97583;
-		--shiki-token-parameter: #e1e4e8;
-		--shiki-token-function: #e1e4e8;
-		--shiki-token-string-expression: #85e89d;
-		--shiki-token-punctuation: #e1e4e8;
-		--shiki-token-link: #e1e4e8;
-	}
-}
-
-pre {
-	/* Important to allow the code to move horizontally; */
-	overflow-x: auto;
-	position: relative;
-}
-
-pre .code-container {
-	/* Give it some space to breathe */
-	padding: var(--shiki_padding) 0;
-	display: flex;
-
-	code {
-		flex-grow: 1;
-	}
+pre.shiki code {
+	white-space: normal;
 }
 
 pre.shiki {
 	overflow-x: auto;
 }
-pre.shiki div.line {
+
+pre.shiki .line {
 	// must be the same value as used for line-height
 	min-height: 1.7em;
 	padding: 0 var(--shiki_padding);
+	display: block;
+	white-space: pre;
 }
-pre.shiki div.highlight {
+
+/**
+ * When [!code highlight] is used, add borders/background to each line
+ */
+pre.shiki .line.highlight {
 	font-weight: bold;
 	background-color: var(--surface_primary_emphasis-none);
+	--shiki-dark-bg: var(--surface_primary_emphasis-none);
 }
 
-pre.shiki div:not(.highlight) + div.highlight,
-pre.shiki div:first-child.highlight {
+pre.shiki .line:not(.highlight) + .line.highlight,
+pre.shiki .line:first-child.highlight {
 	border-top: 2px dashed var(--primary_default);
 }
 
-pre.shiki div.highlight + div:not(.highlight) {
+pre.shiki .line.highlight + .line:not(.highlight) {
 	border-top: 2px dashed var(--primary_default);
 }
 
-pre.shiki div:last-child.highlight {
+pre.shiki .line:last-child.highlight {
 	border-bottom: 2px dashed var(--primary_default);
-}
-
-/** Don't show the language identifiers */
-pre.shiki .language-id {
-	display: none;
-}
-
-/** When you mouse over the pre, show the underlines */
-pre.twoslash:hover data-lsp {
-	border-color: #747474;
-}
-
-/** The tooltip-like which provides the LSP response */
-pre.twoslash data-lsp:hover::before {
-	content: attr(lsp);
-	position: absolute;
-	transform: translate(0, 1rem);
-
-	background-color: #3f3f3f;
-	color: #fff;
-	text-align: left;
-	padding: 5px 8px;
-	border-radius: 2px;
-	font-family: var(--uu-font-family-code);
-	font-size: 0.8rem;
-	white-space: pre-wrap;
-	z-index: 100;
-}
-
-pre .code-container {
-	overflow: auto;
-}
-/* The try button */
-pre .code-container > a {
-	position: absolute;
-	right: 8px;
-	bottom: 8px;
-	border-radius: 4px;
-	border: 1px solid #719af4;
-	padding: 0 8px;
-	color: #719af4;
-	text-decoration: none;
-	opacity: 0;
-	transition-timing-function: ease;
-	transition: opacity 0.3s;
-}
-/* Respect no animations */
-@media (prefers-reduced-motion: reduce) {
-	pre .code-container > a {
-		transition: none;
-	}
-}
-pre .code-container > a:hover {
-	color: white;
-	background-color: #719af4;
-}
-pre .code-container:hover a {
-	opacity: 1;
-}
-
-pre code {
-	font-size: 0.9rem;
-	font-family: var(--uu-font-family-code);
-	white-space: pre;
-	-webkit-overflow-scrolling: touch;
-}
-pre code a {
-	text-decoration: none;
-}
-pre data-err {
-	/* Extracted from VS Code */
-	background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23c94824'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
-		repeat-x bottom left;
-	padding-bottom: 3px;
-}
-pre .query {
-	margin-bottom: 10px;
-	color: #137998;
-	display: inline-block;
-}
-
-/* In order to have the 'popped out' style design and to not break the layout
-/* we need to place a fake and un-selectable copy of the error which _isn't_ broken out
-/* behind the actual error message.
-
-/* This sections keeps both of those two in in sync  */
-
-pre .error,
-pre .error-behind {
-	margin-left: -14px;
-	margin-top: 8px;
-	margin-bottom: 4px;
-	padding: 6px;
-	padding-left: 14px;
-	width: calc(100% - 20px);
-	white-space: pre-wrap;
-	display: block;
-}
-pre .error {
-	position: absolute;
-	background-color: #fee;
-	border-left: 2px solid #bf1818;
-	/* Give the space to the error code */
-	display: flex;
-	align-items: center;
-	color: black;
-}
-pre .error .code {
-	display: none;
-}
-pre .error-behind {
-	user-select: none;
-	visibility: transparent;
-	color: #fee;
-}
-/* Queries */
-pre .arrow {
-	/* Transparent background */
-	background-color: #eee;
-	position: relative;
-	top: -7px;
-	margin-left: 0.1rem;
-	/* Edges */
-	border-left: 1px solid #eee;
-	border-top: 1px solid #eee;
-	transform: translateY(25%) rotate(45deg);
-	/* Size */
-	height: 8px;
-	width: 8px;
-}
-pre .popover {
-	margin-bottom: 10px;
-	background-color: #eee;
-	display: inline-block;
-	padding: 0 0.5rem 0.3rem;
-	margin-top: 10px;
-	border-radius: 3px;
-}
-/* Completion */
-pre .inline-completions ul.dropdown {
-	display: inline-block;
-	position: absolute;
-	width: 240px;
-	background-color: gainsboro;
-	color: grey;
-	padding-top: 4px;
-	font-family: var(--uu-font-family-code);
-	font-size: 0.8rem;
-	margin: 0;
-	padding: 0;
-	border-left: 4px solid #4b9edd;
-}
-pre .inline-completions ul.dropdown::before {
-	background-color: #4b9edd;
-	width: 2px;
-	position: absolute;
-	top: -1.2rem;
-	left: -3px;
-	content: " ";
-}
-pre .inline-completions ul.dropdown li {
-	overflow-x: hidden;
-	padding-left: 4px;
-	margin-bottom: 4px;
-}
-pre .inline-completions ul.dropdown li.deprecated {
-	text-decoration: line-through;
-}
-pre .inline-completions ul.dropdown li span.result-found {
-	color: #4b9edd;
-}
-pre .inline-completions ul.dropdown li span.result {
-	width: 100px;
-	color: black;
-	display: inline-block;
-}
-.dark-theme .markdown pre {
-	background-color: #d8d8d8;
-	border-color: #ddd;
-	filter: invert(98%) hue-rotate(180deg);
-}
-data-lsp {
-	/* Ensures there's no 1px jump when the hover happens */
-	border-bottom: 1px dotted transparent;
-	/* Fades in unobtrusively */
-	transition-timing-function: ease;
-	transition: border-color 0.3s;
-}
-/* Respect people's wishes to not have animations */
-@media (prefers-reduced-motion: reduce) {
-	data-lsp {
-		transition: none;
-	}
-}
-
-/** Annotations support, providing a tool for meta commentary */
-.tag-container {
-	position: relative;
-}
-.tag-container .twoslash-annotation {
-	position: absolute;
-	font-family: var(--uu-font-family-code);
-	right: -10px;
-	/** Default annotation text to 200px */
-	width: 200px;
-	color: #187abf;
-	background-color: #fcf3d9 bb;
-}
-.tag-container .twoslash-annotation p {
-	text-align: left;
-	font-size: 0.8rem;
-	line-height: 0.9rem;
-}
-.tag-container .twoslash-annotation svg {
-	float: left;
-	margin-left: -44px;
-}
-.tag-container .twoslash-annotation.left {
-	right: auto;
-	left: -200px;
-}
-.tag-container .twoslash-annotation.left svg {
-	float: right;
-	margin-right: -5px;
-}
-
-/** Support for showing console log/warn/errors inline */
-pre .logger {
-	display: flex;
-	align-items: center;
-	color: black;
-	padding: 6px;
-	padding-left: 8px;
-	width: calc(100% - 19px);
-	white-space: pre-wrap;
-}
-pre .logger svg {
-	margin-right: 9px;
-}
-pre .logger.error-log {
-	background-color: #fee;
-	border-left: 2px solid #bf1818;
-}
-pre .logger.warn-log {
-	background-color: #ffe;
-	border-left: 2px solid #eae662;
-}
-pre .logger.log-log {
-	background-color: #e9e9e9;
-	border-left: 2px solid #ababab;
-}
-pre .logger.log-log svg {
-	margin-left: 6px;
-	margin-right: 9px;
 }

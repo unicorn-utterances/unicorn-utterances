@@ -15,7 +15,9 @@ export interface RawPostInfo {
 }
 
 export interface PostInfo extends RawPostInfo {
+	kind: "post";
 	slug: string;
+	file: string;
 	authors: string[];
 	tags: string[];
 	description: string;

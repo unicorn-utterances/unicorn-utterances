@@ -14,6 +14,14 @@ function compareByPublished<T extends { published: string }>(
 	return compareByDate(obj1.published, obj2.published);
 }
 
+export function getAllPosts(): PostInfo[] {
+	return [...posts.values()].flatMap((locales) => locales);
+}
+
+export function getAllCollections(): CollectionInfo[] {
+	return [...collections.values()].flatMap((locales) => locales);
+}
+
 export function getUnicornById(
 	id: string,
 	language: Languages,

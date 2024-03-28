@@ -2,7 +2,6 @@
 import { PostCardGrid } from "src/components/post-card/post-card-grid";
 import { Button } from "components/button/button";
 import { Languages, PostInfo, CollectionInfo } from "types/index";
-import { getUnicornProfilePicMap } from "utils/get-unicorn-profile-pic-map";
 import { translate } from "utils/translations";
 import { CollectionCard } from "components/collection-card/collection-card";
 import { SubHeader } from "../../components/subheader/subheader";
@@ -10,7 +9,6 @@ import Hero from "../../components/hero/hero.astro";
 import SearchSection from "../../components/search-section/search-section.astro";
 import styles from "./homepage.module.scss";
 import { buildSearchQuery } from "src/views/search/search";
-import { getPicture } from "@astrojs/image";
 import * as api from "utils/api";
 import { isDefined } from "utils/is-defined";
 
@@ -28,28 +26,6 @@ const postAuthors = new Map(
 		.filter(isDefined)
 		.map((u) => [u.id, u]),
 );
-
-const unicornProfilePicMap = await getUnicornProfilePicMap();
-
-const collectionsWithPictures = await Promise.all(
-	collections.map(async (collection) => {
-		const coverImgAspectRatio =
-			collection.coverImgMeta.width / collection.coverImgMeta.height;
-		// adjust the image width to ensure its height=240px
-		// (i.e. it shouldn't get upscaled/downscaled with `object-fit: cover`)
-		const coverImgWidth = Math.max(160, Math.ceil(240 * coverImgAspectRatio));
-
-		const coverPicture = await getPicture({
-			src: collection.coverImgMeta.relativeServerPath,
-			alt: "",
-			widths: [coverImgWidth],
-			aspectRatio: coverImgAspectRatio,
-			formats: ["avif", "webp", "png"],
-		});
-
-		return { ...collection, coverPicture };
-	}),
-);
 ---
 
 <Hero />
@@ -65,7 +41,6 @@ const collectionsWithPictures = await Promise.all(
 		postsToDisplay={posts}
 		postAuthors={postAuthors}
 		postHeadingTag="h3"
-		unicornProfilePicMap={unicornProfilePicMap}
 	/>
 </section>
 
@@ -88,7 +63,7 @@ const collectionsWithPictures = await Promise.all(
 		class={styles.collectionsGrid}
 	>
 		{
-			collectionsWithPictures.map((collection) => (
+			collections.map((collection) => (
 				<li>
 					<CollectionCard
 						collection={collection}
@@ -96,7 +71,6 @@ const collectionsWithPictures = await Promise.all(
 							.map((id) => api.getUnicornById(id, collection.locale))
 							.filter(isDefined)}
 						headingTag="h3"
-						unicornProfilePicMap={unicornProfilePicMap}
 					/>
 				</li>
 			))

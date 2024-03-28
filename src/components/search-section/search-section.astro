@@ -5,7 +5,7 @@ import style from "./search-section.module.scss";
 import * as data from "utils/data";
 import { SearchInput } from "../input/input";
 import { IconOnlyButton } from "../button/button";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import { SEARCH_QUERY_KEY, buildSearchQuery } from "src/views/search/search";
 
 const tagsToDisplay = [...data.tags.entries()]
@@ -29,7 +29,7 @@ const tagsToDisplay = [...data.tags.entries()]
 			class={style.searchButton}
 			aria-label={translate(Astro, "title.search")}
 		>
-			<Icon width="100%" height="100%" name="arrow_right" />
+			<Icon style="width: 100%; height: 100%;" name="arrow_right" />
 		</IconOnlyButton>
 	</form>
 

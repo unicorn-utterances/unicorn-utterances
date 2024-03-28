@@ -1,5 +1,5 @@
 ---
-import { getImage } from "@astrojs/image";
+import { getImage } from "astro:assets";
 import { escape } from "html-escaper";
 import fs from "fs/promises";
 import { getUnicornsByLang } from "utils/api";
@@ -41,7 +41,6 @@ const unicornImages = await Promise.all(
 			width,
 			src: unicorn.profileImgMeta.relativeServerPath,
 			format: "avif",
-			alt: "",
 		});
 
 		if (!image.src) return "";

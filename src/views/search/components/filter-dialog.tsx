@@ -8,7 +8,6 @@ import { ExtendedTag, ExtendedUnicorn } from "./types";
 import { LargeButton, LargeIconOnlyButton } from "components/button/button";
 import { FilterSectionItem } from "./filter-section-item";
 import { Picture as UUPicture } from "components/image/picture";
-import { ProfilePictureMap } from "utils/get-unicorn-profile-pic-map";
 import { DEFAULT_TAG_EMOJI } from "./constants";
 import close from "src/icons/close.svg?raw";
 
@@ -20,7 +19,6 @@ interface FilterDialogProps {
 	}) => void;
 	tags: ExtendedTag[];
 	authors: ExtendedUnicorn[];
-	unicornProfilePicMap: ProfilePictureMap;
 	selectedAuthorIds: string[];
 	selectedTags: string[];
 }
@@ -44,7 +42,6 @@ const FilterDialogMobile = ({
 	onTagsChange,
 	selectedTags,
 	selectedAuthorIds,
-	unicornProfilePicMap,
 }: FilterDialogInner) => {
 	return (
 		<div class={styles.mobileDialogContainer}>
@@ -90,7 +87,9 @@ const FilterDialogMobile = ({
 							count={author.numPosts}
 							icon={
 								<UUPicture
-									picture={unicornProfilePicMap.find((u) => u.id === author.id)!}
+									src={author.profileImgMeta.relativeServerPath}
+									width={24}
+									height={24}
 									alt={""}
 									class={styles.authorIcon}
 								/>
@@ -133,7 +132,6 @@ const FilterDialogSmallTablet = ({
 	onTagsChange,
 	selectedTags,
 	selectedAuthorIds,
-	unicornProfilePicMap,
 }: FilterDialogInner) => {
 	return (
 		<div class={styles.tabletDialogContainer}>
@@ -196,9 +194,9 @@ const FilterDialogSmallTablet = ({
 									count={author.numPosts}
 									icon={
 										<UUPicture
-											picture={unicornProfilePicMap.find(
-												(u) => u.id === author.id,
-											)!}
+											src={author.profileImgMeta.relativeServerPath}
+											width={24}
+											height={24}
 											alt={""}
 											class={styles.authorIcon}
 										/>
@@ -221,7 +219,6 @@ export const FilterDialog = ({
 	onClose,
 	tags,
 	authors,
-	unicornProfilePicMap,
 	selectedAuthorIds: selectedParentAuthorIds,
 	selectedTags: selectedParentTags,
 }: FilterDialogProps) => {
@@ -313,7 +310,6 @@ export const FilterDialog = ({
 				setSelectedAuthorIds={setSelectedAuthorIds}
 				onSelectedAuthorChange={onSelectedAuthorChange}
 				onTagsChange={onTagsChange}
-				unicornProfilePicMap={unicornProfilePicMap}
 			/>
 		</Dialog>
 	);

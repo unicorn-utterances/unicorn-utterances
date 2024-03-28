@@ -1,7 +1,7 @@
 ---
 import BannerStickersGroup from "../banner-stickers/banner-stickers-group.astro";
 import { LargeButton } from "../button/button";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 import style from "./hero.module.scss";
 import { translate } from "../../utils";
 import * as data from "src/utils/data";
@@ -23,15 +23,18 @@ import * as data from "src/utils/data";
 			>
 				<Icon
 					slot="leftIcon"
-					height="100%"
-					width="100%"
-					name={data.about.links.Discord.icon}
+					style="width: 100%; height: 100%;"
+					name={data.about.links.Discord.icon as never}
 				/>
 				{translate(Astro, "action.join_discord")}
 			</LargeButton>
 			<LargeButton variant="primary" href="/about">
 				{translate(Astro, "action.learn_more")}
-				<Icon slot="rightIcon" height="100%" width="100%" name="arrow_right" />
+				<Icon
+					slot="rightIcon"
+					style="width: 100%; height: 100%;"
+					name="arrow_right"
+				/>
 			</LargeButton>
 		</div>
 	</div>

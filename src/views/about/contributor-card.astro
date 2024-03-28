@@ -1,11 +1,12 @@
 ---
 import style from "./contributor-card.module.scss";
 import { UnicornInfo } from "uu-types";
-import { Picture } from "@astrojs/image/components";
+import { Picture } from "components/image/picture";
 import { Button } from "components/index";
 import { translate } from "src/utils/translations";
 import { getHrefContainerProps } from "utils/href-container-script";
 import allRoles from "../../../content/data/roles.json";
+import { tabletSmall } from "src/tokens/breakpoints";
 
 interface CardProps {
 	unicorn: UnicornInfo;
@@ -26,14 +27,16 @@ if (unicorn.achievements.includes("partner")) {
 <li class={style.card} {...getHrefContainerProps(unicornHref)}>
 	<Picture
 		alt=""
-		class={style.avatar}
-		sizes="96px"
-		widths={[96]}
-		aspectRatio={1}
-		data-dont-round="true"
-		formats={["avif", "webp", "png"]}
+		width={96}
+		height={96}
+		sizes={{
+			80: { maxWidth: tabletSmall },
+		}}
+		imgAttrs={{
+			class: style.avatar,
+			"data-dont-round": "true",
+		}}
 		src={unicorn.profileImgMeta.relativeServerPath}
-		loading="lazy"
 	/>
 
 	<div class={style.info}>

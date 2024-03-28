@@ -20,18 +20,12 @@ import remarkParse from "remark-parse";
 import remarkToRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import { rehypeUnicornElementMap } from "./markdown/rehype-unicorn-element-map";
-import { default as remarkTwoslashDefault } from "remark-shiki-twoslash";
 import { getExcerpt } from "./markdown/get-excerpt";
 import { getLanguageFromFilename } from "./translations";
 import aboutRaw from "../../content/data/about.json";
 import rolesRaw from "../../content/data/roles.json";
 import licensesRaw from "../../content/data/licenses.json";
 import tagsRaw from "../../content/data/tags.json";
-
-// https://github.com/shikijs/twoslash/issues/147
-const remarkTwoslash =
-	(remarkTwoslashDefault as never as { default: typeof remarkTwoslashDefault })
-		.default ?? remarkTwoslashDefault;
 
 export const contentDirectory = join(process.cwd(), "content");
 
@@ -42,7 +36,6 @@ const tags = new Map<string, TagInfo>();
 // file due to the hastscript JSX
 const tagExplainerParser = unified()
 	.use(remarkParse, { fragment: true } as never)
-	.use(remarkTwoslash, { themes: ["css-variables"] })
 	.use(remarkToRehype, { allowDangerousHtml: true })
 	.use(rehypeUnicornElementMap)
 	.use(rehypeStringify, { allowDangerousHtml: true, voids: [] });
@@ -96,11 +89,15 @@ async function readUnicorn(unicornPath: string): Promise<UnicornInfo[]> {
 
 	for (const file of files) {
 		const locale = getLanguageFromFilename(file);
-		const fileContents = await fs.readFile(join(unicornPath, file), "utf-8");
+		const filePath = join(unicornPath, file);
+		const fileContents = await fs.readFile(filePath, "utf-8");
 		const frontmatter = matter(fileContents).data as RawUnicornInfo;
 
-		const profileImgSize = getImageSize(frontmatter.profileImg, unicornPath);
-		if (!profileImgSize) {
+		const profileImgSize = await getImageSize(
+			frontmatter.profileImg,
+			unicornPath,
+		);
+		if (!profileImgSize || !profileImgSize.width || !profileImgSize.height) {
 			throw new Error(`${unicornPath}: Unable to parse profile image size`);
 		}
 
@@ -110,14 +107,16 @@ async function readUnicorn(unicornPath: string): Promise<UnicornInfo[]> {
 			roles: [],
 			achievements: [],
 			...frontmatter,
+			kind: "unicorn",
 			id: unicornId,
+			file: filePath,
 			locale,
 			locales,
 			totalPostCount: 0,
 			totalWordCount: 0,
 			profileImgMeta: {
-				height: profileImgSize.height as number,
-				width: profileImgSize.width as number,
+				height: profileImgSize.height,
+				width: profileImgSize.width,
 				...resolvePath(frontmatter.profileImg, unicornPath)!,
 			},
 		};
@@ -177,17 +176,21 @@ async function readCollection(
 	const collectionObjects: CollectionInfo[] = [];
 	for (const file of files) {
 		const locale = getLanguageFromFilename(file);
-		const fileContents = await fs.readFile(join(collectionPath, file), "utf-8");
+		const filePath = join(collectionPath, file);
+		const fileContents = await fs.readFile(filePath, "utf-8");
 		const frontmatter = matter(fileContents).data as RawCollectionInfo;
 
-		const coverImgSize = getImageSize(frontmatter.coverImg, collectionPath);
-		if (!coverImgSize) {
+		const coverImgSize = await getImageSize(
+			frontmatter.coverImg,
+			collectionPath,
+		);
+		if (!coverImgSize || !coverImgSize.width || !coverImgSize.height) {
 			throw new Error(`${collectionPath}: Unable to parse cover image size`);
 		}
 
 		const coverImgMeta = {
-			height: coverImgSize.height as number,
-			width: coverImgSize.width as number,
+			height: coverImgSize.height,
+			width: coverImgSize.width,
 			...resolvePath(frontmatter.coverImg, collectionPath)!,
 		};
 
@@ -210,7 +213,9 @@ async function readCollection(
 		collectionObjects.push({
 			...fallbackInfo,
 			...frontmatter,
+			kind: "collection",
 			slug,
+			file: filePath,
 			locale,
 			locales,
 			postCount,
@@ -239,7 +244,8 @@ async function readPost(
 	const postObjects: PostInfo[] = [];
 	for (const file of files) {
 		const locale = getLanguageFromFilename(file);
-		const fileContents = await fs.readFile(join(postPath, file), "utf-8");
+		const filePath = join(postPath, file);
+		const fileContents = await fs.readFile(filePath, "utf-8");
 		const fileMatter = matter(fileContents);
 		const frontmatter = fileMatter.data as RawPostInfo;
 
@@ -287,7 +293,9 @@ async function readPost(
 		postObjects.push({
 			...fallbackInfo,
 			...frontmatter,
+			kind: "post",
 			slug,
+			file: filePath,
 			path: path.relative(contentDirectory, postPath),
 			locale,
 			locales,

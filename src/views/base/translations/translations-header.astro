@@ -7,7 +7,7 @@ import {
 	translate,
 } from "utils/translations";
 import style from "./translations-header.module.scss";
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 interface TranslationsHeaderProps {
 	locales: Languages[];
@@ -23,7 +23,7 @@ const titleId = "translations-header-title";
 <div>
 	<div class={style.card}>
 		<div class={style.title}>
-			<Icon width="24" height="24" name="translate" aria-hidden="true" />
+			<Icon width={24} height={24} name="translate" aria-hidden="true" />
 			<span id={titleId} class="text-style-body-large">
 				{translate(Astro, "desc.translated_into")}
 			</span>

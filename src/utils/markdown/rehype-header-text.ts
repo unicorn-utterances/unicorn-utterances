@@ -3,17 +3,17 @@ import { hasProperty } from "hast-util-has-property";
 import { toString } from "hast-util-to-string";
 import { Root, Parent } from "hast";
 import { PostHeadingInfo } from "src/types/index";
-import { isAstroVFile } from "./types";
 import { Plugin } from "unified";
 import { visit, SKIP } from "unist-util-visit";
+import { isMarkdownVFile } from "./types";
 
 /**
  * Plugin to add `data-header-text`s to headings.
  */
 export const rehypeHeaderText: Plugin<[], Root> = () => {
 	return (tree, file) => {
-		const headingsWithId: PostHeadingInfo[] = isAstroVFile(file)
-			? (file.data.astro.frontmatter.headingsWithId = [])
+		const headingsWithId: PostHeadingInfo[] = isMarkdownVFile(file)
+			? file.data.headingsWithIds
 			: [];
 
 		visit(tree, "element", (node: Parent["children"][number]) => {

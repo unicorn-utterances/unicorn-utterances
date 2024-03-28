@@ -1,4 +1,4 @@
-import { useMemo, useState } from "preact/hooks";
+import { useMemo } from "preact/hooks";
 import { useCSSPropertyValue } from "../../hooks/use-css-property-value";
 import { RepeatBackground } from "../shared/repeat-background";
 

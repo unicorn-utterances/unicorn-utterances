@@ -8,10 +8,7 @@ import { EMBED_MIN_HEIGHT, EMBED_SIZE } from "../constants";
 import { fromHtml } from "hast-util-from-html";
 import { find } from "unist-util-find";
 import { getLargestManifestIcon } from "../../get-largest-manifest-icon";
-import { getPicture } from "../get-picture-hack";
-import type { GetPictureResult } from "@astrojs/image/dist/lib/get-picture";
-// This does not download the whole file to get the file size
-import probe from "probe-image-size";
+import { getPicture, type GetPictureResult } from "utils/get-picture";
 import { IFramePlaceholder } from "./iframe-placeholder";
 
 interface RehypeUnicornIFrameClickToRunProps {
@@ -19,19 +16,11 @@ interface RehypeUnicornIFrameClickToRunProps {
 }
 
 // default icon, used if a frame's favicon cannot be resolved
-let defaultPageIcon: Promise<GetPictureResult>;
-function fetchDefaultPageIcon(): Promise<GetPictureResult> {
-	return (
-		defaultPageIcon ||
-		(defaultPageIcon = getPicture({
-			src: "/link.png",
-			widths: [24],
-			formats: ["avif", "webp", "png"],
-			aspectRatio: 1,
-			alt: "",
-		}))
-	);
-}
+const defaultPageIcon = getPicture({
+	src: "/link.png",
+	width: 24,
+	height: 24,
+});
 
 // Cache the fetch *promises* - so that only one request per manifest/icon is processed,
 //   and multiple fetchPageInfo() calls can await the same icon
@@ -82,19 +71,17 @@ function fetchPageIcon(src: URL, srcHast: Root): Promise<GetPictureResult> {
 
 		// no icon image URL is found
 		if (!iconLink) return null;
-		const { height: imgHeight, width: imgWidth } = await probe(iconLink);
-		const aspectRatio = imgHeight / imgWidth;
-		return await getPicture({
+
+		// TODO: needs to insert favicons into /public/generated instead of using a remote URL
+		return getPicture({
 			src: iconLink,
-			widths: [24],
-			formats: ["avif", "webp", "png"],
-			aspectRatio: aspectRatio,
-			alt: "",
+			width: 24,
+			height: 24,
 		});
 	})()
 		// if an error is thrown, or response is null, use the default page icon
 		.catch(() => null)
-		.then((p) => p || fetchDefaultPageIcon());
+		.then((p) => p || defaultPageIcon);
 
 	pageIconMap.set(src.origin, promise);
 	return promise;
@@ -179,7 +166,7 @@ export const rehypeUnicornIFrameClickToRun: Plugin<
 				height = height ?? EMBED_SIZE.h;
 				const info: PageInfo = (await fetchPageInfo(src!.toString()).catch(
 					() => null,
-				)) || { icon: await fetchDefaultPageIcon() };
+				)) || { icon: defaultPageIcon };
 
 				const [, heightPx] = /^([0-9]+)(px)?$/.exec(height + "") || [];
 				if (Number(heightPx) < EMBED_MIN_HEIGHT) height = EMBED_MIN_HEIGHT;

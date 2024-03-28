@@ -47,7 +47,7 @@ Now open `plugin.xml` file, this is where you can configure all the information 
 
 We are interested in the `depends` configuration. By default, the plugin depends on the IntelliJ platform only, but we also want to make sure the IDE has the Android plugin for our plugin to work. We can add the following two lines in the `plugin.xml`
 
-```XML
+```xml
 <idea-plugin>
   <depends>org.jetbrains.android</depends>
   <depends>com.intellij.modules.androidstudio</depends>
@@ -70,7 +70,7 @@ Android Studio provides a [template DSL](https://cs.android.com/android-studio/p
 
 So, let's create one. Create a new file called `ProjectTemplate.kt`, and add a new variable to provide the template.
 
-```Kotlin
+```kotlin
 import com.android.tools.idea.wizard.template.Category
 import com.android.tools.idea.wizard.template.CheckBoxWidget
 import com.android.tools.idea.wizard.template.FormFactor
@@ -147,7 +147,7 @@ val projectTemplate
 
 Now let's create our recipe for generating the project. Create a file called `ProjectRecipe.kt` and an extension function for  `RecipeExecutor` called `projectRecipe`
 
-```Kotlin
+```kotlin
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.PackageName
 import com.android.tools.idea.wizard.template.RecipeExecutor
@@ -168,7 +168,7 @@ For this example let's keep it simple and create a project with empty activity a
 
 `RecipeExecutor` provides functions to do some common actions like adding dependencies, plugins, build features, etc., Let's use the `addDependency` function to add the required Compose dependencies. 
 
-```Kotlin
+```kotlin
 private const val COMPOSE_BOM_VERSION = "2022.10.00"
 private const val COMPOSE_KOTLIN_COMPILER_VERSION = "1.3.2"
 
@@ -206,7 +206,7 @@ fun RecipeExecutor.projectRecipe(
 
 Now that we configured our build file, let's create our empty activity. Android Studio templates use string templates to create the files. So, let's create an empty activity string template in `EmptyActivity.kt` file.
 
-```Kotlin
+```kotlin
 import com.android.tools.idea.wizard.template.escapeKotlinIdentifier
 
 fun emptyActivity(
@@ -229,7 +229,7 @@ class $activityClass : AppCompatActivity() {
 
 Finally, let's create the activity and save it in the recipe
 
-```Kotlin
+```kotlin
 fun RecipeExecutor.projectRecipe(
   moduleData: ModuleTemplateData,
   packageName: PackageName,
@@ -257,7 +257,7 @@ The `WizardTemplateProvider` itself is exposed as a plugin extension, which mean
 
 First, let's implement a class called `MyProjectTemplateProvider` which extends `WizardTemplateProvider`. 
 
-```Kotlin
+```kotlin
 import com.android.tools.idea.wizard.template.Template
 import com.android.tools.idea.wizard.template.WizardTemplateProvider
 
@@ -271,7 +271,7 @@ class MyProjectTemplatesProvider : WizardTemplateProvider() {
 
 Now, open the `plugin.xml` file and add a new extension to set our `wizardTemplateProvider`
 
-```XML
+```xml
 <extensions defaultExtensionNs="com.android.tools.idea.wizard.template">
   <wizardTemplateProvider implementation="dev.sasikanth.myprojecttemplates.MyProjectTemplatesProvider"/>
 </extensions>

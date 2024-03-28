@@ -29,6 +29,8 @@ module.exports = {
 	],
 	// moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
 	moduleNameMapper: {
+		"^msw/node$": require.resolve("msw/node"),
+		"^@mswjs/interceptors/ClientRequest$": require.resolve("@mswjs/interceptors/ClientRequest"),
 		"^preact$": require.resolve("preact"),
 		"^react(-dom)?$": require.resolve("preact/compat"),
 		"^@testing-library\\/preact$": require.resolve("@testing-library/preact"),
