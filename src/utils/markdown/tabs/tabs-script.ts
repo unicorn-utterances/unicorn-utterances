@@ -45,15 +45,15 @@ export const enableTabs = () => {
 			tab.focus();
 			tab.click();
 
-			// Scroll onto screen in order to avoid jumping page locations
-			setTimeout(() => {
-				tab.scrollIntoView &&
-					tab.scrollIntoView({
-						behavior: "auto",
-						block: "center",
-						inline: "center",
-					});
-			}, 0);
+			// Redundant: Scroll handled by `handleClick` on `tab.click()`
+			// setTimeout(() => {
+			// 	tab.scrollIntoView &&
+			// 		tab.scrollIntoView({
+			// 			behavior: "auto",
+			// 			block: "center",
+			// 			inline: "center",
+			// 		});
+			// }, 0);
 		}
 	}
 
@@ -62,17 +62,14 @@ export const enableTabs = () => {
 		const tabName = target.dataset.tabname;
 		if (!tabName) return;
 
+		const offsetBeforeChangeTabs = target.offsetTop - window.scrollY;
+
 		changeTabs(tabName);
 
 		if (shouldScrollToTab) {
 			// Scroll onto screen in order to avoid jumping page locations
 			setTimeout(() => {
-				target.scrollIntoView &&
-					target.scrollIntoView({
-						behavior: "auto",
-						block: "center",
-						inline: "center",
-					});
+				window.scroll(0, target.offsetTop - offsetBeforeChangeTabs);
 			}, 0);
 		}
 	}
