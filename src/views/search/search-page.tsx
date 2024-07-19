@@ -112,7 +112,7 @@ function SearchPageBase() {
 		},
 		queryKey: ["search", debouncedSearch],
 		initialData: {
-			unicorns: {},
+			people: {},
 			posts: [],
 			totalPosts: 0,
 			collections: [],
@@ -131,7 +131,7 @@ function SearchPageBase() {
 
 	const isContentLoading = isLoading || isFetching;
 
-	const setSelectedUnicorns = useCallback(
+	const setSelectedPeople = useCallback(
 		(authors: string[]) => {
 			setQuery({
 				...query,
@@ -164,9 +164,9 @@ function SearchPageBase() {
 		[query, setQuery],
 	);
 
-	const unicornsMap = useMemo(() => {
-		return new Map(Object.entries(data.unicorns));
-	}, [data.unicorns]);
+	const peopleMap = useMemo(() => {
+		return new Map(Object.entries(data.people));
+	}, [data.people]);
 
 	const showArticles = query.display === "all" || query.display === "articles";
 
@@ -207,7 +207,7 @@ function SearchPageBase() {
 
 			if (
 				query.filterAuthors.length > 0 &&
-				!post.authors.some((unicorn) => query.filterAuthors.includes(unicorn))
+				!post.authors.some((person) => query.filterAuthors.includes(person))
 			) {
 				return false;
 			}
@@ -237,8 +237,8 @@ function SearchPageBase() {
 
 			if (
 				query.filterAuthors.length > 0 &&
-				!collection.authors.some((unicorn) =>
-					query.filterAuthors.includes(unicorn),
+				!collection.authors.some((person) =>
+					query.filterAuthors.includes(person),
 				)
 			) {
 				return false;
@@ -306,11 +306,11 @@ function SearchPageBase() {
 				setFilterIsDialogOpen={setFilterIsDialogOpen}
 				collections={data.collections}
 				posts={data.posts}
-				unicornsMap={unicornsMap}
+				peopleMap={peopleMap}
 				selectedTags={query.filterTags}
 				setSelectedTags={setSelectedTags}
 				selectedAuthorIds={query.filterAuthors}
-				setSelectedAuthorIds={setSelectedUnicorns}
+				setSelectedAuthorIds={setSelectedPeople}
 				sort={query.sort}
 				setSort={setSort}
 				setContentToDisplay={setContentToDisplay}
@@ -430,7 +430,7 @@ function SearchPageBase() {
 											<CollectionCard
 												collection={collection}
 												authors={collection.authors
-													.map((id) => unicornsMap.get(id))
+													.map((id) => peopleMap.get(id))
 													.filter(isDefined)}
 												headingTag="h3"
 											/>
@@ -453,7 +453,7 @@ function SearchPageBase() {
 								<PostCardGrid
 									aria-labelledby={"articles-header"}
 									postsToDisplay={posts}
-									postAuthors={unicornsMap}
+									postAuthors={peopleMap}
 									postHeadingTag="h3"
 								/>
 								<Pagination

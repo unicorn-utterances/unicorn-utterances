@@ -6,7 +6,7 @@ import path from "path";
 import { Plugin } from "unified";
 
 // TODO: Add switch/case and dedicated files ala "Components"
-export const rehypeUnicornElementMap: Plugin<[], Root> = () => {
+export const rehypePlayfulElementMap: Plugin<[], Root> = () => {
 	return async (tree, file) => {
 		visit(tree, "element", (node: Element) => {
 			if (node.tagName === "video") {

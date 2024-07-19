@@ -2,7 +2,7 @@ import Fuse from "fuse.js";
 import * as fs from "fs";
 import * as path from "path";
 import * as api from "utils/api";
-import { PostInfo, CollectionInfo, UnicornInfo } from "types/index";
+import { PostInfo, CollectionInfo, PersonInfo } from "types/index";
 
 const posts = api.getPostsByLang("en");
 const collections = api.getCollectionsByLang("en");
@@ -18,7 +18,7 @@ const createPostIndex = () => {
 				name: "authorName",
 				getFn: (post) => {
 					return post.authors
-						.map((id) => api.getUnicornById(id, post.locale)!.name)
+						.map((id) => api.getPersonById(id, post.locale)!.name)
 						.join(", ");
 				},
 				weight: 1.8,
@@ -31,7 +31,7 @@ const createPostIndex = () => {
 				name: "authorHandles",
 				getFn: (post) => {
 					return post.authors
-						.map((id) => api.getUnicornById(id, post.locale))
+						.map((id) => api.getPersonById(id, post.locale))
 						.flatMap((author) => Object.values(author!.socials))
 						.filter((handle) => handle)
 						.join(", ");
@@ -61,7 +61,7 @@ const createCollectionIndex = () => {
 				name: "authorName",
 				getFn: (post) => {
 					return post.authors
-						.map((id) => api.getUnicornById(id, post.locale)!.name)
+						.map((id) => api.getPersonById(id, post.locale)!.name)
 						.join(", ");
 				},
 				weight: 1.8,
@@ -70,7 +70,7 @@ const createCollectionIndex = () => {
 				name: "authorHandles",
 				getFn: (post) => {
 					return post.authors
-						.map((id) => api.getUnicornById(id, post.locale))
+						.map((id) => api.getPersonById(id, post.locale))
 						.flatMap((author) => Object.values(author!.socials))
 						.filter((handle) => handle)
 						.join(", ");
@@ -89,12 +89,12 @@ const createCollectionIndex = () => {
 const postIndex = createPostIndex();
 const collectionIndex = createCollectionIndex();
 
-const unicorns = api.getUnicornsByLang("en").reduce(
-	(obj, unicorn) => {
-		obj[unicorn.id] = unicorn;
+const people = api.getPeopleByLang("en").reduce(
+	(obj, person) => {
+		obj[person.id] = person;
 		return obj;
 	},
-	{} as Record<string, UnicornInfo>,
+	{} as Record<string, PersonInfo>,
 );
 
 const json = JSON.stringify({
@@ -102,6 +102,6 @@ const json = JSON.stringify({
 	posts,
 	collectionIndex,
 	collections,
-	unicorns,
+	people,
 });
 fs.writeFileSync(path.resolve(process.cwd(), "./api/searchIndex.json"), json);

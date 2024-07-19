@@ -1,7 +1,7 @@
 ---
 import { Picture } from "components/image/picture";
 import styles from "./your-guide.module.scss";
-import { getUnicornById } from "utils/api";
+import { getPersonById } from "utils/api";
 ---
 
 <section class={styles.guideContainer} aria-labelledby="your-guide">
@@ -11,7 +11,7 @@ import { getUnicornById } from "utils/api";
 	<Picture
 		imgAttrs={{ class: styles.guidePicture }}
 		alt=""
-		src={getUnicornById("crutchcorn", "en")!.profileImgMeta.relativeServerPath}
+		src={getPersonById("crutchcorn", "en")!.profileImgMeta.relativeServerPath}
 		width={96}
 		height={96}
 	/>

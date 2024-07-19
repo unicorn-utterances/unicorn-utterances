@@ -3,11 +3,11 @@ import { Button } from "components/index";
 import { CollectionInfo } from "types/CollectionInfo";
 import forward from "src/icons/arrow_right.svg?raw";
 import { Picture as UUPicture } from "components/image/picture";
-import { UnicornInfo } from "types/UnicornInfo";
+import { PersonInfo } from "types/PersonInfo";
 
 interface CollectionCardProps {
 	collection: CollectionInfo;
-	authors: UnicornInfo[];
+	authors: PersonInfo[];
 	headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 

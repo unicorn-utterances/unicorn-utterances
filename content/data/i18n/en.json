@@ -20,7 +20,7 @@
 	"title.n_words": "%s words",
 	"desc.chapter_listing": "Chapter listing",
 	"desc.translated_into": "Translated by our community into:",
-	"desc.unicorn_roles": "Roles assigned to this user",
+	"desc.person_roles": "Roles assigned to this user",
 	"desc.original_link": "Originally posted at",
 	"action.go_back": "Go back",
 	"action.view_profile": "View profile",

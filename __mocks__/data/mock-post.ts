@@ -1,4 +1,4 @@
-import { MockUnicorn, MockUnicornTwo } from "./mock-unicorn";
+import { MockPerson, MockPersonTwo } from "./mock-person";
 import { MockLicense } from "./mock-license";
 import { PostInfo } from "types/index";
 
@@ -10,7 +10,7 @@ export const MockPost: PostInfo = {
 	tags: ["item1"],
 	description: "This is a short description dunno why this would be this short",
 	excerpt: "This is a short description dunno why this would be this short",
-	authors: [MockUnicorn.id],
+	authors: [MockPerson.id],
 	license: MockLicense.id,
 	locale: "en",
 	locales: ["en", "es"],
@@ -31,7 +31,7 @@ export const MockMultiAuthorPost: PostInfo = {
 		"This is another short description dunno why this would be this short",
 	excerpt:
 		"This is another short description dunno why this would be this short",
-	authors: [MockUnicornTwo.id, MockUnicorn.id],
+	authors: [MockPersonTwo.id, MockPerson.id],
 	license: MockLicense.id,
 	locale: "en",
 	locales: ["en", "es"],
@@ -52,7 +52,7 @@ export const MockMuliLanguagePost: PostInfo = {
 		"This is another short description dunno why this would be this short",
 	excerpt:
 		"This is another short description dunno why this would be this short",
-	authors: [MockUnicornTwo.id, MockUnicorn.id],
+	authors: [MockPersonTwo.id, MockPerson.id],
 	license: MockLicense.id,
 	locale: "en",
 	locales: ["en", "es"],
@@ -74,7 +74,7 @@ export const MockCanonicalPost: PostInfo = {
 		"This is another short description dunno why this would be this short",
 	excerpt:
 		"This is another short description dunno why this would be this short",
-	authors: [MockUnicornTwo.id, MockUnicorn.id],
+	authors: [MockPersonTwo.id, MockPerson.id],
 	license: MockLicense.id,
 	locale: "en",
 	locales: ["en", "es"],

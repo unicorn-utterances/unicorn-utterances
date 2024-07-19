@@ -1,5 +1,5 @@
 import style from "./post-card.module.scss";
-import { PostInfo, UnicornInfo } from "types/index";
+import { PostInfo, PersonInfo } from "types/index";
 import { Chip } from "components/index";
 import date from "src/icons/date.svg?raw";
 import authorsSvg from "src/icons/authors.svg?raw";
@@ -9,7 +9,7 @@ import { buildSearchQuery } from "src/views/search/search";
 interface PostCardProps {
 	headingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 	post: PostInfo;
-	authors: Pick<UnicornInfo, "id" | "name">[];
+	authors: Pick<PersonInfo, "id" | "name">[];
 	class?: string;
 }
 

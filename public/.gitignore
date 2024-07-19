@@ -1,7 +1,7 @@
 content
 content/**
 .ignored_*
-unicorn-profile-pic-map.ts
+people-profile-pic-map.ts
 searchIndex.js
 generated/
 *.epub

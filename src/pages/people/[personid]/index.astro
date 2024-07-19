@@ -6,15 +6,15 @@ import { Languages } from "types/index";
 import * as api from "utils/api";
 
 export async function getStaticPaths() {
-	const people = api.getUnicornsByLang("en");
-	return people.map((unicorn) => ({ params: { personid: unicorn.id } }));
+	const people = api.getPeopleByLang("en");
+	return people.map((person) => ({ params: { personid: person.id } }));
 }
 
 const params = Astro.params as { personid: string };
 
 const locale: Languages = "en";
-const person = api.getUnicornById(params.personid, locale)!;
-const posts = api.getPostsByUnicorn(person.id, locale);
+const person = api.getPersonById(params.personid, locale)!;
+const posts = api.getPostsByPerson(person.id, locale);
 ---
 
 <Document size="xl">
@@ -22,7 +22,7 @@ const posts = api.getPostsByUnicorn(person.id, locale);
 		slot="head"
 		title={person.name}
 		description={person.description}
-		unicornsData={[person]}
+		peopleData={[person]}
 		type="profile"
 		pathName={`/people/${person.id}`}
 	/>

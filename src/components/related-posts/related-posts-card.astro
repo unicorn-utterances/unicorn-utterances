@@ -1,12 +1,12 @@
 ---
 import style from "./related-posts-card.module.scss";
 import { getHrefContainerProps } from "utils/href-container-script";
-import { UnicornInfo } from "types/UnicornInfo";
+import { PersonInfo } from "../../types/PersonInfo";
 
 interface RelatedPostsCardProps {
 	title: string;
 	slug: string;
-	authors: UnicornInfo[];
+	authors: PersonInfo[];
 }
 
 const { title, slug, authors } = Astro.props as RelatedPostsCardProps;

@@ -1,9 +1,9 @@
-import { MockUnicorn } from "./mock-unicorn";
+import { MockPerson } from "./mock-person";
 import { CollectionInfo } from "types/index";
 
 export const MockCollection: CollectionInfo = {
 	kind: "collection",
-	authors: [MockUnicorn.id],
+	authors: [MockPerson.id],
 	tags: [],
 	postCount: 3,
 	coverImgMeta: {

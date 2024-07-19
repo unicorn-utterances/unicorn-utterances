@@ -3,11 +3,11 @@ import { SEOProps } from "./shared";
 
 type Props = Pick<
 	SEOProps,
-	"editedTime" | "publishedTime" | "keywords" | "unicornsData"
+	"editedTime" | "publishedTime" | "keywords" | "peopleData"
 >;
-const { keywords, editedTime, publishedTime, unicornsData } =
+const { keywords, editedTime, publishedTime, peopleData } =
 	Astro.props as Props;
-const author = unicornsData?.map((uni) => uni.name).join(",");
+const author = peopleData?.map((uni) => uni.name).join(",");
 ---
 
 <>

@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 import { GraphqlResponseError } from "@octokit/graphql";
-import { getUnicornsByLang } from "utils/api";
+import { getPeopleByLang } from "utils/api";
 
 const octokit =
 	typeof process.env.GITHUB_TOKEN !== "undefined"
@@ -10,7 +10,7 @@ const octokit =
 		: undefined;
 
 if (!octokit)
-	console.warn("No GITHUB_TOKEN provided - skipping unicorn achievements!");
+	console.warn("No GITHUB_TOKEN provided - skipping person achievements!");
 
 export interface GitHubData {
 	issueCount: number;
@@ -22,9 +22,9 @@ export const contributorYears: number[] = [];
 for (let year = 2019; year <= new Date().getFullYear(); year++)
 	contributorYears.push(year);
 
-const userLogins = getUnicornsByLang("en")
-	.filter((unicorn) => !!unicorn.socials.github)
-	.map((unicorn) => unicorn.socials.github);
+const userLogins = getPeopleByLang("en")
+	.filter((person) => !!person.socials.github)
+	.map((person) => person.socials.github);
 
 const userResult: Record<string, { id: string }> = (await octokit
 	?.graphql(

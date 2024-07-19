@@ -9,7 +9,7 @@
 ---
 
 
-While working on [my React Native mobile app](https://gitshark.dev), [the super-talented designer for the project](/unicorns/edpratti) raised an interesting question to me:
+While working on [my React Native mobile app](https://gitshark.dev), [the super-talented designer for the project](/people/edpratti) raised an interesting question to me:
 
 > "Are we able to draw under the navigation bar and status bar? [Google officially recommends new apps to do so](https://youtu.be/Nf-fP2u9vjI).
 

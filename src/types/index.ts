@@ -3,7 +3,7 @@ export * from "./CollectionInfo";
 export * from "./PostInfo";
 export * from "./RolesInfo";
 export * from "./TagInfo";
-export * from "./UnicornInfo";
+export * from "./PersonInfo";
 import { languages } from "constants/index";
 
 export type Languages = keyof typeof languages;

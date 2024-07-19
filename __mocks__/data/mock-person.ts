@@ -1,8 +1,8 @@
 import { MockRole } from "./mock-role";
-import { UnicornInfo } from "types/index";
+import { PersonInfo } from "types/index";
 
-export const MockUnicorn: UnicornInfo = {
-	kind: "unicorn",
+export const MockPerson: PersonInfo = {
+	kind: "person",
 	name: "Joe",
 	firstName: "Joe",
 	lastName: "Other",
@@ -36,8 +36,8 @@ export const MockUnicorn: UnicornInfo = {
 	},
 };
 
-export const MockUnicornTwo: UnicornInfo = {
-	kind: "unicorn",
+export const MockPersonTwo: PersonInfo = {
+	kind: "person",
 	name: "Diane",
 	firstName: "Diane",
 	lastName: "",

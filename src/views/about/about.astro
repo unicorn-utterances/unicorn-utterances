@@ -37,10 +37,10 @@ const [content1, content2] = await Promise.all(
 		),
 );
 
-const unicorns = api.getUnicornsByLang(locale);
+const people = api.getPeopleByLang(locale);
 
-// Sort unicorns to see if "partner" is in the title, otherwise sort by name
-unicorns.sort((a, b) => {
+// Sort people to see if "partner" is in the title, otherwise sort by name
+people.sort((a, b) => {
 	const aIsPartner = a.achievements.includes("partner");
 	const bIsPartner = b.achievements.includes("partner");
 

@@ -2,7 +2,7 @@
 import { getImage } from "astro:assets";
 import { escape } from "html-escaper";
 import fs from "fs/promises";
-import { getUnicornsByLang } from "utils/api";
+import { getPeopleByLang } from "utils/api";
 
 const sticker_star = await fs.readFile(
 	"public/stickers/sticker_star.svg",
@@ -21,14 +21,14 @@ const sticker_developer = await fs.readFile(
 	"utf-8",
 );
 
-const unicorns = getUnicornsByLang("en")
+const people = getPeopleByLang("en")
 	.sort((_) => 0.5 - Math.random())
 	.slice(0, 28);
 
-const unicornImages = await Promise.all(
-	unicorns.map(async (unicorn, i) => {
+const personImages = await Promise.all(
+	people.map(async (person, i) => {
 		const aspectRatio =
-			unicorn.profileImgMeta.width / unicorn.profileImgMeta.height;
+			person.profileImgMeta.width / person.profileImgMeta.height;
 
 		let size = i < 8 ? 80 : i < 16 ? 72 : 64;
 
@@ -39,7 +39,7 @@ const unicornImages = await Promise.all(
 		const image = await getImage({
 			height: size,
 			width,
-			src: unicorn.profileImgMeta.relativeServerPath,
+			src: person.profileImgMeta.relativeServerPath,
 			format: "avif",
 		});
 
@@ -331,7 +331,7 @@ const unicornImages = await Promise.all(
 	</g>
 	<defs>
 		{
-			unicornImages.map((html, i) => (
+			personImages.map((html, i) => (
 				<pattern
 					id={"pattern" + i}
 					patternContentUnits="objectBoundingBox"

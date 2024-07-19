@@ -90,4 +90,4 @@ So much more going on. This is because, even though the components look like the
 
 This doesn't mean Angular is all that bad. Actually, the reason Angular components are written this way is to closely resemble a proposed standard; Web Components. 
 
-Speaking of that checkout [Corbin](/unicorns/crutchcorn)'s [series on Web Components](/collections/web-components-101) and also [Angular elements](https://angular.io/guide/elements).
+Speaking of that checkout [Corbin](/people/crutchcorn)'s [series on Web Components](/collections/web-components-101) and also [Angular elements](https://angular.io/guide/elements).

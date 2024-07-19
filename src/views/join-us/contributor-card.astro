@@ -1,6 +1,6 @@
 ---
 import style from "./contributor-card.module.scss";
-import { UnicornInfo } from "pp-types";
+import { PersonInfo } from "pp-types";
 import { Picture } from "components/image/picture";
 import { Button } from "components/index";
 import { translate } from "src/utils/translations";
@@ -9,20 +9,20 @@ import allRoles from "../../../content/data/roles.json";
 import { tabletSmall } from "src/tokens/breakpoints";
 
 interface CardProps {
-	unicorn: UnicornInfo;
+	person: PersonInfo;
 }
 
-const { unicorn } = Astro.props as CardProps;
-const unicornHref = `/people/${unicorn.id}`;
+const { person } = Astro.props as CardProps;
+const personHref = `/people/${person.id}`;
 
-const roles = unicorn.roles.map(
+const roles = person.roles.map(
 	(role) => allRoles.find((r) => r.id === role)!.prettyname,
 );
 
-const isPartner = unicorn.achievements.includes("partner");
+const isPartner = person.achievements.includes("partner");
 ---
 
-<li class={style.card} {...getHrefContainerProps(unicornHref)}>
+<li class={style.card} {...getHrefContainerProps(personHref)}>
 	<Picture
 		alt=""
 		width={96}
@@ -34,12 +34,12 @@ const isPartner = unicorn.achievements.includes("partner");
 			class: style.avatar,
 			"data-dont-round": "true",
 		}}
-		src={unicorn.profileImgMeta.relativeServerPath}
+		src={person.profileImgMeta.relativeServerPath}
 	/>
 
 	<div class={style.info}>
 		<span class={`${style.name} text-style-body-large-bold`}>
-			{unicorn.name}
+			{person.name}
 			{
 				isPartner && (
 					<span class={`text-style-body-small-bold ${style.partnerLabel}`}>
@@ -51,7 +51,7 @@ const isPartner = unicorn.achievements.includes("partner");
 		</span>
 		<ul
 			class={`${style.roles} text-style-body-small`}
-			aria-label={translate(Astro, "desc.unicorn_roles")}
+			aria-label={translate(Astro, "desc.person_roles")}
 			role="list"
 		>
 			{
@@ -66,8 +66,8 @@ const isPartner = unicorn.achievements.includes("partner");
 
 	<Button
 		class={style.button}
-		href={unicornHref}
-		aria-label={translate(Astro, "label.view_profile_for", unicorn.name)}
+		href={personHref}
+		aria-label={translate(Astro, "label.view_profile_for", person.name)}
 	>
 		{translate(Astro, "action.view_profile")}
 	</Button>

@@ -1,6 +1,6 @@
 import { Feed } from "feed";
 import { siteUrl } from "constants/site-config";
-import { getPostsByLang, getUnicornById } from "utils/api";
+import { getPostsByLang, getPersonById } from "utils/api";
 import licenses from "../../content/data/licenses.json";
 
 export const GET = () => {
@@ -31,7 +31,7 @@ export const GET = () => {
 			description: post.description,
 			content: post.excerpt,
 			author: post.authors
-				.map((id) => getUnicornById(id, post.locale))
+				.map((id) => getPersonById(id, post.locale))
 				.map((author) => {
 					return {
 						name: author!.name,

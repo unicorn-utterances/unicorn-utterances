@@ -1,9 +1,9 @@
 import { CollectionInfo } from "types/CollectionInfo";
 import { PostInfo } from "types/PostInfo";
-import { UnicornInfo } from "types/UnicornInfo";
+import { PersonInfo } from "types/PersonInfo";
 
 export interface ServerReturnType {
-	unicorns: Record<string, UnicornInfo>;
+	people: Record<string, PersonInfo>;
 	posts: PostInfo[];
 	totalPosts: number;
 	collections: CollectionInfo[];

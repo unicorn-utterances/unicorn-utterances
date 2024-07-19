@@ -1,14 +1,14 @@
 ---
 import styles from "./profile-section.module.scss";
 import { Picture as UUPicture } from "components/index";
-import { UnicornInfo } from "types/index";
+import { PersonInfo } from "types/index";
 import { Icon } from "astro-icon/components";
 import * as api from "utils/api";
 import { isDefined } from "utils/is-defined";
 import { desktopSmall, tabletSmall } from "src/tokens/breakpoints";
 
 interface ProfileSectionProps {
-	person: UnicornInfo;
+	person: PersonInfo;
 }
 
 const { person } = Astro.props as ProfileSectionProps;
@@ -18,7 +18,7 @@ const iconSize = 20;
 interface SocialInfo {
 	icon: string;
 	name: string;
-	href: (socials: UnicornInfo["socials"]) => string | undefined;
+	href: (socials: PersonInfo["socials"]) => string | undefined;
 }
 
 const socials: SocialInfo[] = [

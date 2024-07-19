@@ -1,12 +1,12 @@
 import style from "./post-card-grid.module.scss";
 import { PostCard, PostCardExpanded } from "./post-card";
-import { PostInfo, UnicornInfo } from "types/index";
+import { PostInfo, PersonInfo } from "types/index";
 import { HTMLAttributes } from "preact/compat";
 import { isDefined } from "utils/is-defined";
 
 export interface PostGridProps extends HTMLAttributes<HTMLUListElement> {
 	postsToDisplay: PostInfo[];
-	postAuthors: Map<string, UnicornInfo>;
+	postAuthors: Map<string, PersonInfo>;
 	postHeadingTag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 	expanded?: boolean;
 }

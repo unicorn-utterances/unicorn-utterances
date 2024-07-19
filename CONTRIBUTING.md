@@ -20,7 +20,7 @@ Contents:
 
 # Creating an author profile
 
-Before creating a post, you'll need to add some information about yourself. To do this, create a new folder in [`content/`](./content/data/unicorns.json) with your username, and add an `index.md` inside it; e.g. `content/eric/index.md`.
+Before creating a post, you'll need to add some information about yourself. To do this, create a new folder in [`content/`](./content/) with your username, and add an `index.md` inside it; e.g. `content/eric/index.md`.
 
 Here's an example of what your `index.md` might look like:
 

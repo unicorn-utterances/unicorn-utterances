@@ -10,7 +10,7 @@ import { findAllAfter } from "unist-util-find-all-after";
 import { toString } from "hast-util-to-string";
 import rehypeStringify from "rehype-stringify";
 import { Layout, PAGE_HEIGHT, PAGE_WIDTH } from "./base";
-import { getUnicornById } from "utils/api";
+import { getPersonById } from "utils/api";
 import { getPostContentMarkdown } from "utils/get-post-content";
 
 const unifiedChain = unified()
@@ -71,7 +71,7 @@ export const renderPostPreviewToString = async (
 	const authorImageMap = Object.fromEntries(
 		await Promise.all(
 			post.authors.map(async (authorId) => {
-				const author = getUnicornById(authorId, post.locale)!;
+				const author = getPersonById(authorId, post.locale)!;
 
 				if (authorImageCache.has(author.id))
 					return [author.id, authorImageCache.get(author.id)];
