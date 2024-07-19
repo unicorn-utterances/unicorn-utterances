@@ -13,7 +13,7 @@ interface CardProps {
 }
 
 const { unicorn } = Astro.props as CardProps;
-const unicornHref = `/unicorns/${unicorn.id}`;
+const unicornHref = `/people/${unicorn.id}`;
 
 const roles = unicorn.roles.map(
 	(role) => allRoles.find((r) => r.id === role)!.prettyname,

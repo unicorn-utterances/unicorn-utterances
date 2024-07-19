@@ -49,7 +49,7 @@ export const CollectionCard = ({
 					{authors?.map((author) => (
 						<li>
 							<a
-								href={`/unicorns/${author.id}`}
+								href={`/people/${author.id}`}
 								className={`text-style-button-regular ${style.authorListItem}`}
 							>
 								<UUPicture

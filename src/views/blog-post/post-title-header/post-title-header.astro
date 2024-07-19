@@ -48,7 +48,7 @@ const originalLinkStr = post.originalLink && new URL(post.originalLink).host;
 					{
 						authors.map((author, i) => (
 							<li class="text-style-button-regular">
-								<a href={`/unicorns/${author.id}`}>
+								<a href={`/people/${author.id}`}>
 									{[author.name, i + 1 < authors.length ? "," : ""]}
 								</a>
 							</li>

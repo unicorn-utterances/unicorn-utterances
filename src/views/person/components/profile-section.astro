@@ -8,10 +8,10 @@ import { isDefined } from "utils/is-defined";
 import { desktopSmall, tabletSmall } from "src/tokens/breakpoints";
 
 interface ProfileSectionProps {
-	unicorn: UnicornInfo;
+	person: UnicornInfo;
 }
 
-const { unicorn } = Astro.props as ProfileSectionProps;
+const { person } = Astro.props as ProfileSectionProps;
 
 const iconSize = 20;
 
@@ -79,8 +79,8 @@ const socials: SocialInfo[] = [
 	},
 ];
 
-const roles = unicorn.roles
-	.map((roleId) => api.getRoleById(roleId, unicorn.locale))
+const roles = person.roles
+	.map((roleId) => api.getRoleById(roleId, person.locale))
 	.filter(isDefined);
 ---
 
@@ -88,7 +88,7 @@ const roles = unicorn.roles
 	<div class={styles.cardContainer}>
 		<div class={styles.nameAndDesc}>
 			<UUPicture
-				src={unicorn.profileImgMeta.relativeServerPath}
+				src={person.profileImgMeta.relativeServerPath}
 				width={192}
 				height={192}
 				sizes={{
@@ -100,28 +100,28 @@ const roles = unicorn.roles
 			/>
 			<div>
 				<div class={styles.nameAndPronouns}>
-					<h1 class={`text-style-headline-4 ${styles.name}`}>{unicorn.name}</h1>
+					<h1 class={`text-style-headline-4 ${styles.name}`}>{person.name}</h1>
 					{
-						unicorn.pronouns && (
+						person.pronouns && (
 							<h2 class={`text-style-body-medium-bold ${styles.pronouns}`}>
-								{unicorn.pronouns}
+								{person.pronouns}
 							</h2>
 						)
 					}
 				</div>
 				<p class={`text-style-body-medium ${styles.bio}`}>
-					{unicorn.description}
+					{person.description}
 				</p>
 			</div>
 		</div>
 		<ul
 			class={styles.socialLinkContainer}
 			role="list"
-			aria-label={`${unicorn.name} social media links`}
+			aria-label={`${person.name} social media links`}
 		>
 			{
 				socials.map((social) => {
-					const href = social.href(unicorn.socials);
+					const href = social.href(person.socials);
 					if (!href) return [];
 					return (
 						<li>

@@ -22,7 +22,7 @@ const { title, slug, authors } = Astro.props as RelatedPostsCardProps;
 	<span class={`text-style-body-small-bold ${style.authorsList}`}>
 		{
 			authors.map((author, i) => (
-				<a href={`/unicorns/${author.id}`} class={style.authorName}>
+				<a href={`/people/${author.id}`} class={style.authorName}>
 					{[author.name, i + 1 < authors.length ? "," : ""]}
 				</a>
 			))

@@ -1,0 +1,32 @@
+---
+import Document from "../../../layouts/document.astro";
+import SEO from "components/seo/seo.astro";
+import PersonPage from "src/views/person/person-page.astro";
+import { Languages } from "types/index";
+import * as api from "utils/api";
+
+export async function getStaticPaths() {
+	const people = api.getUnicornsByLang("en");
+	return people.map((unicorn) => ({ params: { personid: unicorn.id } }));
+}
+
+const params = Astro.params as { personid: string };
+
+const locale: Languages = "en";
+const person = api.getUnicornById(params.personid, locale)!;
+const posts = api.getPostsByUnicorn(person.id, locale);
+---
+
+<Document size="xl">
+	<SEO
+		slot="head"
+		title={person.name}
+		description={person.description}
+		unicornsData={[person]}
+		type="profile"
+		pathName={`/people/${person.id}`}
+	/>
+	<main class="listViewContent">
+		<PersonPage person={person} posts={posts} />
+	</main>
+</Document>

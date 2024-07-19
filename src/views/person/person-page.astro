@@ -4,7 +4,7 @@ import { SubHeader } from "../../components/subheader/subheader";
 import { PostCardGrid } from "components/post-card/post-card-grid";
 import { UnicornInfo, PostInfo } from "types/index";
 import { Button } from "../../components";
-import styles from "./unicorn-page.module.scss";
+import styles from "./person-page.module.scss";
 import AchievementCard from "./components/achievement-card.astro";
 import { buildSearchQuery } from "../search/search";
 import { getAchievements, Achievement } from "src/utils/achievements";
@@ -13,14 +13,14 @@ import * as api from "utils/api";
 import { isDefined } from "utils/is-defined";
 
 interface UnicornPageProps {
-	unicorn: UnicornInfo;
+	person: UnicornInfo;
 	posts: PostInfo[];
 }
 
-const { unicorn, posts } = Astro.props as UnicornPageProps;
+const { person, posts } = Astro.props as UnicornPageProps;
 
 const achievementsMeta: Achievement[] = [];
-for await (const achievement of getAchievements(unicorn))
+for await (const achievement of getAchievements(person))
 	achievementsMeta.push(achievement);
 
 const postsToDisplay = posts.slice(0, 4);
@@ -31,14 +31,14 @@ const showPostsToggle = posts.length > postsToDisplay.length;
 
 const postAuthors = new Map(
 	[...new Set(posts.flatMap((p) => p.authors))]
-		.map((id) => api.getUnicornById(id, unicorn.locale))
+		.map((id) => api.getUnicornById(id, person.locale))
 		.filter(isDefined)
 		.map((u) => [u.id, u]),
 );
 ---
 
 <div class={styles.container}>
-	<ProfileSection unicorn={unicorn} />
+	<ProfileSection person={person} />
 	<section class={styles.contentContainer}>
 		<!-- TODO: Translate -->
 		<SubHeader tag="h2" text="Achievements" id="achievements">
@@ -88,7 +88,7 @@ const postAuthors = new Map(
 									tag="a"
 									href={`/search?${buildSearchQuery({
 										searchQuery: "*",
-										filterAuthors: [unicorn.id],
+										filterAuthors: [person.id],
 									})}`}
 									aria-labelledby="recent-articles-header"
 								>
