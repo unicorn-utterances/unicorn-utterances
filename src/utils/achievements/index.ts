@@ -1,5 +1,5 @@
-import { getPostsByUnicorn } from "src/utils/api";
-import { UnicornInfo } from "types/UnicornInfo";
+import { getPostsByPerson } from "src/utils/api";
+import { PersonInfo } from "types/PersonInfo";
 import { contributorYears, fetchGitHubData } from "./github";
 import * as api from "utils/api";
 
@@ -9,36 +9,36 @@ export interface Achievement {
 }
 
 export async function* getAchievements(
-	unicorn: UnicornInfo,
+	person: PersonInfo,
 ): AsyncGenerator<Achievement, void, unknown> {
-	const data = unicorn.socials.github
-		? await fetchGitHubData(unicorn.socials.github)
+	const data = person.socials.github
+		? await fetchGitHubData(person.socials.github)
 		: undefined;
 
-	const authoredPosts = getPostsByUnicorn(unicorn.id, "en");
+	const authoredPosts = getPostsByPerson(person.id, "en");
 
-	if (unicorn.achievements.includes("site-redesign")) {
+	if (person.achievements.includes("site-redesign")) {
 		yield {
 			name: "Redesign Ruler",
 			body: "Led a site-wide redesign",
 		};
 	}
 
-	if (unicorn.achievements.includes("site-logo")) {
+	if (person.achievements.includes("site-logo")) {
 		yield {
 			name: "Logo Legacy",
 			body: "Made our Unicorn logo!",
 		};
 	}
 
-	if (unicorn.achievements.includes("code-challenge")) {
+	if (person.achievements.includes("code-challenge")) {
 		yield {
 			name: "Code Challenger",
 			body: "Make a code challenge in our Discord",
 		};
 	}
 
-	if (unicorn.roles.includes("translator")) {
+	if (person.roles.includes("translator")) {
 		yield {
 			name: "Localizer 9000",
 			body: "Translate part of Playful Programming into another language!",
@@ -52,7 +52,7 @@ export async function* getAchievements(
 		};
 	}
 
-	if (api.getCollectionsByUnicorn(unicorn.id, "en").length > 0) {
+	if (api.getCollectionsByPerson(person.id, "en").length > 0) {
 		yield {
 			name: "Collect 'em all",
 			body: "Author a collection of posts!",
@@ -66,14 +66,14 @@ export async function* getAchievements(
 		};
 	}
 
-	if (unicorn.roles.includes("community")) {
+	if (person.roles.includes("community")) {
 		yield {
 			name: "Community crowned",
 			body: "Become a community leader",
 		};
 	}
 
-	if (unicorn.achievements.includes("partner")) {
+	if (person.achievements.includes("partner")) {
 		yield {
 			name: "Proud partner",
 			body: "Become a Playful Programming Partner",
@@ -124,17 +124,17 @@ export async function* getAchievements(
 		};
 	}
 
-	if (unicorn.achievements.includes("messages-1000")) {
+	if (person.achievements.includes("messages-1000")) {
 		yield {
 			name: "Message Madness",
 			body: "Send 1000 messages in our Discord",
 		};
-	} else if (unicorn.achievements.includes("messages-500")) {
+	} else if (person.achievements.includes("messages-500")) {
 		yield {
 			name: "Monstrous Messager",
 			body: "Send 500 messages in our Discord",
 		};
-	} else if (unicorn.achievements.includes("messages-200")) {
+	} else if (person.achievements.includes("messages-200")) {
 		yield {
 			name: "Moderate Messager",
 			body: "Send 200 messages in our Discord",
@@ -183,12 +183,12 @@ export async function* getAchievements(
 		};
 	}
 
-	if (unicorn.roles.length >= 3) {
+	if (person.roles.length >= 3) {
 		yield {
 			name: "Badge Collector",
 			body: "Have at least 3 role badges",
 		};
-	} else if (unicorn.roles.length > 0) {
+	} else if (person.roles.length > 0) {
 		yield {
 			name: "Hello, World!",
 			body: "Earn your first role badge",

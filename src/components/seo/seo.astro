@@ -19,7 +19,7 @@ const {
 	keywords,
 	canonical,
 	type,
-	unicornsData,
+	peopleData,
 	publishedTime,
 	editedTime,
 	isbn,
@@ -37,9 +37,9 @@ const metaImage = `${siteUrl}${shareImage ?? "/share-banner.png"}`;
 
 const ogType = type ?? "blog";
 
-const socialUnicorn = unicornsData?.find((uni) => uni.socials);
+const socialPerson = peopleData?.find((uni) => uni.socials);
 const uniTwitter =
-	socialUnicorn && socialUnicorn.socials && socialUnicorn.socials.twitter;
+	socialPerson && socialPerson.socials && socialPerson.socials.twitter;
 
 const removeTrailingSlash = (str: string) =>
 	str.endsWith("/") ? str.slice(0, -1) : str;
@@ -84,7 +84,7 @@ const currentPath = removeTrailingSlash(
 	metaDescription={metaDescription}
 	siteMetadata={siteMetadata}
 	metaImage={metaImage}
-	unicornsData={unicornsData}
+	peopleData={peopleData}
 	uniTwitter={uniTwitter}
 	type={type}
 />
@@ -128,7 +128,7 @@ const currentPath = removeTrailingSlash(
 				keywords={keywords}
 				editedTime={editedTime}
 				publishedTime={publishedTime}
-				unicornsData={unicornsData}
+				peopleData={peopleData}
 			/>
 		)
 	}
@@ -136,15 +136,11 @@ const currentPath = removeTrailingSlash(
 <>
 	{
 		type === "book" && (
-			<Book
-				publishedTime={publishedTime}
-				unicornsData={unicornsData}
-				isbn={isbn}
-			/>
+			<Book publishedTime={publishedTime} peopleData={peopleData} isbn={isbn} />
 		)
 	}
 </>
 <>
-	{type === "profile" && <Profile unicornsData={unicornsData} />}
+	{type === "profile" && <Profile peopleData={peopleData} />}
 </>
 <slot />

@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Fuse from "fuse.js";
 import { createRequire } from "node:module";
 
-import type { CollectionInfo, UnicornInfo, PostInfo } from "types/index";
+import type { CollectionInfo, PersonInfo, PostInfo } from "types/index";
 import type { ServerReturnType } from "../src/views/search/types";
 
 const require = createRequire(import.meta.url);
@@ -35,14 +35,14 @@ const collectionFuse = new Fuse<CollectionInfo>(
 	collectionIndex,
 );
 
-const unicorns: Record<string, UnicornInfo> = searchIndex.unicorns;
+const people: Record<string, PersonInfo> = searchIndex.people;
 
 function runQuery(req: VercelRequest): ServerReturnType {
 	// TODO: `pickdeep` only required fields
 	const searchStr = req?.query?.query as string;
 	if (!searchStr) {
 		return {
-			unicorns: {},
+			people: {},
 			posts: [],
 			totalPosts: 0,
 			collections: [],
@@ -51,7 +51,7 @@ function runQuery(req: VercelRequest): ServerReturnType {
 	}
 	if (searchStr === "*") {
 		return {
-			unicorns,
+			people,
 			posts,
 			totalPosts: posts.length,
 			collections,
@@ -64,16 +64,16 @@ function runQuery(req: VercelRequest): ServerReturnType {
 		.search(searchStr)
 		.map((item) => item.item);
 
-	const searchedUnicorns: Record<string, UnicornInfo> = {};
+	const searchedPeople: Record<string, PersonInfo> = {};
 	for (const post of searchedPosts) {
-		for (const id of post.authors) searchedUnicorns[id] = unicorns[id];
+		for (const id of post.authors) searchedPeople[id] = people[id];
 	}
 	for (const collection of searchedCollections) {
-		for (const id of collection.authors) searchedUnicorns[id] = unicorns[id];
+		for (const id of collection.authors) searchedPeople[id] = people[id];
 	}
 
 	return {
-		unicorns: searchedUnicorns,
+		people: searchedPeople,
 		posts: searchedPosts,
 		totalPosts: searchedPosts.length,
 		collections: searchedCollections,

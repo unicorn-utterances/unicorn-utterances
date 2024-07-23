@@ -13,7 +13,7 @@ import {
 	LicenseInfo,
 	PostInfo,
 	PostHeadingInfo,
-	UnicornInfo,
+	PersonInfo,
 } from "types/index";
 
 import { siteMetadata } from "constants/site-config";
@@ -31,7 +31,7 @@ import styles from "./blog-post.module.scss";
 export interface Props {
 	post: PostInfo;
 	postHeadings: PostHeadingInfo[];
-	authors: UnicornInfo[];
+	authors: PersonInfo[];
 	collection?: CollectionInfo;
 	collectionPosts?: PostInfo[];
 	license?: LicenseInfo;

@@ -4,7 +4,7 @@ import SignupForm from "../components/signup-form.astro";
 import Discord from "../icons/discord.astro";
 import Twitter from "../icons/twitter.astro";
 import styles from "./sign-up.module.scss";
-import { getUnicornById } from "utils/api";
+import { getPersonById } from "utils/api";
 ---
 
 <section class={styles.signUpContainer} aria-labelledby="signup-form">
@@ -20,8 +20,7 @@ import { getUnicornById } from "utils/api";
 		<Picture
 			imgAttrs={{ class: styles.avatar }}
 			alt=""
-			src={getUnicornById("crutchcorn", "en")!.profileImgMeta
-				.relativeServerPath}
+			src={getPersonById("crutchcorn", "en")!.profileImgMeta.relativeServerPath}
 			width={72}
 			height={72}
 			formats={["webp", "avif", "png"]}

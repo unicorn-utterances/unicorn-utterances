@@ -19,7 +19,7 @@
 	"title.n_words": "%s palavras",
 	"desc.chapter_listing": "Capítulos",
 	"desc.translated_into": "Traduzido pela nossa comunidade para:",
-	"desc.unicorn_roles": "Funções atribuídas a este usuário",
+	"desc.person_roles": "Funções atribuídas a este usuário",
 	"desc.original_link": "Originalmente publicado em",
 	"action.go_back": "Voltar",
 	"action.view_profile": "Ver perfil",

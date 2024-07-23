@@ -7,7 +7,7 @@ import ContributorCard from "./contributor-card.astro";
 
 import style from "./contributors-and-partners.module.scss";
 
-const people = api.getUnicornsByLang("en");
+const people = api.getPeopleByLang("en");
 
 const { partners, nonPartners } = people.reduce(
 	(prev, person) => {
@@ -52,7 +52,7 @@ const { partners, nonPartners } = people.reduce(
 
 <div class={style.allPeopleContainer}>
 	<ul class={style.peopleContainer} role="list" aria-label="Partners">
-		{partners.map((unicornInfo) => <ContributorCard unicorn={unicornInfo} />)}
+		{partners.map((person) => <ContributorCard person={person} />)}
 	</ul>
 	<section>
 		<h2
@@ -66,11 +66,7 @@ const { partners, nonPartners } = people.reduce(
 			role="list"
 			aria-labelledby="contributors"
 		>
-			{
-				nonPartners.map((unicornInfo) => (
-					<ContributorCard unicorn={unicornInfo} />
-				))
-			}
+			{nonPartners.map((person) => <ContributorCard person={person} />)}
 		</ul>
 	</section>
 </div>

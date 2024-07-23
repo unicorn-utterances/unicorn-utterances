@@ -39,7 +39,7 @@ const params = Astro.params as {
 const locale = params.locale ?? "en";
 const post = api.getPostBySlug(slug, locale)!;
 const authors = post.authors
-	.map((unicornId) => api.getUnicornById(unicornId, locale))
+	.map((personId) => api.getPersonById(personId, locale))
 	.filter(isDefined);
 
 // these need to be separate; multiple posts *can* be in a collection without having a collection entry
@@ -60,7 +60,7 @@ const postHtml = await getMarkdownHtml(post);
 		slot="head"
 		title={post.title}
 		description={post.description}
-		unicornsData={authors}
+		peopleData={authors}
 		publishedTime={post.published}
 		editedTime={post.edited}
 		keywords={post.tags}

@@ -22,7 +22,7 @@ const { posts, collections, locale } = Astro.props as HomepageProps;
 
 const postAuthors = new Map(
 	[...new Set(posts.flatMap((p) => p.authors))]
-		.map((id) => api.getUnicornById(id, locale))
+		.map((id) => api.getPersonById(id, locale))
 		.filter(isDefined)
 		.map((u) => [u.id, u]),
 );
@@ -68,7 +68,7 @@ const postAuthors = new Map(
 					<CollectionCard
 						collection={collection}
 						authors={collection.authors
-							.map((id) => api.getUnicornById(id, collection.locale))
+							.map((id) => api.getPersonById(id, collection.locale))
 							.filter(isDefined)}
 						headingTag="h3"
 					/>

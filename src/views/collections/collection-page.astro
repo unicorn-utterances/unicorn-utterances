@@ -1,5 +1,5 @@
 ---
-import { CollectionInfo, UnicornInfo } from "../../types";
+import { CollectionInfo, PersonInfo } from "../../types";
 import { Picture } from "components/image/picture";
 import { LargeButton, Button } from "components/button/button";
 import { translate } from "src/utils/translations";
@@ -16,7 +16,7 @@ import { desktopSmall } from "src/tokens/breakpoints";
 interface Props {
 	collection: CollectionInfo;
 	collectionHtml: string;
-	authors: UnicornInfo[];
+	authors: PersonInfo[];
 }
 
 const { collection, collectionHtml, authors } = Astro.props as Props;
@@ -72,7 +72,7 @@ const coverImgWidth = Math.max(480, Math.ceil(720 * coverImgAspectRatio));
 			>
 				{
 					authors.map((author) => {
-						const href = `/unicorns/${author.id}`;
+						const href = `/people/${author.id}`;
 						return (
 							<li
 								class={styles.authorContainer}

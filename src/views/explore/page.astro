@@ -16,7 +16,7 @@ const { posts, page, locale } = Astro.props as PageProps;
 
 const postAuthors = new Map(
 	[...new Set(posts.flatMap((p) => p.authors))]
-		.map((id) => api.getUnicornById(id, locale))
+		.map((id) => api.getPersonById(id, locale))
 		.filter(isDefined)
 		.map((u) => [u.id, u]),
 );

@@ -16,7 +16,7 @@ const suggestedArticles = getSuggestedArticles(post);
 
 function getPostAuthors(post: PostInfo) {
 	return post.authors
-		.map((unicornId) => api.getUnicornById(unicornId, post.locale))
+		.map((personId) => api.getPersonById(personId, post.locale))
 		.filter(isDefined);
 }
 ---

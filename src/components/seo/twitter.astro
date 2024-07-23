@@ -1,7 +1,7 @@
 ---
 import { SEOProps } from "./shared";
 
-type Props = Pick<SEOProps, "title" | "unicornsData" | "type"> & {
+type Props = Pick<SEOProps, "title" | "peopleData" | "type"> & {
 	metaDescription: string;
 	metaImage: string;
 	siteMetadata: { twitterHandle: string };
@@ -13,7 +13,7 @@ const {
 	metaDescription,
 	siteMetadata,
 	metaImage,
-	unicornsData,
+	peopleData,
 	uniTwitter,
 	type,
 } = Astro.props as Props;
@@ -27,7 +27,7 @@ const {
 <meta name="twitter:image" content={metaImage} />
 <>
 	{
-		type === "article" && unicornsData?.length === 1 && uniTwitter ? (
+		type === "article" && peopleData?.length === 1 && uniTwitter ? (
 			<meta property="twitter:creator" content={`@${uniTwitter}`} />
 		) : null
 	}

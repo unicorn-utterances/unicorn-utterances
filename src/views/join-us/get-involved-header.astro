@@ -1,5 +1,5 @@
 ---
-import { getUnicornsByLang } from "../../utils/api";
+import { getPeopleByLang } from "../../utils/api";
 import { getInitialItems } from "./get-involved-header";
 import style from "./get-involved-header.module.scss";
 import Hr from "./hr.astro";
@@ -13,8 +13,8 @@ const OUTER_OFFSET = 300;
 const initialInnerItems = getInitialItems(NUMBER_OF_INNER_ITEMS, INNER_OFFSET);
 const initialOuterItems = getInitialItems(NUMBER_OF_OUTER_ITEMS, OUTER_OFFSET);
 
-const unicorns = getUnicornsByLang("en");
-const reverseUnicorns = unicorns.slice().reverse();
+const people = getPeopleByLang("en");
+const reversePeople = people.slice().reverse();
 
 const getSafeIndex = <T,>(array: T[], index: number) => {
 	return array[index % array.length];
@@ -52,7 +52,7 @@ const getSafeIndex = <T,>(array: T[], index: number) => {
 		<div class={style.innerInvolvedContainer} id="inner-circle-container">
 			{
 				initialInnerItems.map((item, index) => {
-					const unicorn = getSafeIndex(unicorns, index);
+					const person = getSafeIndex(people, index);
 					return (
 						<div
 							data-is-circle-inner-item
@@ -61,14 +61,14 @@ const getSafeIndex = <T,>(array: T[], index: number) => {
 							style={{
 								left: item.x,
 								top: item.y,
-								backgroundImage: `url(${encodeURI(unicorn.profileImgMeta.relativeServerPath)})`,
+								backgroundImage: `url(${encodeURI(person.profileImgMeta.relativeServerPath)})`,
 								transform: `scale(${item.scale}) translate(-50%, -50%)`,
 							}}
 						>
-							{unicorn.roles[0] && (
+							{person.roles[0] && (
 								<img
 									class={style.stickerRole}
-									src={`/stickers/role_${unicorn.roles[0]}.svg`}
+									src={`/stickers/role_${person.roles[0]}.svg`}
 									alt=""
 								/>
 							)}
@@ -80,7 +80,7 @@ const getSafeIndex = <T,>(array: T[], index: number) => {
 		<div class={style.outerInvolvedContainer} id="outer-circle-container">
 			{
 				initialOuterItems.map((item, index) => {
-					const unicorn = getSafeIndex(reverseUnicorns, index);
+					const person = getSafeIndex(reversePeople, index);
 					return (
 						<div
 							data-is-circle-outer-item
@@ -89,14 +89,14 @@ const getSafeIndex = <T,>(array: T[], index: number) => {
 							style={{
 								left: item.x,
 								top: item.y,
-								backgroundImage: `url(${encodeURI(unicorn.profileImgMeta.relativeServerPath)})`,
+								backgroundImage: `url(${encodeURI(person.profileImgMeta.relativeServerPath)})`,
 								transform: `scale(${item.scale}) translate(-50%, -50%)`,
 							}}
 						>
-							{unicorn.roles[0] && (
+							{person.roles[0] && (
 								<img
 									class={style.stickerRole}
-									src={`/stickers/role_${unicorn.roles[0]}.svg`}
+									src={`/stickers/role_${person.roles[0]}.svg`}
 									alt=""
 								/>
 							)}

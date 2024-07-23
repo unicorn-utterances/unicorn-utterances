@@ -37,7 +37,7 @@ import SignUp from "src/views/collections/framework-field-guide/segments/sign-up
 import SupportMe from "src/views/collections/framework-field-guide/segments/support-me.astro";
 import WhyLearnAllThree from "src/views/collections/framework-field-guide/segments/why-learn-all-three.astro";
 import WhatDoIGet from "src/views/collections/framework-field-guide/segments/what-do-i-get.astro";
-import { getUnicornById } from "utils/api";
+import { getPersonById } from "utils/api";
 ---
 
 <Barebones>
@@ -46,7 +46,7 @@ import { getUnicornById } from "utils/api";
 		pathName={`/collections/framework-field-guide`}
 		title={"The Framework Field Guide"}
 		description={"A practical and free way to teach Angular, React, and Vue all at once, so you can choose the right tool for the job and learn the underlying concepts in depth."}
-		unicornsData={[getUnicornById("crutchcorn", "en")]}
+		peopleData={[getPersonById("crutchcorn", "en")]}
 		publishedTime={"2022-12-01T13:45:00.284Z"}
 		type={"book"}
 		shareImage={"/custom-content/collections/framework-field-guide/framework_field_guide_social.png"}

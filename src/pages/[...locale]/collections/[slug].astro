@@ -41,7 +41,7 @@ const locale = params.locale || "en";
 const collection = api.getCollectionBySlug(params.slug, locale)!;
 const collectionPosts = api.getPostsByCollection(params.slug, locale);
 const authors = collection.authors.map(
-	(authorId) => api.getUnicornById(authorId, locale)!,
+	(authorId) => api.getPersonById(authorId, locale)!,
 );
 
 const collectionHtml = await getMarkdownHtml(collection);
@@ -52,7 +52,7 @@ const collectionHtml = await getMarkdownHtml(collection);
 		slot="head"
 		title={collection.title}
 		description={collection.description}
-		unicornsData={authors}
+		peopleData={authors}
 		publishedTime={collection.published}
 		type={collection.type}
 		shareImage={collection.socialImg ||

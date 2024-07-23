@@ -1,11 +1,11 @@
 import {
 	RawCollectionInfo,
-	UnicornInfo,
+	PersonInfo,
 	RawPostInfo,
 	PostInfo,
 	CollectionInfo,
 	TagInfo,
-	RawUnicornInfo,
+	RawPersonInfo,
 } from "types/index";
 import * as fs from "fs/promises";
 import path, { join } from "path";
@@ -19,7 +19,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkToRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import { rehypeUnicornElementMap } from "./markdown/rehype-unicorn-element-map";
+import { rehypePlayfulElementMap } from "./markdown/rehype-playful-element-map";
 import { getExcerpt } from "./markdown/get-excerpt";
 import { getLanguageFromFilename } from "./translations";
 import aboutRaw from "../../content/data/about.json";
@@ -37,7 +37,7 @@ const tags = new Map<string, TagInfo>();
 const tagExplainerParser = unified()
 	.use(remarkParse, { fragment: true } as never)
 	.use(remarkToRehype, { allowDangerousHtml: true })
-	.use(rehypeUnicornElementMap)
+	.use(rehypePlayfulElementMap)
 	.use(rehypeStringify, { allowDangerousHtml: true, voids: [] });
 
 for (const [key, tag] of Object.entries(tagsRaw)) {
@@ -76,39 +76,39 @@ for (const [key, tag] of Object.entries(tagsRaw)) {
 	});
 }
 
-async function readUnicorn(unicornPath: string): Promise<UnicornInfo[]> {
-	const unicornId = path.basename(unicornPath);
+async function readPerson(personPath: string): Promise<PersonInfo[]> {
+	const personId = path.basename(personPath);
 
-	const files = (await fs.readdir(unicornPath))
+	const files = (await fs.readdir(personPath))
 		.filter(isNotJunk)
 		.filter((name) => name.startsWith("index.") && name.endsWith(".md"));
 
 	const locales = files.map(getLanguageFromFilename);
 
-	const unicornObjects = [];
+	const personObjects = [];
 
 	for (const file of files) {
 		const locale = getLanguageFromFilename(file);
-		const filePath = join(unicornPath, file);
+		const filePath = join(personPath, file);
 		const fileContents = await fs.readFile(filePath, "utf-8");
-		const frontmatter = matter(fileContents).data as RawUnicornInfo;
+		const frontmatter = matter(fileContents).data as RawPersonInfo;
 
 		const profileImgSize = await getImageSize(
 			frontmatter.profileImg,
-			unicornPath,
+			personPath,
 		);
 		if (!profileImgSize || !profileImgSize.width || !profileImgSize.height) {
-			throw new Error(`${unicornPath}: Unable to parse profile image size`);
+			throw new Error(`${personPath}: Unable to parse profile image size`);
 		}
 
-		const unicorn: UnicornInfo = {
+		const person: PersonInfo = {
 			pronouns: "",
 			color: "",
 			roles: [],
 			achievements: [],
 			...frontmatter,
-			kind: "unicorn",
-			id: unicornId,
+			kind: "person",
+			id: personId,
 			file: filePath,
 			locale,
 			locales,
@@ -117,7 +117,7 @@ async function readUnicorn(unicornPath: string): Promise<UnicornInfo[]> {
 			profileImgMeta: {
 				height: profileImgSize.height,
 				width: profileImgSize.width,
-				...resolvePath(frontmatter.profileImg, unicornPath)!,
+				...resolvePath(frontmatter.profileImg, personPath)!,
 			},
 		};
 
@@ -125,38 +125,38 @@ async function readUnicorn(unicornPath: string): Promise<UnicornInfo[]> {
 		const normalizeUsername = (username: string | undefined) =>
 			username?.trim()?.replace(/^.*[/@](?!$)/, "");
 
-		unicorn.socials.twitter = normalizeUsername(unicorn.socials.twitter);
-		unicorn.socials.github = normalizeUsername(unicorn.socials.github);
-		unicorn.socials.gitlab = normalizeUsername(unicorn.socials.gitlab);
-		unicorn.socials.linkedIn = normalizeUsername(unicorn.socials.linkedIn);
-		unicorn.socials.twitch = normalizeUsername(unicorn.socials.twitch);
-		unicorn.socials.dribbble = normalizeUsername(unicorn.socials.dribbble);
-		unicorn.socials.threads = normalizeUsername(unicorn.socials.threads);
-		unicorn.socials.cohost = normalizeUsername(unicorn.socials.cohost);
+		person.socials.twitter = normalizeUsername(person.socials.twitter);
+		person.socials.github = normalizeUsername(person.socials.github);
+		person.socials.gitlab = normalizeUsername(person.socials.gitlab);
+		person.socials.linkedIn = normalizeUsername(person.socials.linkedIn);
+		person.socials.twitch = normalizeUsername(person.socials.twitch);
+		person.socials.dribbble = normalizeUsername(person.socials.dribbble);
+		person.socials.threads = normalizeUsername(person.socials.threads);
+		person.socials.cohost = normalizeUsername(person.socials.cohost);
 
 		// "mastodon" should be a full URL; this will error if not valid
 		try {
-			if (unicorn.socials.mastodon)
-				unicorn.socials.mastodon = new URL(unicorn.socials.mastodon).toString();
+			if (person.socials.mastodon)
+				person.socials.mastodon = new URL(person.socials.mastodon).toString();
 		} catch (e) {
 			console.error(
-				`'${unicorn.id}' socials.mastodon is not a valid URL: '${unicorn.socials.mastodon}'`,
+				`'${person.id}' socials.mastodon is not a valid URL: '${person.socials.mastodon}'`,
 			);
 			throw e;
 		}
 
-		if (unicorn.socials.youtube) {
+		if (person.socials.youtube) {
 			// this can either be a "@username" or "channel/{id}" URL, which cannot be mixed.
-			const username = normalizeUsername(unicorn.socials.youtube);
-			unicorn.socials.youtube = unicorn.socials.youtube.includes("@")
+			const username = normalizeUsername(person.socials.youtube);
+			person.socials.youtube = person.socials.youtube.includes("@")
 				? `https://www.youtube.com/@${username}`
 				: `https://www.youtube.com/channel/${username}`;
 		}
 
-		unicornObjects.push(unicorn);
+		personObjects.push(person);
 	}
 
-	return unicornObjects;
+	return personObjects;
 }
 
 async function readCollection(
@@ -315,16 +315,16 @@ async function readPost(
 	return postObjects;
 }
 
-const unicorns = new Map<string, UnicornInfo[]>();
-for (const unicornId of await fs.readdir(contentDirectory)) {
-	if (!isNotJunk(unicornId)) continue;
-	const unicornPath = join(contentDirectory, unicornId);
-	unicorns.set(unicornId, await readUnicorn(unicornPath));
+const people = new Map<string, PersonInfo[]>();
+for (const personId of await fs.readdir(contentDirectory)) {
+	if (!isNotJunk(personId)) continue;
+	const personPath = join(contentDirectory, personId);
+	people.set(personId, await readPerson(personPath));
 }
 
 const collections = new Map<string, CollectionInfo[]>();
-for (const unicornId of [...unicorns.keys()]) {
-	const collectionsDirectory = join(contentDirectory, unicornId, "collections");
+for (const personId of [...people.keys()]) {
+	const collectionsDirectory = join(contentDirectory, personId, "collections");
 
 	const slugs = (
 		await fs.readdir(collectionsDirectory).catch((_) => [])
@@ -335,7 +335,7 @@ for (const unicornId of [...unicorns.keys()]) {
 		collections.set(
 			slug,
 			await readCollection(collectionPath, {
-				authors: [unicornId],
+				authors: [personId],
 			}),
 		);
 	}
@@ -366,8 +366,8 @@ for (const collection of [...collections.values()]) {
 		);
 	}
 }
-for (const unicornId of [...unicorns.keys()]) {
-	const postsDirectory = join(contentDirectory, unicornId, "posts");
+for (const personId of [...people.keys()]) {
+	const postsDirectory = join(contentDirectory, personId, "posts");
 
 	const slugs = (await fs.readdir(postsDirectory).catch((_) => [])).filter(
 		isNotJunk,
@@ -378,7 +378,7 @@ for (const unicornId of [...unicorns.keys()]) {
 		posts.set(
 			slug,
 			await readPost(postPath, {
-				authors: [unicornId],
+				authors: [personId],
 			}),
 		);
 	}
@@ -408,16 +408,16 @@ for (const unicornId of [...unicorns.keys()]) {
 }
 
 {
-	// sum the totalWordCount and totalPostCount for each unicorn object
+	// sum the totalWordCount and totalPostCount for each person object
 	for (const postLocales of [...posts.values()]) {
 		const [post] = postLocales;
 		if (!post) continue;
 
 		for (const authorId of post.authors) {
-			const unicornLocales = unicorns.get(authorId) || [];
-			for (const unicorn of unicornLocales) {
-				unicorn.totalPostCount += 1;
-				unicorn.totalWordCount += post.wordCount;
+			const personLocales = people.get(authorId) || [];
+			for (const person of personLocales) {
+				person.totalPostCount += 1;
+				person.totalWordCount += post.wordCount;
 			}
 		}
 	}
@@ -427,7 +427,7 @@ export {
 	aboutRaw as about,
 	rolesRaw as roles,
 	licensesRaw as licenses,
-	unicorns,
+	people,
 	collections,
 	posts,
 	tags,

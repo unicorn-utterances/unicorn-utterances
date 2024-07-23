@@ -1,10 +1,10 @@
-import { Languages, UnicornInfo } from "../../types";
+import { Languages, PersonInfo } from "../../types";
 
 export interface SEOProps {
 	description?: string;
 	providedLangs?: Languages[];
 	title: string;
-	unicornsData?: UnicornInfo[];
+	peopleData?: PersonInfo[];
 	keywords?: string[];
 	publishedTime?: string;
 	editedTime?: string;

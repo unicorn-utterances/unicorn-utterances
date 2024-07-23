@@ -1,4 +1,4 @@
-import { UnicornInfo } from "types/UnicornInfo";
+import { PersonInfo } from "types/PersonInfo";
 
 export interface ExtendedTag {
 	tag: string;
@@ -8,6 +8,6 @@ export interface ExtendedTag {
 	emoji?: string;
 }
 
-export interface ExtendedUnicorn extends UnicornInfo {
+export interface ExtendedUnicorn extends PersonInfo {
 	numPosts: number;
 }

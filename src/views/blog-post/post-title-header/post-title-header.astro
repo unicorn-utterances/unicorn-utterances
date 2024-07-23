@@ -1,6 +1,6 @@
 ---
 import style from "./post-title-header.module.scss";
-import { PostInfo, UnicornInfo } from "types/index";
+import { PostInfo, PersonInfo } from "types/index";
 import { Icon } from "astro-icon/components";
 import { Chip } from "components/index";
 import dayjs from "dayjs";
@@ -9,7 +9,7 @@ import { translate } from "utils/translations";
 
 interface PostTitleHeaderProps {
 	post: PostInfo;
-	authors: UnicornInfo[];
+	authors: PersonInfo[];
 }
 const { post, authors } = Astro.props as PostTitleHeaderProps;
 const { title, tags } = post;
@@ -48,7 +48,7 @@ const originalLinkStr = post.originalLink && new URL(post.originalLink).host;
 					{
 						authors.map((author, i) => (
 							<li class="text-style-button-regular">
-								<a href={`/unicorns/${author.id}`}>
+								<a href={`/people/${author.id}`}>
 									{[author.name, i + 1 < authors.length ? "," : ""]}
 								</a>
 							</li>

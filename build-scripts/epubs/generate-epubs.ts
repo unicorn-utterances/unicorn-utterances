@@ -8,7 +8,7 @@ import { CollectionInfo, PostInfo } from "types/index";
 import {
 	getCollectionsByLang,
 	getPostsByCollection,
-	getUnicornById,
+	getPersonById,
 } from "utils/api";
 import { createEpubPlugins } from "utils/markdown/createEpubPlugins";
 import { getMarkdownVFile } from "utils/markdown/getMarkdownVFile";
@@ -140,7 +140,7 @@ async function generateCollectionEPub(
 	fileLocation: string,
 ) {
 	const authors = collection.authors
-		.map((id) => getUnicornById(id, collection.locale)?.name)
+		.map((id) => getPersonById(id, collection.locale)?.name)
 		.filter((name): name is string => !!name);
 
 	const referenceTitle = "References";

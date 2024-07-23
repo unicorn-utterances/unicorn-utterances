@@ -1,6 +1,6 @@
 import { Languages } from ".";
 
-export interface RawUnicornInfo {
+export interface RawPersonInfo {
 	name: string;
 	firstName: string;
 	lastName: string;
@@ -25,8 +25,8 @@ export interface RawUnicornInfo {
 	achievements?: string[];
 }
 
-export interface UnicornInfo extends Required<RawUnicornInfo> {
-	kind: "unicorn";
+export interface PersonInfo extends Required<RawPersonInfo> {
+	kind: "person";
 	id: string;
 	file: string;
 	locale: Languages;

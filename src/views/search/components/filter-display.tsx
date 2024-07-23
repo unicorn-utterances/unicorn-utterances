@@ -1,7 +1,7 @@
 import { PostInfo } from "types/PostInfo";
 import { CollectionInfo } from "types/CollectionInfo";
 import { useMemo } from "preact/hooks";
-import { UnicornInfo } from "types/UnicornInfo";
+import { PersonInfo } from "types/PersonInfo";
 import { CSSProperties } from "preact/compat";
 import { useWindowSize } from "../../../hooks/use-window-size";
 import { tabletLarge } from "../../../tokens/breakpoints";
@@ -16,7 +16,7 @@ interface FilterDisplayProps {
 	posts: PostInfo[];
 
 	collections: CollectionInfo[];
-	unicornsMap: Map<string, UnicornInfo>;
+	peopleMap: Map<string, PersonInfo>;
 	selectedTags: string[];
 	setSelectedTags: (tags: string[]) => void;
 	selectedAuthorIds: string[];
@@ -33,7 +33,7 @@ interface FilterDisplayProps {
 
 export const FilterDisplay = ({
 	collections,
-	unicornsMap,
+	peopleMap,
 	posts,
 	sort,
 	setSort,
@@ -86,7 +86,7 @@ export const FilterDisplay = ({
 			});
 		});
 
-		return Array.from(unicornsMap.values())
+		return Array.from(peopleMap.values())
 			.sort((a, b) => a.name.localeCompare(b.name))
 			.map((author) => ({
 				...author,

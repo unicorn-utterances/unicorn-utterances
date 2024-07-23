@@ -1,6 +1,6 @@
-import { CollectionInfo, PostInfo, RolesInfo, UnicornInfo } from "types/index";
+import { CollectionInfo, PostInfo, RolesInfo, PersonInfo } from "types/index";
 import { Languages } from "types/index";
-import { roles, unicorns, posts, collections } from "./data";
+import { roles, people, posts, collections } from "./data";
 import { isDefined } from "./is-defined";
 
 function compareByDate(date1: string, date2: string): number {
@@ -22,17 +22,17 @@ export function getAllCollections(): CollectionInfo[] {
 	return [...collections.values()].flatMap((locales) => locales);
 }
 
-export function getUnicornById(
+export function getPersonById(
 	id: string,
 	language: Languages,
-): UnicornInfo | undefined {
-	const locales = unicorns.get(id);
+): PersonInfo | undefined {
+	const locales = people.get(id);
 	if (!locales) return undefined;
 	return locales.find((u) => u.locale === language) || locales[0];
 }
 
-export function getUnicornsByLang(language: Languages): UnicornInfo[] {
-	return [...unicorns.values()]
+export function getPeopleByLang(language: Languages): PersonInfo[] {
+	return [...people.values()]
 		.map((locales) => locales.find((p) => p.locale === language) || locales[0])
 		.filter(isDefined);
 }
@@ -66,14 +66,14 @@ export function getPostsByCollection(
 		);
 }
 
-export function getPostsByUnicorn(
-	unicornId: string,
+export function getPostsByPerson(
+	personId: string,
 	language: Languages,
 ): PostInfo[] {
 	return [...posts.values()]
 		.map((locales) => locales.find((p) => p.locale === language) || locales[0])
 		.filter(isDefined)
-		.filter((p) => p.authors.includes(unicornId))
+		.filter((p) => p.authors.includes(personId))
 		.filter((p) => !p.noindex)
 		.sort(compareByPublished);
 }
@@ -93,14 +93,14 @@ export function getCollectionsByLang(language: Languages): CollectionInfo[] {
 		.sort(compareByPublished);
 }
 
-export function getCollectionsByUnicorn(
-	unicornId: string,
+export function getCollectionsByPerson(
+	personId: string,
 	language: Languages,
 ): CollectionInfo[] {
 	return [...collections.values()]
 		.map((locales) => locales.find((p) => p.locale === language) || locales[0])
 		.filter(isDefined)
-		.filter((c) => c.authors.includes(unicornId))
+		.filter((c) => c.authors.includes(personId))
 		.sort(compareByPublished);
 }
 

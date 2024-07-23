@@ -3,7 +3,7 @@
 	"redirects": [
 		{
 			"source": "/authors/crutchcorn/",
-			"destination": "/unicorns/crutchcorn",
+			"destination": "/people/crutchcorn",
 			"permanent": true
 		},
 		{
@@ -12,8 +12,18 @@
 			"permanent": false
 		},
 		{
+			"source": "/people/",
+			"destination": "/about",
+			"permanent": false
+		},
+		{
 			"source": "/posts/",
 			"destination": "/",
+			"permanent": true
+		},
+		{
+			"source": "/unicorns/:id",
+			"destination": "/people/:id",
 			"permanent": true
 		},
 		{
