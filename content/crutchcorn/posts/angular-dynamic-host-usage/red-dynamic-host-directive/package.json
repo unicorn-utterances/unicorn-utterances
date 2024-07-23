@@ -1,5 +1,5 @@
 {
-	"name": "@unicorn-utterances/red-dynamic-host-directive",
+	"name": "@playfulprogramming/red-dynamic-host-directive",
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",

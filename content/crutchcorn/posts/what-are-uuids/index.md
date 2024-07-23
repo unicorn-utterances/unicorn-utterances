@@ -170,7 +170,7 @@ Some of you might be wondering "What is a namespace and why does it need to be a
 
 Great question. Let's consider the following usecase:
 
-Let's say we want to assign a UUID to each blog post on the [Unicorn Utterances](/about) site. We could simply assign the URL:
+Let's say we want to assign a UUID to each blog post on the [Playful Programming](/about) site. We could simply assign the URL:
 
 ```
 /posts/intro-to-uuid
@@ -178,12 +178,12 @@ Let's say we want to assign a UUID to each blog post on the [Unicorn Utterances]
 
 To the input value of the `hash` function of the UUID generation.
 
-This works if we only have one instance of the website, but we often deploy multiple versions of the website in order to make sure the new versions of Unicorn Utterances are running properly before deploying to production.
+This works if we only have one instance of the website, but we often deploy multiple versions of the website in order to make sure the new versions of Playful Programming are running properly before deploying to production.
 
 For example, we might have:
 
 ```
-framework-guide.unicorn-utterances.com
+framework-guide.playfulprogramming.com
 ```
 
 To host a preview of the [Framework Field Guide book](https://framework.guide) early access.
@@ -209,8 +209,8 @@ Luckily for us, we may not need to define our own constant UUID. The UUID specif
 Knowing this, we can do something akin to the following:
 
 ```javascript
-UU_UUID = uuidv5(DNS_UUID, 'unicorn-utterances.com');
-FFG_UUID = uuidv5(DNS_UUID, 'framework-guide.unicorn-utterances.com');
+UU_UUID = uuidv5(DNS_UUID, 'playfulprogramming.com');
+FFG_UUID = uuidv5(DNS_UUID, 'framework-guide.playfulprogramming.com');
 ```
 
 And use this base namespace for each post URL:

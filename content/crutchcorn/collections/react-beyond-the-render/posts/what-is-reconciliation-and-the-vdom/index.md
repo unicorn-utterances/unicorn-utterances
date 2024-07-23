@@ -138,7 +138,7 @@ export default function App() {
 }
 ```
 
-<iframe data-frame-title="React List Key - StackBlitz" src="uu-code:./react-list-key?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React List Key - StackBlitz" src="pp-code:./react-list-key?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Here, we're storing a list of our friends and allowing the user to add to this list by pressing a button. We even have a little place to store notes about your friends!
 

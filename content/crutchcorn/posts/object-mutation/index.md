@@ -9,9 +9,9 @@
 }
 ---
 
-Recently, we rewrote [our community blog for "Unicorn Utterances"](/) to use [Astro, a static site generator framework](https://astro.build). One of the fan-favorite features of the site is its dark mode toggle, which enables dark mode purists to gloat over the light mode plebians (like myself).
+Recently, we rewrote [our community blog for "Playful Programming"](/) to use [Astro, a static site generator framework](https://astro.build). One of the fan-favorite features of the site is its dark mode toggle, which enables dark mode purists to gloat over the light mode plebians (like myself).
 
-<video src="./theme_toggle.mp4" title="Toggling the dark mode theme on the Unicorn Utterances site"></video>
+<video src="./theme_toggle.mp4" title="Toggling the dark mode theme on the Playful Programming site"></video>
 
 > For real though, support light mode in your sites and make them the default setting - [it's a major accessibility concern](https://www.vice.com/en/article/ywyqxw/apple-dark-mode-eye-strain-battery-life).
 

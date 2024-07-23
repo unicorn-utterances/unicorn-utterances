@@ -235,6 +235,6 @@ Try experimenting! See if you can find a command that does this &mdash; and chec
 
 # Conclusion
 
-If your data pack hasn't worked first try &mdash; don't worry! There are a lot of steps here, and the slightest typo or misplacement will cause Minecraft to completely ignore your code altogether. If you're ever stuck and can't find the issue, the [Unicorn Utterances discord](https://discord.gg/FMcvc6T) is a great place to ask for help!
+If your data pack hasn't worked first try &mdash; don't worry! There are a lot of steps here, and the slightest typo or misplacement will cause Minecraft to completely ignore your code altogether. If you're ever stuck and can't find the issue, the [Playful Programming discord](https://discord.gg/FMcvc6T) is a great place to ask for help!
 
 So far, we've covered the basics of data packs and how to write them &mdash; but there's a lot more to get into. Next, we'll start writing conditional behavior using block positions and entity selectors!

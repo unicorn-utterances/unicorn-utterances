@@ -1,5 +1,5 @@
 {
-	"name": "@unicorn-utterances/listen-for-events-inject",
+	"name": "@playfulprogramming/listen-for-events-inject",
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",

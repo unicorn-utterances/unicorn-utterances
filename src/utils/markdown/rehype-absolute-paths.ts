@@ -39,7 +39,7 @@ export const rehypeMakeHrefPathsAbsolute: Plugin<[], Root> = () => {
 				}
 				node.properties!.href = new URL(
 					href,
-					"https://unicorn-utterances.com",
+					"https://playfulprogramming.com",
 				).toString();
 			}
 		}

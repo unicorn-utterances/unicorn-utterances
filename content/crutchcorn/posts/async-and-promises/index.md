@@ -90,7 +90,7 @@ When the main thread is blocked, it means a few things for your users:
 - The user can't type into a text area or text input
 - Any other interactivity is blocked
 
-We can see this behavior when the main thread is blocked on [the Unicorn Utterances homepage](https://unicorn-utterances.com):
+We can see this behavior when the main thread is blocked on [the Playful Programming homepage](https://playfulprogramming.com):
 
 <video src="./blocked_main_thread.mp4" title="A user trying to interact with the UU homepage, leading to none of the mouse interactions working out"></video>
 

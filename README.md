@@ -1,8 +1,8 @@
 <p align="center">
-    <img alt="Unicorn Utterances logo" width="256" src="./src/assets/unicorn_utterances_logo_512.png"/>
+    <img alt="Playful Programming logo" width="256" src="./src/assets/playfulprogramming_logo_512.png"/>
 </p>
 <h1 align="center">
-  Unicorn Utterances Website
+  Playful Programming Website
 </h1>
 <div align="center">
 
@@ -12,12 +12,12 @@
 
 </div>
 
-This repository acts as the source code location for [the Unicorn Utterances blog](https://unicorn-utterances.com).
+This repository acts as the source code location for [the Playful Programming blog](https://playfulprogramming.com).
 
 ## Sponsors
 
-<a href="https://www.thepolyglotdeveloper.com/" target="_blank" rel="noopener noreferrer sponsored"><img alt="The Polyglot Developer" src="https://unicorn-utterances.com/sponsors/the-polyglot-developer.svg" width="300"/></a>
-<a href="https://oceanbit.dev/" target="_blank" rel="noopener noreferrer sponsored"><img alt="OceanBit" src="https://unicorn-utterances.com/sponsors/oceanbit.svg" width="300"/></a>
+<a href="https://www.thepolyglotdeveloper.com/" target="_blank" rel="noopener noreferrer sponsored"><img alt="The Polyglot Developer" src="https://playfulprogramming.com/sponsors/the-polyglot-developer.svg" width="300"/></a>
+<a href="https://oceanbit.dev/" target="_blank" rel="noopener noreferrer sponsored"><img alt="OceanBit" src="https://playfulprogramming.com/sponsors/oceanbit.svg" width="300"/></a>
 
 [We disclose every sponsorship we share openly on GitHub](https://github.com/unicorn-utterances/unicorn-utterances/issues?q=is%3Aissue+label%3Adisclosure+is%3Aclosed)
 

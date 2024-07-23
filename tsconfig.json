@@ -22,12 +22,12 @@
 		"baseUrl": ".",
 		"paths": {
 			"constants/*": ["./src/constants/*"],
-			"uu-constants": ["./src/constants"],
+			"pp-constants": ["./src/constants"],
 			"types/*": ["./src/types/*"],
-			"uu-types": ["./src/types"],
+			"pp-types": ["./src/types"],
 			"components/*": ["./src/components/*"],
 			"utils/*": ["./src/utils/*"],
-			"uu-utils": ["./src/utils"],
+			"pp-utils": ["./src/utils"],
 			"assets/*": ["./src/assets/*"]
 		}
 	},

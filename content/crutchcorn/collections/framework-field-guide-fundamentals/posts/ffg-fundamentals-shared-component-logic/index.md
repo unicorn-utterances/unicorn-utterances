@@ -77,7 +77,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Shared Data Storage - StackBlitz" src="uu-code:./ffg-fundamentals-react-shared-data-storage-100?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Shared Data Storage - StackBlitz" src="pp-code:./ffg-fundamentals-react-shared-data-storage-100?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Rules of Custom Hooks {#custom-hooks-rules}
@@ -182,7 +182,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Shared Data Storage - StackBlitz" src="uu-code:./ffg-fundamentals-angular-shared-data-storage-100?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Shared Data Storage - StackBlitz" src="pp-code:./ffg-fundamentals-angular-shared-data-storage-100?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -216,7 +216,7 @@ const { height, width } = useWindowSize();
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Shared Data Storage - StackBlitz" src="uu-code:./ffg-fundamentals-vue-shared-data-storage-100?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Shared Data Storage - StackBlitz" src="pp-code:./ffg-fundamentals-vue-shared-data-storage-100?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 > While React requires you to name your custom hooks "useX," you don't have to do the same with custom compositions. We could have easily called this code `createWindowSize` and have it work just as well.
@@ -286,7 +286,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Sharing Side Effect - StackBlitz" src="uu-code:./ffg-fundamentals-react-sharing-side-effect-101?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Sharing Side Effect - StackBlitz" src="pp-code:./ffg-fundamentals-react-sharing-side-effect-101?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::start:no-ebook -->
@@ -349,12 +349,12 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Sharing Side Effect - StackBlitz" src="uu-code:./ffg-fundamentals-angular-sharing-side-effect-101?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Sharing Side Effect - StackBlitz" src="pp-code:./ffg-fundamentals-angular-sharing-side-effect-101?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 > This code isn't ideal; the Angular team knows this. This is why they're working on introducing a new method of side effect handling (and data storage) [called "Signals"](https://angular.io/guide/signals). At the time of writing, Signals are still in the experimental phase, but they're worth keeping an eye on.
 
-> While this is the only method we'll be looking at in this book for writing this code, [Lars Gyrup Brink Nielsen showcased how we could improve this code using RxJS in another article on the Unicorn Utterances site.](/posts/angular-extend-class#The-Angular-way-to-fix-the-code)
+> While this is the only method we'll be looking at in this book for writing this code, [Lars Gyrup Brink Nielsen showcased how we could improve this code using RxJS in another article on the Playful Programming site.](/posts/angular-extend-class#The-Angular-way-to-fix-the-code)
 
 ## Vue
 
@@ -399,7 +399,7 @@ const { height, width } = useWindowSize();
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Sharing Side Effect - StackBlitz" src="uu-code:./ffg-fundamentals-vue-sharing-side-effect-101?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Sharing Side Effect - StackBlitz" src="pp-code:./ffg-fundamentals-vue-sharing-side-effect-101?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 > We could have also used the `watch` or `watchEffect` composition methods, but chose not to for this example.
@@ -470,7 +470,7 @@ const Component = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Composing Logic - StackBlitz" src="uu-code:./ffg-fundamentals-react-composing-logic-102?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Composing Logic - StackBlitz" src="pp-code:./ffg-fundamentals-react-composing-logic-102?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -541,7 +541,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Composing Logic - StackBlitz" src="uu-code:./ffg-fundamentals-angular-composing-logic-102?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Composing Logic - StackBlitz" src="pp-code:./ffg-fundamentals-angular-composing-logic-102?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 Something worth mentioning is that we need to provide both `WindowSize` and `IsMobile`; otherwise, we'll get an error like so:
@@ -591,7 +591,7 @@ const { isMobile } = useMobileCheck();
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Composing Logic - StackBlitz" src="uu-code:./ffg-fundamentals-vue-composing-logic-102?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Vue Composing Logic - StackBlitz" src="pp-code:./ffg-fundamentals-vue-composing-logic-102?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -926,7 +926,7 @@ function App() {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="React Shared Logic Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-react-shared-logic-challenge-103?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Shared Logic Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-react-shared-logic-challenge-103?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 
 </details>
 
@@ -1021,7 +1021,7 @@ class AppComponent implements AfterViewInit {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Angular Shared Logic Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-angular-shared-logic-challenge-103?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Shared Logic Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-angular-shared-logic-challenge-103?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 </details>
 
@@ -1106,7 +1106,7 @@ function open(e) {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Vue Shared Logic Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-vue-shared-logic-challenge-103?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Shared Logic Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-vue-shared-logic-challenge-103?template=node&embed=1&file=src%2FApp.vue"></iframe>
 
 </details>
 

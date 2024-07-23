@@ -5,7 +5,7 @@ import licenses from "../../content/data/licenses.json";
 
 export const GET = () => {
 	const feed = new Feed({
-		title: "Unicorn Utterances's RSS Feed",
+		title: "Playful Programming's RSS Feed",
 		description:
 			"Learning programming from magically majestic words. A place to learn about all sorts of programming topics from entry-level concepts to advanced abstractions",
 		id: siteUrl,
@@ -13,7 +13,7 @@ export const GET = () => {
 		language: "en",
 		image: `${siteUrl}/image.png`,
 		favicon: `${siteUrl}/favicon.ico`,
-		copyright: `Contributor's rights reserved ${new Date().getFullYear()}, Unicorn Utterances`,
+		copyright: `Contributor's rights reserved ${new Date().getFullYear()}, Playful Programming`,
 		feedLinks: {
 			rss: `${siteUrl}/rss.xml`,
 			atom: `${siteUrl}/atom.xml`,

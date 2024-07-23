@@ -10,7 +10,7 @@
 
 [Astro is a WebDev meta-framework](https://astro.build) that allows you to build highly performant websites, that, out-of-the-box compile down to 0kb of JavaScript in your bundle.
 
- If your site is a marketing site, or if performance is a substantial concern for your app, it may make sense to migrate from Next.js to Astro - as we [at Unicorn Utterances](/) once did.
+ If your site is a marketing site, or if performance is a substantial concern for your app, it may make sense to migrate from Next.js to Astro - as we [at Playful Programming](/) once did.
 
 While Astro provides a good guide of [how to migrate from Next.js to Astro](https://docs.astro.build/en/guides/migrate-to-astro/from-nextjs/) (written by yours truly!), I felt it would be helpful to see an expanded step-by-step guide on how to migrate a [Pokédex](https://www.pokemon.com/us/pokedex) application from Next.js to Astro.
 

@@ -7,8 +7,8 @@ body:
   - type: markdown
     attributes:
       value: >-
-        > This is a proposed article to be written (by anyone) for Unicorn
-        Utterances. If this topic seems interesting to you and you'd like to
+        > This is a proposed article to be written (by anyone) for Playful Programming.
+        If this topic seems interesting to you and you'd like to
         write it, just leave a comment saying so and let us know what we can do
         to help.
   - type: input

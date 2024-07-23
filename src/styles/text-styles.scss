@@ -36,53 +36,53 @@
 // TODO: Add back fallback font for Figtree
 
 :root {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 }
 
 :where(.text-style-headline-1) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--h1_font-size);
 	font-weight: var(--weight_black);
 	line-height: var(--h1_line-height);
 }
 
 :where(.text-style-headline-2) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--h2_font-size);
 	font-weight: var(--weight_extrabold);
 	line-height: var(--h2_line-height);
 }
 
 :where(.text-style-headline-3) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--h3_font-size);
 	font-weight: var(--weight_bold);
 	line-height: var(--h3_line-height);
 }
 
 :where(.text-style-headline-4) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--h4_font-size);
 	font-weight: var(--weight_bold);
 	line-height: var(--h4_line-height);
 }
 
 :where(.text-style-headline-5) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--h5_font-size);
 	font-weight: var(--weight_bold);
 	line-height: var(--h5_line-height);
 }
 
 :where(.text-style-headline-6) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--h6_font-size);
 	font-weight: var(--weight_bold);
 	line-height: var(--h6_line-height);
 }
 
 :where(.text-style-body-large) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--p_large_font-size);
 	font-weight: var(--weight_regular);
 	line-height: var(--p_large_line-height);
@@ -95,7 +95,7 @@
 }
 
 :where(.text-style-body-medium) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--p_medium_font-size);
 	font-weight: var(--weight_regular);
 	line-height: var(--p_medium_line-height);
@@ -108,7 +108,7 @@
 }
 
 :where(.text-style-body-small) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--p_small_font-size);
 	font-weight: var(--weight_regular);
 	line-height: var(--p_small_line-height);
@@ -121,7 +121,7 @@
 }
 
 :where(.text-style-button-large) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--button_large_font-size);
 	font-weight: var(--weight_semibold);
 	line-height: var(--button_large_line-height);
@@ -129,7 +129,7 @@
 }
 
 :where(.text-style-button-regular) {
-	font-family: var(--uu-font-family);
+	font-family: var(--pp-font-family);
 	font-size: var(--button_regular_font-size);
 	font-weight: var(--weight_semibold);
 	line-height: var(--button_regular_line-height);
@@ -138,5 +138,5 @@
 
 :where(.text-style-code) {
 	@extend .text-style-body-large;
-	font-family: var(--uu-font-family-code);
+	font-family: var(--pp-font-family-code);
 }

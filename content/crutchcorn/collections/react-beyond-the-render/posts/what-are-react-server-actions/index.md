@@ -51,7 +51,7 @@ function App() {
 }
 ```
 
-<iframe data-frame-title="React Classic Todo - StackBlitz" src="uu-code:./react-classic-todo?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React Classic Todo - StackBlitz" src="pp-code:./react-classic-todo?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 This works, but notice how we're having to `preventDefault` here. This is because we're sidestepping [`<form>`'s native `submit` event's behavior](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event); [submitting a form using the `action` property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/action).
 
@@ -83,7 +83,7 @@ function App() {
 }
 ```
 
-<iframe data-frame-title="React Form Action - StackBlitz" src="uu-code:./react-form-action?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React Form Action - StackBlitz" src="pp-code:./react-form-action?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 > **A note on API versioning:**
 >
@@ -165,7 +165,7 @@ export default async function Todo() {
 }
 ```
 
-<iframe data-frame-title="Next.js Server Actions Server Comps - StackBlitz" src="uu-code:./nextjs-server-actions-server-comps?template=node&embed=1&file=app%2Fpage.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Next.js Server Actions Server Comps - StackBlitz" src="pp-code:./nextjs-server-actions-server-comps?template=node&embed=1&file=app%2Fpage.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Now if we:
 
@@ -240,7 +240,7 @@ export function Todo({ todos, addTodo }) {
 }
 ```
 
-<iframe data-frame-title="Next.js Server Actions Client Comps - StackBlitz" src="uu-code:./nextjs-server-actions-client-comps?template=node&embed=1&file=app%2Fclient.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Next.js Server Actions Client Comps - StackBlitz" src="pp-code:./nextjs-server-actions-client-comps?template=node&embed=1&file=app%2Fclient.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Instead of passing a server action from a server component, we could also mark a whole file as `"use server"` and import it from there;
 

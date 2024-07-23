@@ -43,7 +43,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Error Intro - StackBlitz" src="uu-code:./ffg-fundamentals-react-error-intro-70?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Error Intro - StackBlitz" src="pp-code:./ffg-fundamentals-react-error-intro-70?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 # Angular
@@ -72,7 +72,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Error Intro - StackBlitz" src="uu-code:./ffg-fundamentals-angular-error-intro-70?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Error Intro - StackBlitz" src="pp-code:./ffg-fundamentals-angular-error-intro-70?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 # Vue
@@ -98,7 +98,7 @@ const priorityItems = items.filter((item) => item.item.priority === 1);
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Error Intro - StackBlitz" src="uu-code:./ffg-fundamentals-vue-error-intro-70?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Error Intro - StackBlitz" src="pp-code:./ffg-fundamentals-vue-error-intro-70?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -136,7 +136,7 @@ const ErrorThrowingComponent = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Render Error - StackBlitz" src="uu-code:./ffg-fundamentals-react-render-error-71?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Render Error - StackBlitz" src="pp-code:./ffg-fundamentals-react-render-error-71?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -155,7 +155,7 @@ class ErrorThrowingComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Render Error - StackBlitz" src="uu-code:./ffg-fundamentals-angular-render-error-71?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Render Error - StackBlitz" src="pp-code:./ffg-fundamentals-angular-render-error-71?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -172,7 +172,7 @@ throw new Error("Error");
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Render Error - StackBlitz" src="uu-code:./ffg-fundamentals-vue-render-error-71?template=node&embed=1&file=src%2FErrorThrowing.vue"></iframe>
+<iframe data-frame-title="Vue Render Error - StackBlitz" src="pp-code:./ffg-fundamentals-vue-render-error-71?template=node&embed=1&file=src%2FErrorThrowing.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -194,7 +194,7 @@ const EventErrorThrowingComponent = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Event Error - StackBlitz" src="uu-code:./ffg-fundamentals-react-event-error-72?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="React Event Error - StackBlitz" src="pp-code:./ffg-fundamentals-react-event-error-72?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -213,7 +213,7 @@ class ErrorThrowingComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Event Error - StackBlitz" src="uu-code:./ffg-fundamentals-angular-event-error-72?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Event Error - StackBlitz" src="pp-code:./ffg-fundamentals-angular-event-error-72?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -232,7 +232,7 @@ const onClick = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Event Error - StackBlitz" src="uu-code:./ffg-fundamentals-vue-event-error-72?template=node&embed=1&file=src%2FErrorThrowing.vue"></iframe>
+<iframe data-frame-title="Vue Event Error - StackBlitz" src="pp-code:./ffg-fundamentals-vue-event-error-72?template=node&embed=1&file=src%2FErrorThrowing.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -260,7 +260,7 @@ try {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="JS Error Demo - StackBlitz" src="uu-code:./ffg-fundamentals-js-error-demo-73?template=node&embed=1&file=src%2Fmain.js"></iframe>
+<iframe data-frame-title="JS Error Demo - StackBlitz" src="pp-code:./ffg-fundamentals-js-error-demo-73?template=node&embed=1&file=src%2Fmain.js"></iframe>
 <!-- ::end:no-ebook -->
 
 Moreover, these errors exceed past [their scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope), meaning that they will bubble up [the execution stack](https://www.freecodecamp.org/news/execution-context-how-javascript-works-behind-the-scenes/).
@@ -317,7 +317,7 @@ function main() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="JS Error Bubbling - StackBlitz" src="uu-code:./ffg-fundamentals-js-error-bubbling-74?template=node&embed=1&file=src%2Fmain.js"></iframe>
+<iframe data-frame-title="JS Error Bubbling - StackBlitz" src="pp-code:./ffg-fundamentals-js-error-bubbling-74?template=node&embed=1&file=src%2Fmain.js"></iframe>
 <!-- ::end:no-ebook -->
 
 ![Error bubbles up from getBaseNumber all the way to main's try/catch](./error_bubbling.png)
@@ -369,7 +369,7 @@ window.addEventListener("error", (event) => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="JS Event Error - StackBlitz" src="uu-code:./ffg-fundamentals-js-event-error-75?template=node&embed=1&file=index.html"></iframe>
+<iframe data-frame-title="JS Event Error - StackBlitz" src="pp-code:./ffg-fundamentals-js-event-error-75?template=node&embed=1&file=index.html"></iframe>
 <!-- ::end:no-ebook -->
 
 But let's think about what adding this `window` listener would mean:
@@ -420,7 +420,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Errors in Hooks - StackBlitz" src="uu-code:./ffg-fundamentals-react-errors-in-hooks-76?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Errors in Hooks - StackBlitz" src="pp-code:./ffg-fundamentals-react-errors-in-hooks-76?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 #### Angular
@@ -442,7 +442,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Error in Constructor - StackBlitz" src="uu-code:./ffg-fundamentals-angular-error-in-constructor-76?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Error in Constructor - StackBlitz" src="pp-code:./ffg-fundamentals-angular-error-in-constructor-76?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 Errors thrown in any of Angular's other lifecycle methods will not prevent a component from rendering:
@@ -462,7 +462,7 @@ class AppComponent implements OnInit {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Errors in Lifecycles - StackBlitz" src="uu-code:./ffg-fundamentals-angular-errors-in-lifecycles-76?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Errors in Lifecycles - StackBlitz" src="pp-code:./ffg-fundamentals-angular-errors-in-lifecycles-76?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 #### Vue
@@ -495,7 +495,7 @@ console.log(result.value);
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Errors in Setup - StackBlitz" src="uu-code:./ffg-fundamentals-vue-errors-in-setup-76?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Errors in Setup - StackBlitz" src="pp-code:./ffg-fundamentals-vue-errors-in-setup-76?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 Other APIs, like the `onMounted` lifecycle method, will not prevent rendering when an error is thrown inside it:
@@ -517,7 +517,7 @@ onMounted(() => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Errors in Lifecycles - StackBlitz" src="uu-code:./ffg-fundamentals-vue-errors-in-lifecycles-76?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Errors in Lifecycles - StackBlitz" src="pp-code:./ffg-fundamentals-vue-errors-in-lifecycles-76?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 While this might seem confusing at first, it makes sense when you consider _when_ `onMounted` runs when compared with `computed`, for example.
@@ -602,7 +602,7 @@ class ClassCounter extends Component {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Class vs Function Comparison - StackBlitz" src="uu-code:./ffg-fundamentals-react-class-fn-comparison-77?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Class vs Function Comparison - StackBlitz" src="pp-code:./ffg-fundamentals-react-class-fn-comparison-77?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 Both of these components work exactly the same, with no functional differences between them. This is because almost every API that was available to class components made its way over to functional components through React Hooks.
@@ -654,7 +654,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React componentDidCatch - StackBlitz" src="uu-code:./ffg-fundamentals-react-comp-did-catch-77?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React componentDidCatch - StackBlitz" src="pp-code:./ffg-fundamentals-react-comp-did-catch-77?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 Now, while our screen will still be white when the error is thrown, it will hit our `componentDidCatch` handler as we would expect.
@@ -707,7 +707,7 @@ class AppComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Logging the Error - StackBlitz" src="uu-code:./ffg-fundamentals-angular-logging-the-error-77?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Logging the Error - StackBlitz" src="pp-code:./ffg-fundamentals-angular-logging-the-error-77?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -746,7 +746,7 @@ throw new Error("Test");
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Logging the Error - StackBlitz" src="uu-code:./ffg-fundamentals-vue-logging-the-error-77?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Logging the Error - StackBlitz" src="pp-code:./ffg-fundamentals-vue-logging-the-error-77?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 It will run the function inside of `onErrorCaptured`.
@@ -773,7 +773,7 @@ Unfortunately, React is not able to handle thrown errors invisibly to the user w
 
 ## Angular
 
-As covered before, Angular is able to ignore all errors thrown outside the `constructor` method. However, if an error does occur in the `constructor` method, it's challenging ([but not impossible](https://unicorn-utterances.com/posts/angular-constructor-error-behavior#The-short-term-fix)) to sidestep. Because of the complexity of the code required to ignore `constructor` method errors, we won't cover it in this book.
+As covered before, Angular is able to ignore all errors thrown outside the `constructor` method. However, if an error does occur in the `constructor` method, it's challenging ([but not impossible](https://playfulprogramming.com/posts/angular-constructor-error-behavior#The-short-term-fix)) to sidestep. Because of the complexity of the code required to ignore `constructor` method errors, we won't cover it in this book.
 
 > Want to see an official solution to this problem? [Star my feature request on GitHub, which outlines a longer-term solution built-into Angular](https://github.com/angular/angular/issues/51941).
 
@@ -815,7 +815,7 @@ throw new Error("Test");
 To still render their contents while logging the error.
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Ignoring the Error - StackBlitz" src="uu-code:./ffg-fundamentals-vue-ignoring-the-error-78?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Ignoring the Error - StackBlitz" src="pp-code:./ffg-fundamentals-vue-ignoring-the-error-78?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -854,7 +854,7 @@ class ErrorBoundary extends Component {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Fallback UI - StackBlitz" src="uu-code:./ffg-fundamentals-react-fallback-ui-79?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Fallback UI - StackBlitz" src="pp-code:./ffg-fundamentals-react-fallback-ui-79?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -892,7 +892,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Fallback UI - StackBlitz" src="uu-code:./ffg-fundamentals-angular-fallback-ui-79?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Fallback UI - StackBlitz" src="pp-code:./ffg-fundamentals-angular-fallback-ui-79?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 > Unlike most instances of `inject` usage, we have to use `as MyErrorHandler`, otherwise TypeScript does not know about the new `hadError` property we just set.
@@ -928,7 +928,7 @@ onErrorCaptured((err, instance, info) => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Fallback UI - StackBlitz" src="uu-code:./ffg-fundamentals-vue-fallback-ui-79?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Fallback UI - StackBlitz" src="pp-code:./ffg-fundamentals-vue-fallback-ui-79?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -979,7 +979,7 @@ class ErrorBoundary extends Component {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Displaying the Error - StackBlitz" src="uu-code:./ffg-fundamentals-react-displaying-the-error-80?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Displaying the Error - StackBlitz" src="pp-code:./ffg-fundamentals-react-displaying-the-error-80?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Angular
@@ -1018,7 +1018,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Displaying the Error - StackBlitz" src="uu-code:./ffg-fundamentals-angular-displaying-the-error-80?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Displaying the Error - StackBlitz" src="pp-code:./ffg-fundamentals-angular-displaying-the-error-80?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Vue
@@ -1058,7 +1058,7 @@ const getErrorString = (err) =>
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Displaying the Error - StackBlitz" src="uu-code:./ffg-fundamentals-vue-displaying-the-error-80?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Displaying the Error - StackBlitz" src="pp-code:./ffg-fundamentals-vue-displaying-the-error-80?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 > If you bind `{{error}}` rather than `{{error.message}}`, you'll end up with the error:
@@ -1477,7 +1477,7 @@ class ErrorBoundary extends Component {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="React Error Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-react-error-challenge-81?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Error Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-react-error-challenge-81?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 
 </details>
 
@@ -1549,7 +1549,7 @@ class ErrorCatcher {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Angular Error Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-angular-error-challenge-81?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Error Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-angular-error-challenge-81?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 </details>
 
@@ -1617,7 +1617,7 @@ onErrorCaptured((err, instance, info) => {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Vue Error Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-vue-error-challenge-81?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Error Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-vue-error-challenge-81?template=node&embed=1&file=src%2FApp.vue"></iframe>
 
 </details>
 

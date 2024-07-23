@@ -43,7 +43,7 @@ useEffect(() => {
 }, []);
 ```
 
-<iframe data-frame-title="React use Hook - StackBlitz" src="uu-code:./react-use-hook?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React use Hook - StackBlitz" src="pp-code:./react-use-hook?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 While this works and `useEffect` _can_ be used this way, `useEffect` is not a built-in mechanism for asynchronous data loading. 
 
@@ -95,7 +95,7 @@ function App() {
 }
 ```
 
-<iframe data-frame-title="React Suspense - StackBlitz" src="uu-code:./react-suspense?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React Suspense - StackBlitz" src="pp-code:./react-suspense?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## Reusing Loading Indicators
 
@@ -132,7 +132,7 @@ const fetchUser = cache(({ timeout }) => {
 });
 ```
 
-<iframe data-frame-title="React Suspense Multi - StackBlitz" src="uu-code:./react-suspense-multi?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React Suspense Multi - StackBlitz" src="pp-code:./react-suspense-multi?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 To sidestep this behavior, wrap each `<UserDisplay>` in their own `<Suspense>`:
 
@@ -153,7 +153,7 @@ function App() {
 }
 ```
 
-<iframe data-frame-title="React Suspense One-by-One - StackBlitz" src="uu-code:./react-suspense-one-by-one?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React Suspense One-by-One - StackBlitz" src="pp-code:./react-suspense-one-by-one?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## How do I handle rejected promises in `<Suspense>`?
 
@@ -197,7 +197,7 @@ class ErrorBoundary extends Component {
 }
 ```
 
-<iframe data-frame-title="React Suspense Error Boundary - StackBlitz" src="uu-code:./react-suspense-error-boundary?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React Suspense Error Boundary - StackBlitz" src="pp-code:./react-suspense-error-boundary?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 # Using `use` on the server
 
@@ -245,7 +245,7 @@ const fetchOurUserFromTheDatabase = cache(() => {
 
 This works!
 
-<iframe data-frame-title="Next.js use Hook - StackBlitz" src="uu-code:./nextjs-use-hook?template=node&embed=1&file=app%2Fpage.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Next.js use Hook - StackBlitz" src="pp-code:./nextjs-use-hook?template=node&embed=1&file=app%2Fpage.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 # What are React Async Server Components?
 
@@ -273,7 +273,7 @@ export default function Home() {
 }
 ```
 
-<iframe data-frame-title="Next.js Async Components - StackBlitz" src="uu-code:./nextjs-async-components?template=node&embed=1&file=app%2Fpage.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Next.js Async Components - StackBlitz" src="pp-code:./nextjs-async-components?template=node&embed=1&file=app%2Fpage.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 Not only is the developer experience for this component authoring better, but it's drastically more performant due to how its internals work.
 

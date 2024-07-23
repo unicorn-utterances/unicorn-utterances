@@ -28,7 +28,7 @@ Ignoring skill level, I also acknowledge that there are various learning styles.
 
 # Present Goals
 
-This project is going to be a long-standing effort to try to write as often as possible to realize this goal. I know this is a lofty goal though, and I don't want to do it alone. While creating this blog, I have ensured that other authors should have the lowest barrier to contributing as possible. We have author pages built, filtering and searching on our pages, and an [open GitHub repository](https://github.com/crutchcorn/unicorn-utterances). We love and welcome pull requests, new content, code maintenance on the site, bug reports, and general discussion.
+This project is going to be a long-standing effort to try to write as often as possible to realize this goal. I know this is a lofty goal though, and I don't want to do it alone. While creating this blog, I have ensured that other authors should have the lowest barrier to contributing as possible. We have author pages built, filtering and searching on our pages, and an [open GitHub repository](https://github.com/unicorn-utterances/unicorn-utterances). We love and welcome pull requests, new content, code maintenance on the site, bug reports, and general discussion.
 
 In terms of content, there is an extremely in-depth article which is being edited as we speak. Within the next few weeks, keep your eye out for new posts on the site. If you use RSS to keep up with your favorite content, [we have that as well](/rss.xml).
 

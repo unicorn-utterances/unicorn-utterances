@@ -179,7 +179,7 @@ async function generateCollectionEPub(
 		{
 			title: collection.title,
 			author: authors,
-			publisher: "Unicorn Utterances",
+			publisher: "Playful Programming",
 			cover: collection.coverImgMeta.absoluteFSPath,
 			allowedAttributes: [...defaultAllowedAttributes, "start"],
 			css: await fs.readFile(resolve(__dirname, "./epub.css"), "utf-8"),

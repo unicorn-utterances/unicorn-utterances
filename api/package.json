@@ -1,5 +1,5 @@
 {
-	"name": "unicorn-utterances-api",
+	"name": "playfulprogramming-api",
 	"type": "module",
 	"devDependencies": {
 		"@vercel/node": "^2.9.2"

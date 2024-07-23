@@ -1,5 +1,5 @@
 {
-	"name": "@unicorn-utterances/angular-reactivity",
+	"name": "@playfulprogramming/angular-reactivity",
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",

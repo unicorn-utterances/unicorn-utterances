@@ -55,9 +55,9 @@ module.exports = {
 		"^types/(.*)$": resolve(__dirname, "./src/types/$1"),
 		"^components/(.*)$": resolve(__dirname, "./src/components/$1"),
 		"^utils/(.*)$": resolve(__dirname, "./src/utils/$1"),
-		"^uu-types$": resolve(__dirname, "./src/types"),
-		"^uu-utils$": resolve(__dirname, "./src/utils"),
-		"^uu-constants$": resolve(__dirname, "./src/constants"),
+		"^pp-types$": resolve(__dirname, "./src/types"),
+		"^pp-utils$": resolve(__dirname, "./src/utils"),
+		"^pp-constants$": resolve(__dirname, "./src/constants"),
 		"^assets/(.*)": resolve(__dirname, "./src/assets/$1"),
 	},
 };

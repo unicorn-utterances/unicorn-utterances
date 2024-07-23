@@ -79,7 +79,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Counting Comp Children - StackBlitz" src="uu-code:./ffg-fundamentals-react-counting-comp-children-112?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Counting Comp Children - StackBlitz" src="pp-code:./ffg-fundamentals-react-counting-comp-children-112?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 Here, `childArr` is an array of type `ReactNode`. A `ReactNode` is created by React's `createElement` method.
@@ -113,7 +113,7 @@ const ParentList = ({ children }) => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Counting Comp Children Util - StackBlitz" src="uu-code:./ffg-fundamentals-react-counting-comp-children-util-112?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Counting Comp Children Util - StackBlitz" src="pp-code:./ffg-fundamentals-react-counting-comp-children-util-112?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -168,7 +168,7 @@ class AppComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular ContentChild - StackBlitz" src="uu-code:./ffg-fundamentals-angular-contentchild-112?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular ContentChild - StackBlitz" src="pp-code:./ffg-fundamentals-angular-contentchild-112?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 Here, we're querying for the template tag `childItem` within the project content by using [the `ContentChild` decorator](https://angular.io/api/core/ContentChild).
@@ -203,7 +203,7 @@ class ParentListComponent implements OnInit {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Why ngAfterContentInit? - StackBlitz" src="uu-code:./ffg-fundamentals-angular-why-ngaftercontentinit-112?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Why ngAfterContentInit? - StackBlitz" src="pp-code:./ffg-fundamentals-angular-why-ngaftercontentinit-112?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 This is because while `ngOnInit` runs after the component has rendered, it has not yet received any values within `ng-content`; this is where `ngAfterContentInit` comes into play. This lifecycle method runs once `ng-content` has received the values, which we can then use as a sign that `ContentChild` has finished its query.
@@ -261,7 +261,7 @@ class AppComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Counting Component Children - StackBlitz" src="uu-code:./ffg-fundamentals-angular-counting-component-children-112?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Counting Component Children - StackBlitz" src="pp-code:./ffg-fundamentals-angular-counting-component-children-112?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 `ContentChildren` returns an array-like [`QueryList`](https://angular.io/api/core/QueryList) generic type. You can then access the properties of `children` inside of the template itself, like what we're doing with `children.length`.
@@ -302,7 +302,7 @@ const list = [1, 2, 3];
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Counting Component Children - StackBlitz" src="uu-code:./ffg-fundamentals-vue-counting-component-children-112?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Counting Component Children - StackBlitz" src="pp-code:./ffg-fundamentals-vue-counting-component-children-112?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- Editor's note: While yes, we could do a `mounted() {this.$slots.children}` for THIS example, two things: 1) It's bad practice in that it will cause two renders. 2) It breaks in the very next code sample -->
@@ -369,7 +369,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Children in Loop - StackBlitz" src="uu-code:./ffg-fundamentals-react-children-in-loop-113?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Children in Loop - StackBlitz" src="pp-code:./ffg-fundamentals-react-children-in-loop-113?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -418,7 +418,7 @@ class AppComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Children in Loop - StackBlitz" src="uu-code:./ffg-fundamentals-angular-children-in-loop-113?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Children in Loop - StackBlitz" src="pp-code:./ffg-fundamentals-angular-children-in-loop-113?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -475,7 +475,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Adding Children Dynamically - StackBlitz" src="uu-code:./ffg-fundamentals-react-adding-children-dynamically-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Adding Children Dynamically - StackBlitz" src="pp-code:./ffg-fundamentals-react-adding-children-dynamically-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Angular
@@ -522,7 +522,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Adding Children Dynamically - StackBlitz" src="uu-code:./ffg-fundamentals-angular-adding-children-dynamically-114?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Adding Children Dynamically - StackBlitz" src="pp-code:./ffg-fundamentals-angular-adding-children-dynamically-114?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Vue
@@ -559,7 +559,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Numerical Child - StackBlitz" src="uu-code:./ffg-fundamentals-react-numerical-child-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Numerical Child - StackBlitz" src="pp-code:./ffg-fundamentals-react-numerical-child-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 > WHAT?!
@@ -591,7 +591,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Function Child - StackBlitz" src="uu-code:./ffg-fundamentals-react-function-child-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Function Child - StackBlitz" src="pp-code:./ffg-fundamentals-react-function-child-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 Sure enough, it works!
@@ -609,7 +609,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Function JSX Child - StackBlitz" src="uu-code:./ffg-fundamentals-react-function-jsx-child-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Function JSX Child - StackBlitz" src="pp-code:./ffg-fundamentals-react-function-jsx-child-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 Finally, we can combine this with the ability to pass values to a function:
@@ -625,7 +625,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Function Child Pass Val - StackBlitz" src="uu-code:./ffg-fundamentals-react-function-child-pass-val-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Function Child Pass Val - StackBlitz" src="pp-code:./ffg-fundamentals-react-function-child-pass-val-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 > Confused about how this last one is working? It might be a good time to [review your knowledge on how functions are able to pass to one another and call each other](/posts/javascript-functions-are-values).
@@ -679,7 +679,7 @@ const App = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Pass Val to Projected Content - StackBlitz" src="uu-code:./ffg-fundamentals-react-pass-val-to-projected-content-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Pass Val to Projected Content - StackBlitz" src="pp-code:./ffg-fundamentals-react-pass-val-to-projected-content-114?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -735,7 +735,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Pass Val to Projected Content - StackBlitz" src="uu-code:./ffg-fundamentals-angular-pass-val-to-projected-content-114?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Pass Val to Projected Content - StackBlitz" src="pp-code:./ffg-fundamentals-angular-pass-val-to-projected-content-114?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -792,7 +792,7 @@ function addOne() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Pass Val to Projected Content - StackBlitz" src="uu-code:./ffg-fundamentals-vue-pass-val-to-projected-content-114?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Pass Val to Projected Content - StackBlitz" src="pp-code:./ffg-fundamentals-vue-pass-val-to-projected-content-114?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 This `v-slot` is similar to how you might pass properties to a component, but instead, we're passing data directly to a `template` to be rendered by `v-slot`.
@@ -894,7 +894,7 @@ function App() {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="React Accessing Children Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-react-accessing-children-challenge-115?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Accessing Children Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-react-accessing-children-challenge-115?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 
 </details>
 
@@ -982,7 +982,7 @@ class AppComponent {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Angular Accessing Children Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-angular-accessing-children-challenge-115?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Accessing Children Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-angular-accessing-children-challenge-115?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 </details>
 
@@ -1060,7 +1060,7 @@ const props = defineProps(["data"]);
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Vue Accessing Children Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-vue-accessing-children-challenge-115?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Accessing Children Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-vue-accessing-children-challenge-115?template=node&embed=1&file=src%2FApp.vue"></iframe>
 
 </details>
 

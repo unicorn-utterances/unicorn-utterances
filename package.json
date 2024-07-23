@@ -1,12 +1,12 @@
 {
-	"name": "unicorn-utterances-site",
+	"name": "playfulprogramming-site",
 	"private": true,
 	"description": "Learning programming from magically majestic words",
 	"version": "0.3.0-alpha.1",
 	"bugs": {
 		"url": "https://github.com/unicorn-utterances/unicorn-utterances/issues"
 	},
-	"homepage": "https://unicorn-utterances.com",
+	"homepage": "https://playfulprogramming.com",
 	"keywords": [
 		"blog",
 		"education",

@@ -41,7 +41,7 @@ export async function* getAchievements(
 	if (unicorn.roles.includes("translator")) {
 		yield {
 			name: "Localizer 9000",
-			body: "Translate part of Unicorn Utterances into another language!",
+			body: "Translate part of Playful Programming into another language!",
 		};
 	}
 
@@ -76,7 +76,7 @@ export async function* getAchievements(
 	if (unicorn.achievements.includes("partner")) {
 		yield {
 			name: "Proud partner",
-			body: "Become a Unicorn Utterances Partner",
+			body: "Become a Playful Programming Partner",
 		};
 	}
 

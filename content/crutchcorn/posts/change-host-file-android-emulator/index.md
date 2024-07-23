@@ -124,7 +124,7 @@ If you close the emulator and re-open it using the  command above, it may work, 
 
 Finally, you’re able to [sideload the Chrome APK’s x86 variant](https://www.apkmirror.com/apk/google-inc/chrome) in order to load the example codebase.
 
-So, for example, using the above hostfile as an example, we can visit `example.com:8000` when running the development mode for [the project’s GitHub code](https://github.com/unicorn-utterances/unicorn-utterances/), you’re able to see a preview of the [Unicorn Utterances](/) website from a different domain.
+So, for example, using the above hostfile as an example, we can visit `example.com:8000` when running the development mode for [the project’s GitHub code](https://github.com/unicorn-utterances/unicorn-utterances/), you’re able to see a preview of the [Playful Programming](/) website from a different domain.
 
 ![A screenshot of the above commands being ran](./11.png)
 

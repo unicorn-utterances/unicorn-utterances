@@ -1,4 +1,4 @@
-As a community, we welcome anyone to write and submit posts to the Unicorn Utterances blog! In this document, we'll go over how to create a new post in UU and submit it as a pull request.
+As a community, we welcome anyone to write and submit posts to the Playful Programming blog! In this document, we'll go over how to create a new post in UU and submit it as a pull request.
 
 > [!NOTE]
 > For a general tutorial on contributing to a project with GitHub, you may want to go through [the First Contributions guide](https://github.com/firstcontributions/first-contributions) before continuing through this page.
@@ -29,12 +29,12 @@ Here's an example of what your `index.md` might look like:
 {
   // "name" should be your displayed name, however you want it
   // to appear on your posts
-  name: "Eric Utterances",
+  name: "Eric Programmer",
 
   // "firstName" and "lastName" are unfortunately needed for
   // OpenGraph tags - fill these out however you feel is appropriate
   firstName: "Eric",
-  lastName: "Utterances",
+  lastName: "Programmer",
 
   // "description" is a short bio that will be shown on your profile page
   description: "Haskell programmer, fanfiction author, and an omniscient unicorn.",
@@ -45,7 +45,7 @@ Here's an example of what your `index.md` might look like:
   socials: {
     mastodon: "https://hachyderm.io/@UnicornUtterances",
     github: "unicorn-utterances",
-    website: "https://unicorn-utterances.com/"
+    website: "https://playfulprogramming.com/"
   },
 
   // "pronouns" are optional, but encouraged to include on your profile
@@ -69,7 +69,7 @@ Once your profile is created, you'll be ready to proceed to the next step...
 
 # Writing a new post
 
-All posts on Unicorn Utterances live in a `content/{username}/posts/` folder - we structure this with a subfolder for each post, containing a markdown file named `index.md`. The naming of this post folder will match its URL on the site.
+All posts on Playful Programming live in a `content/{username}/posts/` folder - we structure this with a subfolder for each post, containing a markdown file named `index.md`. The naming of this post folder will match its URL on the site.
 
 > **New to Markdown?**
 >
@@ -81,7 +81,7 @@ When writing your post, you'll need to include some metadata in the frontmatter 
 ---
 {
   title: "My First Post",
-  description: "This is my first post on the Unicorn Utterances site!",
+  description: "This is my first post on the Playful Programming site!",
   published: '2023-04-11',
   tags: ["meta"],
   license: 'cc-by-4'

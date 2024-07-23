@@ -300,7 +300,7 @@ When you `clone` a project, you might see a file in the root called `package.jso
 
 ```json
 {
-  "name": "unicorn-utterances-site",
+  "name": "playfulprogramming-site",
   "description": "Learning programming from magically majestic words",
   "version": "0.1.0",
   "bugs": {

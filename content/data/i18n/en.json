@@ -3,7 +3,7 @@
 	"title.search": "Search",
 	"title.about_us": "About us",
 	"title.join_us": "Join us",
-	"desc.about_us": "About Unicorn Utterances - who we are, what our goals are, and how we want to help others learn",
+	"desc.about_us": "About Playful Programming - who we are, what our goals are, and how we want to help others learn",
 	"desc.homepage": "Practice programming with magically majestic methods",
 	"desc.homepage_extra": "The perfect place to learn all kinds of programming, from introductory ideas to advanced abstractions.",
 	"title.contributors": "Contributors",
@@ -12,7 +12,7 @@
 	"label.view_license_for": "View license for %s",
 	"action.view_attribution": "View attribution",
 	"label.view_attribution_for": "View attribution for %s",
-	"desc.licenses_request_removal": "If you own the rights to any trademark or intellectual property on the Unicorn Utterances website and would like yours removed, please email us at:",
+	"desc.licenses_request_removal": "If you own the rights to any trademark or intellectual property on the Playful Programming website and would like yours removed, please email us at:",
 	"title.where_to_find_us": "Where to Find Us",
 	"title.sponsors": "Sponsors",
 	"title.n_chapters": "%s chapters",
@@ -33,7 +33,7 @@
 	"action.view_less_chapters": "View less chapters",
 	"action.switch_theme": "Switch theme",
 	"label.dark_mode": "Dark mode",
-	"alt.unicorn_utterances_logo": "Smiling cartoon unicorn with a bowtie",
+	"alt.playfulprogramming_logo": "Smiling cartoon unicorn with a bowtie",
 	"title.looking_for_more": "Looking for more?",
 	"desc.looking_for_more": "Search for your favorite framework or most loved language; we'll share what we know."
 }

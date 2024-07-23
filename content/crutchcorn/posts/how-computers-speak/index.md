@@ -59,7 +59,7 @@ The answer to all of these involves an understanding of how hardware works, and 
 
 # How A Computer Works {#computer-hardware}
 
-> This section won't be a complete "Computers 101" course. While we _will_ be writing material that dives deeper into these subject matters, this is meant as a short description to supplement explanations later on in the article. If you'd like to see that type of content in the future, be sure to [sign up for our newsletter](https://newsletter.unicorn-utterances.com/)
+> This section won't be a complete "Computers 101" course. While we _will_ be writing material that dives deeper into these subject matters, this is meant as a short description to supplement explanations later on in the article. If you'd like to see that type of content in the future, be sure to [sign up for our newsletter](https://newsletter.playfulprogramming.com/)
 
 Your computer is comprised of many components, but today we'll be focusing on five of the primary ones:
 

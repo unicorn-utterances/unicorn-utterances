@@ -8,7 +8,7 @@
 }
 ---
 
-I talk to engineers; I talk to a lot of engineers. I've spoken to engineers from various backgrounds and various skillsets. We all have had to face the same thing at some point: "What tools do you pick for the job?". It's a question that was phrased perfectly by [Lindsay Campbell](https://www.linkedin.com/in/lindsaycampbelldeveloper/) on [the public Unicorn Utterances Discord server our community use to chat](https://discord.gg/FMcvc6T):
+I talk to engineers; I talk to a lot of engineers. I've spoken to engineers from various backgrounds and various skillsets. We all have had to face the same thing at some point: "What tools do you pick for the job?". It's a question that was phrased perfectly by [Lindsay Campbell](https://www.linkedin.com/in/lindsaycampbelldeveloper/) on [the public Playful Programming Discord server our community use to chat](https://discord.gg/FMcvc6T):
 
 _"When you start a new project, how do you go about planning it? How do you know what features you want? How do you even start do you figure out frameworks, libraries you will use for those different features? What do you do to also make sure that all the different technologies you will be using will work together nicely in your application? Thanks!"_
 

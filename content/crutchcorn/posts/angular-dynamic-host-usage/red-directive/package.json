@@ -1,5 +1,5 @@
 {
-	"name": "@unicorn-utterances/red-directive",
+	"name": "@playfulprogramming/red-directive",
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",

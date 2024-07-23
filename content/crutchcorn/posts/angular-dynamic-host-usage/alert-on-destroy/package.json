@@ -1,5 +1,5 @@
 {
-	"name": "@unicorn-utterances/alert-on-destroy",
+	"name": "@playfulprogramming/alert-on-destroy",
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",

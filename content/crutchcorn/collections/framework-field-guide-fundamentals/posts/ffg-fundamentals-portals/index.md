@@ -690,7 +690,7 @@ const Header = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Buggy Dialog - StackBlitz" src="uu-code:./ffg-fundamentals-react-buggy-dialog-94?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Buggy Dialog - StackBlitz" src="pp-code:./ffg-fundamentals-react-buggy-dialog-94?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -724,7 +724,7 @@ class HeaderComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Buggy Dialog - StackBlitz" src="uu-code:./ffg-fundamentals-angular-buggy-dialog-94?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Buggy Dialog - StackBlitz" src="pp-code:./ffg-fundamentals-angular-buggy-dialog-94?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -759,7 +759,7 @@ function showModal() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Buggy Dialog - StackBlitz" src="uu-code:./ffg-fundamentals-vue-buggy-dialog-94?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Buggy Dialog - StackBlitz" src="pp-code:./ffg-fundamentals-vue-buggy-dialog-94?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -852,7 +852,7 @@ function App() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Local Portals - StackBlitz" src="uu-code:./ffg-fundamentals-react-local-portals-95?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Local Portals - StackBlitz" src="pp-code:./ffg-fundamentals-react-local-portals-95?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 You'll notice that we're then displaying the return of `createPortal` - `portal` - within the component. This allows the portal to be activated, which will place the `Hello world!` inside of the `div`.
@@ -900,7 +900,7 @@ class AppComponent implements AfterViewInit {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Local Portals - StackBlitz" src="uu-code:./ffg-fundamentals-angular-local-portals-95?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Local Portals - StackBlitz" src="pp-code:./ffg-fundamentals-angular-local-portals-95?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 You'll notice that we're creating a variable called `domPortal` that we assign an instance of `DomPortal`. This `DomPortal` instance allows us to take a captured reference to some HTML (in this case, a `div` with `Hello world!`), and project it elsewhere.
@@ -964,7 +964,7 @@ class AppComponent implements AfterViewInit {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Local ngTemplate - StackBlitz" src="uu-code:./ffg-fundamentals-angular-local-ng-template-95?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Local ngTemplate - StackBlitz" src="pp-code:./ffg-fundamentals-angular-local-ng-template-95?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -992,7 +992,7 @@ const portalContainerEl = ref(null);
 > We need the `v-if` in this code to ensure that `portalContainerEl` has already been rendered and is ready to project content.
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Local Portals - StackBlitz" src="uu-code:./ffg-fundamentals-vue-local-portals-95?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Local Portals - StackBlitz" src="pp-code:./ffg-fundamentals-vue-local-portals-95?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -1048,7 +1048,7 @@ function App() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React App-Wide Portals - StackBlitz" src="uu-code:./ffg-fundamentals-react-app-wide-portals-96?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React App-Wide Portals - StackBlitz" src="pp-code:./ffg-fundamentals-react-app-wide-portals-96?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -1115,7 +1115,7 @@ We then `inject` that value to provide data into it and read from it in any rela
 We're also making sure that our portal exists before rending it in our `AppComponent` using `*ngIf="portalService.portal"`.
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular App-Wide Portals - StackBlitz" src="uu-code:./ffg-fundamentals-angular-app-wide-portals-96?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular App-Wide Portals - StackBlitz" src="pp-code:./ffg-fundamentals-angular-app-wide-portals-96?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -1156,7 +1156,7 @@ const portalContainerEl = inject("portalContainerEl");
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue App-Wide Portals - StackBlitz" src="uu-code:./ffg-fundamentals-vue-app-wide-portals-96?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue App-Wide Portals - StackBlitz" src="pp-code:./ffg-fundamentals-vue-app-wide-portals-96?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -1237,7 +1237,7 @@ function App() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React HTML-Wide Portals - StackBlitz" src="uu-code:./ffg-fundamentals-react-html-wide-portals-97?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React HTML-Wide Portals - StackBlitz" src="pp-code:./ffg-fundamentals-react-html-wide-portals-97?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -1299,7 +1299,7 @@ class AppComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular HTML-Wide Portals - StackBlitz" src="uu-code:./ffg-fundamentals-angular-html-wide-portals-97?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular HTML-Wide Portals - StackBlitz" src="pp-code:./ffg-fundamentals-angular-html-wide-portals-97?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -1331,7 +1331,7 @@ import Child from "./Child.vue";
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue HTML-Wide Portals - StackBlitz" src="uu-code:./ffg-fundamentals-vue-html-wide-portals-97?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue HTML-Wide Portals - StackBlitz" src="pp-code:./ffg-fundamentals-vue-html-wide-portals-97?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -1355,19 +1355,19 @@ The code we wrote previously for this challenge worked well, but it had a major 
 ### React
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Portals Pre-Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-react-portals-pre-challenge-98?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Portals Pre-Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-react-portals-pre-challenge-98?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Angular
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Portals Pre-Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-angular-portals-pre-challenge-98?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Portals Pre-Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-angular-portals-pre-challenge-98?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Vue
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Portals Pre-Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-vue-portals-pre-challenge-98?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Vue Portals Pre-Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-vue-portals-pre-challenge-98?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -1493,7 +1493,7 @@ function App() {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="React Portals Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-react-portals-challenge-99?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Portals Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-react-portals-challenge-99?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 
 </details>
 
@@ -1640,7 +1640,7 @@ class AppComponent implements OnDestroy {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Angular Portals Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-angular-portals-challenge-99?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Portals Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-angular-portals-challenge-99?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 </details>
 
@@ -1767,7 +1767,7 @@ onUnmounted(() => {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Vue Portals Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-vue-portals-challenge-99?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Portals Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-vue-portals-challenge-99?template=node&embed=1&file=src%2FApp.vue"></iframe>
 
 </details>
 

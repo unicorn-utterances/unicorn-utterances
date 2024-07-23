@@ -84,7 +84,7 @@ export function createHtmlPlugins(unified: Processor) {
 				srcReplacements: [
 					(val: string, file: VFile) => {
 						const iFrameUrl = new URL(val);
-						if (!iFrameUrl.protocol.startsWith("uu-code:")) return val;
+						if (!iFrameUrl.protocol.startsWith("pp-code:")) return val;
 
 						const contentDir = dirname(file.path);
 						const fullPath = resolve(contentDir, iFrameUrl.pathname);

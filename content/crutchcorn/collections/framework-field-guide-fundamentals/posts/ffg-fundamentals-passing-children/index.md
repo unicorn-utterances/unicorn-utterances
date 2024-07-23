@@ -211,7 +211,7 @@ const ToggleButtonList = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React No Passing Demo - StackBlitz" src="uu-code:./ffg-fundamentals-react-no-passing-demo-54?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React No Passing Demo - StackBlitz" src="pp-code:./ffg-fundamentals-react-no-passing-demo-54?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Angular
@@ -256,7 +256,7 @@ class ToggleButtonListComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular No Passing Demo - StackBlitz" src="uu-code:./ffg-fundamentals-angular-no-passing-demo-54?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular No Passing Demo - StackBlitz" src="pp-code:./ffg-fundamentals-angular-no-passing-demo-54?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Vue
@@ -304,7 +304,7 @@ import ToggleButton from "./ToggleButton.vue";
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue No Passing Demo - StackBlitz" src="uu-code:./ffg-fundamentals-vue-no-passing-demo-54?template=node&embed=1&file=src%2FToggleButtonList.vue"></iframe>
+<iframe data-frame-title="Vue No Passing Demo - StackBlitz" src="pp-code:./ffg-fundamentals-vue-no-passing-demo-54?template=node&embed=1&file=src%2FToggleButtonList.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -355,7 +355,7 @@ const ToggleButtonList = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Passing Basic Children - StackBlitz" src="uu-code:./ffg-fundamentals-react-passing-basic-children-55?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Passing Basic Children - StackBlitz" src="pp-code:./ffg-fundamentals-react-passing-basic-children-55?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Angular
@@ -403,7 +403,7 @@ class ToggleButtonListComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Passing Basic Children - StackBlitz" src="uu-code:./ffg-fundamentals-angular-passing-basic-children-55?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Passing Basic Children - StackBlitz" src="pp-code:./ffg-fundamentals-angular-passing-basic-children-55?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 Because `ng-content` is built into [Angular's compiler](https://blog.angular.io/how-the-angular-compiler-works-42111f9d2549), we do not need to import anything into our component to use the feature.
@@ -455,7 +455,7 @@ import ToggleButton from "./ToggleButton.vue";
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Passing Basic Children - StackBlitz" src="uu-code:./ffg-fundamentals-vue-passing-basic-children-55?template=node&embed=1&file=src%2FToggleButtonList.vue"></iframe>
+<iframe data-frame-title="Vue Passing Basic Children - StackBlitz" src="pp-code:./ffg-fundamentals-vue-passing-basic-children-55?template=node&embed=1&file=src%2FToggleButtonList.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 Because `slot` is a built-in component of Vue, we do not need to import it from the `vue` package.
@@ -527,7 +527,7 @@ function RainbowExclamationMark() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Use With Other Features - StackBlitz" src="uu-code:./ffg-fundamentals-react-use-with-other-features-56?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Use With Other Features - StackBlitz" src="pp-code:./ffg-fundamentals-react-use-with-other-features-56?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Angular
@@ -584,7 +584,7 @@ class ToggleButtonListComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Use With Other Features - StackBlitz" src="uu-code:./ffg-fundamentals-angular-use-with-other-features-56?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Use With Other Features - StackBlitz" src="pp-code:./ffg-fundamentals-angular-use-with-other-features-56?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ### Vue
@@ -641,7 +641,7 @@ span {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Use With Other Features - StackBlitz" src="uu-code:./ffg-fundamentals-vue-use-with-other-features-56?template=node&embed=1&file=src%2FToggleButtonList.vue"></iframe>
+<iframe data-frame-title="Vue Use With Other Features - StackBlitz" src="pp-code:./ffg-fundamentals-vue-use-with-other-features-56?template=node&embed=1&file=src%2FToggleButtonList.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -725,7 +725,7 @@ function App() {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React Named Children - StackBlitz" src="uu-code:./ffg-fundamentals-react-named-children-57?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Named Children - StackBlitz" src="pp-code:./ffg-fundamentals-react-named-children-57?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -771,7 +771,7 @@ class AppComponent {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Named Children - StackBlitz" src="uu-code:./ffg-fundamentals-angular-named-children-57?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Named Children - StackBlitz" src="pp-code:./ffg-fundamentals-angular-named-children-57?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 Once `ng-content` finds related elements that match the `select` query, they will be content projected into the appropriate locations. If not matched by a `ng-content[select]`, they will be projected to a non `select` enabled `ng-content`.
@@ -841,7 +841,7 @@ const expanded = ref(false);
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue Named Children - StackBlitz" src="uu-code:./ffg-fundamentals-vue-named-children-57?template=node&embed=1&file=src%2FApp.vue"></iframe>
+<iframe data-frame-title="Vue Named Children - StackBlitz" src="pp-code:./ffg-fundamentals-vue-named-children-57?template=node&embed=1&file=src%2FApp.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -961,7 +961,7 @@ const FileTable = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React File Table - StackBlitz" src="uu-code:./ffg-fundamentals-react-file-table-58?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React File Table - StackBlitz" src="pp-code:./ffg-fundamentals-react-file-table-58?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -1023,7 +1023,7 @@ If we render this, we'll see the following incorrectly formatted table:
 ![Our table data in a single line rather than in a grid](./broken-angular-table.png)
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular Broken File Table - StackBlitz" src="uu-code:./ffg-fundamentals-angular-broken-file-table-58?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Broken File Table - StackBlitz" src="pp-code:./ffg-fundamentals-angular-broken-file-table-58?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 > This table is not formatted correctly. Where are the rows? Why is everything horizontally lined up next to one-another?
@@ -1236,7 +1236,7 @@ class FileTableComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular File Table - StackBlitz" src="uu-code:./ffg-fundamentals-angular-file-table-58?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular File Table - StackBlitz" src="pp-code:./ffg-fundamentals-angular-file-table-58?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -1331,7 +1331,7 @@ import FileTableBody from "./FileTableBody.vue";
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue File Table - StackBlitz" src="uu-code:./ffg-fundamentals-vue-file-table-58?template=node&embed=1&file=src%2FFileTable.vue"></iframe>
+<iframe data-frame-title="Vue File Table - StackBlitz" src="pp-code:./ffg-fundamentals-vue-file-table-58?template=node&embed=1&file=src%2FFileTable.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -1376,7 +1376,7 @@ const FileTable = () => {
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="React File Table Container - StackBlitz" src="uu-code:./ffg-fundamentals-react-file-table-container-59?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React File Table Container - StackBlitz" src="pp-code:./ffg-fundamentals-react-file-table-container-59?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Angular
@@ -1407,7 +1407,7 @@ class FileTableComponent {}
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Angular File Table Container - StackBlitz" src="uu-code:./ffg-fundamentals-angular-file-table-container-59?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular File Table Container - StackBlitz" src="pp-code:./ffg-fundamentals-angular-file-table-container-59?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 <!-- ::end:no-ebook -->
 
 ## Vue
@@ -1441,7 +1441,7 @@ import FileTableBody from "./FileTableBody.vue";
 ```
 
 <!-- ::start:no-ebook -->
-<iframe data-frame-title="Vue File Table Container - StackBlitz" src="uu-code:./ffg-fundamentals-vue-file-table-container-59?template=node&embed=1&file=src%2FFileTable.vue"></iframe>
+<iframe data-frame-title="Vue File Table Container - StackBlitz" src="pp-code:./ffg-fundamentals-vue-file-table-container-59?template=node&embed=1&file=src%2FFileTable.vue"></iframe>
 <!-- ::end:no-ebook -->
 
 <!-- ::end:tabs -->
@@ -1501,7 +1501,7 @@ const FileTable = () => {
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="React Passing Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-react-passing-challenge-60?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
+<iframe data-frame-title="React Passing Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-react-passing-challenge-60?template=node&embed=1&file=src%2Fmain.jsx"></iframe>
 
 </details>
 
@@ -1549,7 +1549,7 @@ class FileTableComponent {}
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Angular Passing Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-angular-passing-challenge-60?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Angular Passing Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-angular-passing-challenge-60?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 </details>
 
@@ -1603,7 +1603,7 @@ import FileTableBody from "./FileTableBody.vue";
 
 <summary>Final code output</summary>
 
-<iframe data-frame-title="Vue Passing Challenge - StackBlitz" src="uu-code:./ffg-fundamentals-vue-passing-challenge-60?template=node&embed=1&file=src%2FFileTable.vue"></iframe>
+<iframe data-frame-title="Vue Passing Challenge - StackBlitz" src="pp-code:./ffg-fundamentals-vue-passing-challenge-60?template=node&embed=1&file=src%2FFileTable.vue"></iframe>
 
 </details>
 

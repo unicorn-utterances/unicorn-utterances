@@ -69,7 +69,7 @@ Then we can add in the required JavaScript to make the button functional:
 </script>
 ```
 
-<iframe data-frame-title="Example #1 - StackBlitz" src="uu-code:./step1-code?template=node&embed=1&file=index.html" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Example #1 - StackBlitz" src="pp-code:./step1-code?template=node&embed=1&file=index.html" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 <!-- ::in-content-ad title="Consider supporting" body="Donating any amount will help towards further development of articles like this." button-text="Visit our Open Collective" button-href="https://opencollective.com/unicorn-utterances" -->
 
@@ -109,7 +109,7 @@ That might look something like this:
 </script>
 ```
 
-<iframe data-frame-title="Example #2 - StackBlitz" src="uu-code:./step2-code?template=node&embed=1&file=index.html" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Example #2 - StackBlitz" src="pp-code:./step2-code?template=node&embed=1&file=index.html" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 # Removing items from the list
 
@@ -165,7 +165,7 @@ Okay! Things are heating up! For one last exercise, let's:
 </script>
 ```
 
-<iframe data-frame-title="Example #3 - StackBlitz" src="uu-code:./step3-code?template=node&embed=1&file=index.html" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Example #3 - StackBlitz" src="pp-code:./step3-code?template=node&embed=1&file=index.html" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 > Wow! That got complex, quick, didn't it?!
 
@@ -235,7 +235,7 @@ const App = () => {
 };
 ```
 
-<iframe data-frame-title="React Reactivity - StackBlitz" src="uu-code:./react-reactivity?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="React Reactivity - StackBlitz" src="pp-code:./react-reactivity?template=node&embed=1&file=src%2Fmain.jsx" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## Angular
 
@@ -259,7 +259,7 @@ export class AppComponent {
 }
 ```
 
-<iframe data-frame-title="Angular Reactivity - StackBlitz" src="uu-code:./angular-reactivity?template=node&embed=1&file=src%2Fmain.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Angular Reactivity - StackBlitz" src="pp-code:./angular-reactivity?template=node&embed=1&file=src%2Fmain.ts" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ## Vue
 
@@ -279,7 +279,7 @@ const count = ref(0);
 </template>
 ```
 
-<iframe data-frame-title="Vue Reactivity - StackBlitz" src="uu-code:./vue-reactivity?template=node&embed=1&file=src%2FApp.vue" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe data-frame-title="Vue Reactivity - StackBlitz" src="pp-code:./vue-reactivity?template=node&embed=1&file=src%2FApp.vue" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 <!-- ::end:tabs -->
 

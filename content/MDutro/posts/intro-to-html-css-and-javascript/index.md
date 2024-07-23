@@ -12,7 +12,7 @@ So you have decided to learn web development.
 
 Great! But once you start looking around for tutorials, guides, and other resources, it's easy to get overwhelmed. Web development incorporates a lot of different technologies that all work together to create the internet as we know it today. Understanding how they work together is no small task, especially when you are at the beginning of your web development journey. Which ones should you learn first? What do they do? What does it all mean???
 
-Unicorn Utterances is here to help. Let's start at the beginning.
+Playful Programming is here to help. Let's start at the beginning.
 
 At a very basic level, all websites are constructed from three foundational technologies: HTML, CSS, and JavaScript. Every other concept or technology related to front-end web development is either based on or works with one of these three building blocks. Getting a firm grasp on HTML, CSS, and JavaScript is critical to understanding web development and learning how to create your own websites and web applications.
 

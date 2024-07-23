@@ -35,7 +35,7 @@ class DoNothingDirective {}
 class AppComponent {}
 ```
 
-<iframe data-frame-title="Do Nothing Directive - StackBlitz" src="uu-code:./do-nothing-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Do Nothing Directive - StackBlitz" src="pp-code:./do-nothing-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 Think of them as components without templates. They can use lifecycle methods:
 
@@ -64,7 +64,7 @@ class AppComponent {
 }
 ```
 
-<iframe data-frame-title="Alert On Destroy - StackBlitz" src="uu-code:./alert-on-destroy?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Alert On Destroy - StackBlitz" src="pp-code:./alert-on-destroy?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 Store state:
 
@@ -99,7 +99,7 @@ class AppComponent {
 }
 ```
 
-<iframe data-frame-title="Listen for Events - StackBlitz" src="uu-code:./listen-for-events?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Listen for Events - StackBlitz" src="pp-code:./listen-for-events?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 Use the `inject` function:
 
@@ -124,7 +124,7 @@ class ListenForEventDirective implements OnInit {
 }
 ```
 
-<iframe data-frame-title="Listen for Events Inject - StackBlitz" src="uu-code:./listen-for-events-inject?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Listen for Events Inject - StackBlitz" src="pp-code:./listen-for-events-inject?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 And do just about anything else a component can do without a template of its own.
 
@@ -150,7 +150,7 @@ class LogElDirective {
 }
 ```
 
-<iframe data-frame-title="Log Element - StackBlitz" src="uu-code:./log-element?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Log Element - StackBlitz" src="pp-code:./log-element?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 While this doesn't do anything yet, it logs the element to the `console.log` method. Let's instead change this code to make the attached element have a red background and white text:
 
@@ -182,7 +182,7 @@ class RedDirective {
 class AppComponent {}
 ```
 
-<iframe data-frame-title="Red Directive - StackBlitz" src="uu-code:./red-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Red Directive - StackBlitz" src="pp-code:./red-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 # `host` property binding
 
@@ -209,7 +209,7 @@ class RedDirective {}
 class AppComponent {}
 ```
 
-<iframe data-frame-title="Red Host Directive - StackBlitz" src="uu-code:./red-host-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Red Host Directive - StackBlitz" src="pp-code:./red-host-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 Here, `host` refers to the element the directive is attached to. We can use it to then attach new attributes to the parent element like we did above.
 
@@ -241,7 +241,7 @@ class RedDirective {
 class AppComponent {}
 ````
 
-<iframe data-frame-title="Red Dynamic Host Directive - StackBlitz" src="uu-code:./red-dynamic-host-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Red Dynamic Host Directive - StackBlitz" src="pp-code:./red-dynamic-host-directive?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 # Using `host` property with Components
 
@@ -274,7 +274,7 @@ class RedDirective {
 class AppComponent {}
 ```
 
-<iframe data-frame-title="Red Div Component - StackBlitz" src="uu-code:./red-div-component?template=node&embed=1&file=src%2Fmain.ts"></iframe>
+<iframe data-frame-title="Red Div Component - StackBlitz" src="pp-code:./red-div-component?template=node&embed=1&file=src%2Fmain.ts"></iframe>
 
 This will output to something akin to the following Angular template:
 
