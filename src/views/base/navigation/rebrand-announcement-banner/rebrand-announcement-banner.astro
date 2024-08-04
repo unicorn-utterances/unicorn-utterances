@@ -1,0 +1,98 @@
+---
+import style from "./rebrand-announcement-banner.module.scss";
+import { Button, IconOnlyButton } from "../../../../components";
+import close from "../../../../icons/close.svg?raw";
+import { getHrefContainerProps } from "../../../../utils/href-container-script";
+
+const props = Astro.props as {
+	size: undefined | "l" | "xl";
+};
+---
+
+<div
+	style="display: none; max-height: 0px; overflow: hidden"
+	id="uu-pfp-rebrand-banner"
+	{...getHrefContainerProps(`/posts/rebrand-to-playful-programming`)}
+>
+	<div
+		class={`${style.outerContainer}  ${
+			props.size === "xl" ? style.header_xl : ""
+		}`}
+	>
+		<div class={style.innerContainer}>
+			<div class={style.textContainer}>
+				<p class={`text-style-body-large`}>
+					<span class={`text-style-headline-6`}>Unicorn Utterances</span> is now
+					<span class={`text-style-headline-6`}>Playful Programming</span>!
+				</p>
+				<Button
+					class={style.button}
+					tag="a"
+					href="/posts/rebrand-to-playful-programming">Learn more</Button
+				>
+			</div>
+			<IconOnlyButton
+				variant="secondary"
+				aria-label="Close this announcement"
+				tag="button"
+				type="button"
+				id="close-rebrand-banner"
+				class={style.closeButton}
+			>
+				<div
+					class={style.closeButtonContainer}
+					set:html={close}
+				/></IconOnlyButton
+			>
+		</div>
+	</div>
+</div>
+
+<script>
+	const closeButton = document.querySelector(
+		"#close-rebrand-banner",
+	) as HTMLElement;
+	const banner = document.querySelector(
+		"#uu-pfp-rebrand-banner",
+	) as HTMLElement;
+
+	const isBannerClosedKey = "uu-pfp-rebrand-banner-closed";
+	const hasSeenBannerAnimateKey = "has-seen-banner-animate";
+	const isClosed = localStorage.getItem(isBannerClosedKey);
+	const hasSeenBannerAnimate = localStorage.getItem(hasSeenBannerAnimateKey);
+
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)",
+	).matches;
+
+	if (banner && !isClosed) {
+		banner.style.display = "block";
+		if (!hasSeenBannerAnimate) {
+			localStorage.setItem(hasSeenBannerAnimateKey, "true");
+			if (!prefersReducedMotion) {
+				banner.style.transition = "max-height 3s ease-in";
+			}
+		}
+		setTimeout(() => {
+			banner.style.maxHeight = "100vh";
+		}, 0);
+	}
+
+	if (closeButton) {
+		closeButton.addEventListener("click", () => {
+			if (!prefersReducedMotion) {
+				banner.style.transition = "max-height 1s ease-out";
+			}
+			localStorage.setItem(isBannerClosedKey, "true");
+			setTimeout(() => {
+				banner.style.maxHeight = "0px";
+				setTimeout(
+					() => {
+						banner.style.display = "none";
+					},
+					prefersReducedMotion ? 0 : 1200,
+				);
+			}, 0);
+		});
+	}
+</script>

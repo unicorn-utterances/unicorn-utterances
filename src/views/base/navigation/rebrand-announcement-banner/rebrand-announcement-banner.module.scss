@@ -1,0 +1,46 @@
+@import "src/tokens/index";
+
+.outerContainer {
+	padding: var(--site-spacing);
+	margin: 0 auto;
+	max-width: var(--max-width_l);
+}
+
+.header_xl {
+	max-width: var(--max-width_xl);
+}
+
+.innerContainer {
+	position: relative;
+	background: var(--surface_primary_emphasis-none);
+	border-radius: var(--corner-radius_circular);
+	min-height: 4.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.textContainer {
+	padding: 0 var(--spc-8x);
+	padding-right: var(--spc-16x);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button {
+	margin-left: var(--spc-4x);
+}
+
+.closeButton {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: var(--spc-4x);
+}
+
+.closeButtonContainer,
+.closeButtonContainer > svg {
+	height: 100%;
+	width: 100%;
+}

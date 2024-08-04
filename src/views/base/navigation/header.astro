@@ -9,108 +9,113 @@ import logo from "src/assets/playfulprogramming_sticker.svg?url";
 import { removePrefixLanguageFromPath, translate } from "utils/translations";
 import { SearchInput } from "components/input/input";
 import { SEARCH_QUERY_KEY } from "src/views/search/search";
+import RebrandAnnouncementBanner from "./rebrand-announcement-banner/rebrand-announcement-banner.astro";
 
 const path = removePrefixLanguageFromPath(Astro.url.pathname);
 const isHome = path === "/";
 const isAbout = /^\/about\/?/.test(path);
 const isJoinUs = /^\/join-us\/?/.test(path);
 const isSearch = /^\/search\/?/.test(path);
+const isRebrandPost = /^\/posts\/rebrand-to-playful-programming\/?/.test(path);
 
 const props = Astro.props as {
 	size: undefined | "l" | "xl";
 };
 ---
 
-<header id="header-bar" class={style.headerBorder} data-sticky-observer>
-	<nav
-		class={`${style.header} ${
-			props.size === "xl" ? style.header_xl : ""
-		} d-flex`}
-	>
-		{!isHome && <BackButton class={style.backButton} />}
+<header>
+	<div id="header-bar" class={style.headerBorder} data-sticky-observer>
+		<nav
+			class={`${style.header} ${
+				props.size === "xl" ? style.header_xl : ""
+			} d-flex`}
+		>
+			{!isHome && <BackButton class={style.backButton} />}
 
-		<a href="/" class={`d-flex ${style.logo}`}>
-			<img
-				src={logo}
-				width={56}
-				height={56}
-				alt={translate(Astro, "alt.playfulprogramming_logo")}
-			/>
+			<a href="/" class={`d-flex ${style.logo}`}>
+				<img
+					src={logo}
+					width={56}
+					height={56}
+					alt={translate(Astro, "alt.playfulprogramming_logo")}
+				/>
 
-			<span class="text-style-button-regular">
-				Playful<br />
-				Programming
-			</span>
-		</a>
+				<span class="text-style-button-regular">
+					Playful<br />
+					Programming
+				</span>
+			</a>
 
-		<div class={`d-flex ${style.nav}`}>
-			{
-				!isAbout && (
-					<Button href="/about" variant="primary">
-						{translate(Astro, "title.about_us")}
-					</Button>
-				)
-			}
-			{
-				!isJoinUs && (
-					<Button href="/join-us" variant="primary">
-						{translate(Astro, "title.join_us")}
-					</Button>
-				)
-			}
-		</div>
+			<div class={`d-flex ${style.nav}`}>
+				{
+					!isAbout && (
+						<Button href="/about" variant="primary">
+							{translate(Astro, "title.about_us")}
+						</Button>
+					)
+				}
+				{
+					!isJoinUs && (
+						<Button href="/join-us" variant="primary">
+							{translate(Astro, "title.join_us")}
+						</Button>
+					)
+				}
+			</div>
 
-		<div class={`d-flex ${style.icons}`}>
-			{
-				!isSearch && [
-					<form method="get" action="/search" class={style.searchLarge}>
-						<SearchInput name={SEARCH_QUERY_KEY} variant="dense" />
-					</form>,
+			<div class={`d-flex ${style.icons}`}>
+				{
+					!isSearch && [
+						<form method="get" action="/search" class={style.searchLarge}>
+							<SearchInput name={SEARCH_QUERY_KEY} variant="dense" />
+						</form>,
 
-					<IconOnlyButton
-						href="/search"
-						aria-label={translate(Astro, "title.search")}
-						class={style.searchSmall}
-					>
-						<Icon style="width: 100%; height: 100%;" name="search" />
-					</IconOnlyButton>,
-				]
-			}
+						<IconOnlyButton
+							href="/search"
+							aria-label={translate(Astro, "title.search")}
+							class={style.searchSmall}
+						>
+							<Icon style="width: 100%; height: 100%;" name="search" />
+						</IconOnlyButton>,
+					]
+				}
 
-			{
-				!isHome && [
-					<Button
-						href={data.about.links.Discord.url}
-						aria-label={translate(Astro, "action.join_discord")}
-						class={style.discordLarge}
-					>
-						<Icon
-							slot="leftIcon"
-							style="width: 100%; height: 100%;"
-							name={data.about.links.Discord.icon as never}
-						/>
-						{translate(Astro, "action.join_discord")}
-					</Button>,
+				{
+					!isHome && [
+						<Button
+							href={data.about.links.Discord.url}
+							aria-label={translate(Astro, "action.join_discord")}
+							class={style.discordLarge}
+						>
+							<Icon
+								slot="leftIcon"
+								style="width: 100%; height: 100%;"
+								name={data.about.links.Discord.icon as never}
+							/>
+							{translate(Astro, "action.join_discord")}
+						</Button>,
 
-					<IconOnlyButton
-						href={data.about.links.Discord.url}
-						aria-label={translate(Astro, "action.join_discord")}
-						class={style.discordSmall}
-					>
-						<Icon
-							style="width: 100%; height: 100%;"
-							name={data.about.links.Discord.icon as never}
-						/>
-					</IconOnlyButton>,
-				]
-			}
+						<IconOnlyButton
+							href={data.about.links.Discord.url}
+							aria-label={translate(Astro, "action.join_discord")}
+							class={style.discordSmall}
+						>
+							<Icon
+								style="width: 100%; height: 100%;"
+								name={data.about.links.Discord.icon as never}
+							/>
+						</IconOnlyButton>,
+					]
+				}
 
-			{
-				isHome ? (
-					<DarkLightButton variant="large" class={style.themeToggleLarge} />
-				) : undefined
-			}
-			<DarkLightButton variant="iconOnly" class={style.themeToggleSmall} />
-		</div>
-	</nav>
+				{
+					isHome ? (
+						<DarkLightButton variant="large" class={style.themeToggleLarge} />
+					) : undefined
+				}
+				<DarkLightButton variant="iconOnly" class={style.themeToggleSmall} />
+			</div>
+		</nav>
+	</div>
+	{!isRebrandPost && <RebrandAnnouncementBanner size={props.size} />}
 </header>

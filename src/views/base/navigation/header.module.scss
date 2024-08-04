@@ -17,6 +17,10 @@
 	}
 }
 
+header {
+	display: contents;
+}
+
 .headerBorder {
 	border-bottom: 1px solid transparent;
 	&[data-sticky="pinned"] {
