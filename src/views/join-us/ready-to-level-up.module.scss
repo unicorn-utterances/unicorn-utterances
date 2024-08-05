@@ -1,0 +1,60 @@
+@import "src/tokens/index";
+
+.container {
+	max-width: var(--max-width_m);
+	padding: 0 var(--site-spacing);
+	margin-top: calc(var(--site-spacing) * 2);
+	margin-bottom: var(--site-spacing);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.header {
+	color: var(--primary_default);
+	margin: 0;
+	margin-bottom: var(--site-spacing);
+}
+
+.typesContainer {
+	display: flex;
+	gap: calc(var(--site-spacing) * 2);
+	flex-direction: column;
+
+	@include from($tabletSmall) {
+		flex-direction: row;
+	}
+}
+
+.typeContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	@include from($tabletSmall) {
+		width: 50%;
+	}
+}
+
+.badgesContainer {
+	display: flex;
+	gap: var(--spc-4x);
+	margin-bottom: var(--spc-6x);
+}
+
+.sticker {
+	width: 32px;
+	height: 32px;
+	filter: var(--shadow_sticker_drop_shadow);
+}
+
+.typeTitle {
+	color: var(--foreground_emphasis-high);
+	margin: 0;
+	margin-bottom: var(--spc-2x);
+}
+
+.typeBody {
+	color: var(--foreground_emphasis-medium);
+	margin: 0;
+	margin-bottom: var(--spc-6x);
+}

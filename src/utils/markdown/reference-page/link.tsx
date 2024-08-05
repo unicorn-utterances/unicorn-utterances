@@ -9,7 +9,12 @@ interface SuperScriptLinkProps {
 }
 
 /** @jsxImportSource hastscript */
-export function SuperScriptLink({ children, superScriptNumber, href, linkProps }: SuperScriptLinkProps): Element {
+export function SuperScriptLink({
+	children,
+	superScriptNumber,
+	href,
+	linkProps,
+}: SuperScriptLinkProps): Element {
 	return (
 		<a {...linkProps} href={href}>
 			{children}

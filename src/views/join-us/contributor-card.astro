@@ -19,9 +19,7 @@ const roles = unicorn.roles.map(
 	(role) => allRoles.find((r) => r.id === role)!.prettyname,
 );
 
-if (unicorn.achievements.includes("partner")) {
-	roles.unshift("Partner");
-}
+const isPartner = unicorn.achievements.includes("partner");
 ---
 
 <li class={style.card} {...getHrefContainerProps(unicornHref)}>
@@ -42,6 +40,14 @@ if (unicorn.achievements.includes("partner")) {
 	<div class={style.info}>
 		<span class={`${style.name} text-style-body-large-bold`}>
 			{unicorn.name}
+			{
+				isPartner && (
+					<span class={`text-style-body-small-bold ${style.partnerLabel}`}>
+						<img width="16" height="16" src="/flair/bowtie.svg" alt="" />
+						Partner
+					</span>
+				)
+			}
 		</span>
 		<ul
 			class={`${style.roles} text-style-body-small`}

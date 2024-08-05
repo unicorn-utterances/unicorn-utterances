@@ -1,0 +1,60 @@
+@import "src/tokens/index";
+
+.becomeAPartnerContainer {
+	max-width: var(--max-width_s);
+	padding: var(--site-spacing);
+	padding-bottom: 0;
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.becomeAPartnerTitle {
+	color: var(--foreground_emphasis-high);
+	margin: 0;
+	margin-bottom: var(--spc-4x);
+}
+
+.becomeAPartnerBody {
+	color: var(--foreground_emphasis-medium);
+	margin: 0;
+	margin-bottom: var(--site-spacing);
+}
+
+.becomeAPartnerButton {
+}
+
+.allPeopleContainer {
+	max-width: var(--max-width_l);
+	padding: var(--site-spacing);
+	margin: 0 auto;
+}
+
+.peopleContainer {
+	display: grid;
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: var(--site-spacing);
+
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+	@include from($tabletSmall) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	@include from($tabletLarge) {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--spc-2x) var(--site-spacing);
+	}
+}
+
+.contributorsTitle {
+	margin: 0;
+	margin-top: calc(var(--site-spacing) * 2);
+	margin-bottom: var(--site-spacing);
+	text-align: center;
+	color: var(--foreground_emphasis-high);
+}

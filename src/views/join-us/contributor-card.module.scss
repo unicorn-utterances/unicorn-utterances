@@ -109,8 +109,23 @@
 
 	color: var(--contributor_role-color);
 	line-height: 1;
+	min-height: 1em;
 
 	li {
 		display: inline;
 	}
+}
+
+.partnerLabel {
+	margin: 0;
+	margin-left: var(--spc-2x);
+	background: var(--surface_primary_emphasis-low);
+	border-radius: var(--corner-radius_s);
+	padding: var(--spc-1x) var(--spc-3x) var(--spc-1x) var(--spc-2x);
+	display: inline-flex;
+	align-items: center;
+}
+
+.partnerLabel img {
+	margin-right: var(--spc-2x);
 }

@@ -1,0 +1,69 @@
+@import "src/tokens/index";
+
+.supportUsTextContainer {
+	max-width: var(--max-width_s);
+	padding: var(--site-spacing);
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.supportUsTitle {
+	color: var(--foreground_emphasis-high);
+	margin: 0;
+	margin-bottom: var(--spc-4x);
+	text-align: center;
+}
+
+.supportUsBody {
+	color: var(--foreground_emphasis-medium);
+	margin: 0;
+	margin-bottom: var(--site-spacing);
+	text-align: center;
+}
+
+.restContainer {
+	max-width: var(--max-width_m);
+	margin: 0 auto;
+	margin-bottom: var(--site-spacing);
+}
+
+.supportedByBody {
+	color: var(--foreground_emphasis-high);
+	margin: 0;
+	margin-bottom: var(--site-spacing);
+	text-align: center;
+}
+
+.sponsorsContainer {
+	list-style: none;
+	margin: 0;
+	padding: 0 var(--site-spacing);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--site-spacing);
+	justify-content: center;
+}
+
+.sponsorItemContainer {
+}
+
+.sponsorItem {
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spc-3x);
+}
+
+.partnerImg {
+	width: auto;
+	height: 144px;
+	border-radius: var(--corner-radius_xl);
+}
+
+.sponsorName {
+	color: var(--foreground_emphasis-medium);
+	margin: 0;
+}

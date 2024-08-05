@@ -2,7 +2,6 @@
 import style from "./about.module.scss";
 import "../../styles/shiki.scss";
 import * as data from "src/utils/data";
-import ContributorCard from "./contributor-card.astro";
 import { translate } from "src/utils/translations";
 import TranslationsHeader from "src/views/base/translations/translations-header.astro";
 import HeadingLinkScript from "../base/scripts/heading-link-script.astro";
@@ -14,7 +13,7 @@ import { VFile } from "vfile";
 import { getMarkdownHtml } from "utils/markdown";
 import { getMarkdownVFile } from "utils/markdown/getMarkdownVFile";
 import { MarkdownFileInfo, MarkdownVFile } from "utils/markdown/types";
-import { Links, Sponsors } from "./components";
+import { Links } from "./components";
 
 interface Props {
 	locales: Languages[];
@@ -26,7 +25,7 @@ const { locales, locale, file } = Astro.props as Props;
 const fileInfo: MarkdownFileInfo = { kind: "page", file };
 const vfile = await getMarkdownVFile(fileInfo);
 
-const [content1, content2, content3] = await Promise.all(
+const [content1, content2] = await Promise.all(
 	vfile.value
 		.toString()
 		.split("<!-- split -->")
@@ -77,18 +76,6 @@ const tags = [
 		<div set:html={content1.html} />
 		<Links />
 		<div set:html={content2.html} />
-		<Sponsors />
-		<div set:html={content3.html} />
-
-		<hr />
-
-		<h2 id="contributors">
-			<span>{translate(Astro, "title.contributors")}</span>
-		</h2>
-		<ul class={style.unicorns} role="list" aria-labelledby="contributors">
-			{unicorns.map((unicornInfo) => <ContributorCard unicorn={unicornInfo} />)}
-		</ul>
-
 		<hr />
 
 		<h2 id="licenses">
@@ -142,8 +129,6 @@ const tags = [
 				}
 			</script>
 		</p>
-
-		<hr />
 	</div>
 </main>
 

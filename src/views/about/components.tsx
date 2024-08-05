@@ -37,24 +37,3 @@ export function Links() {
 		</ul>
 	);
 }
-
-export function Sponsors() {
-	return (
-		<ul class="sponsors" role="list" aria-labelledby="sponsors">
-			{Object.values(data.about.sponsors).map(({ name, logo, url }) => (
-				<li>
-					<a href={url}>
-						<img
-							data-dont-round="true"
-							height="300"
-							width="122"
-							alt={name}
-							src={logo}
-							loading="lazy"
-						/>
-					</a>
-				</li>
-			))}
-		</ul>
-	);
-}

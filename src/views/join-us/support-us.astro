@@ -1,0 +1,61 @@
+---
+import style from "./support-us.module.scss";
+import { LargeButton } from "components/button/button";
+
+import * as data from "src/utils/data";
+---
+
+<section>
+	<div class={style.supportUsTextContainer}>
+		<h2 class={`text-style-headline-1 ${style.supportUsTitle}`}>Support us</h2>
+		<p class={`text-style-body-large ${style.supportUsBody}`}>
+			Unicorn Utterances is completely community-driven, and all maintenance and
+			upkeep costs are spent out-of-pocket. All contributions go towards the
+			project’s goals, and are <a
+				href="https://github.com/unicorn-utterances/unicorn-utterances/issues?q=is%3Aissue+label%3Adisclosure+is%3Aclosed"
+			>
+				disclosed publicly.</a
+			>
+		</p>
+		<LargeButton
+			tag="a"
+			href="https://opencollective.com/unicorn-utterances"
+			variant="primary-emphasized">Donate</LargeButton
+		>
+	</div>
+	<div class={style.restContainer}>
+		<h3
+			id="our-sponsors"
+			class={`text-style-body-large-bold ${style.supportedByBody}`}
+		>
+			We are currently sponsored by the following organizations:
+		</h3>
+		<div>
+			<ul
+				class={style.sponsorsContainer}
+				role="list"
+				aria-labelledby="our-sponsors"
+			>
+				{
+					Object.values(data.about.sponsors).map(({ name, logo, url }) => (
+						<li class={style.sponsorItemContainer}>
+							<a href={url} class={style.sponsorItem}>
+								<img
+									class={style.partnerImg}
+									height="300"
+									width="122"
+									alt=""
+									src={logo}
+									loading="lazy"
+								/>
+								<span class={`text-style-body-large-bold ${style.sponsorName}`}>
+									{name}
+								</span>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>

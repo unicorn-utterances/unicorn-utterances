@@ -18,17 +18,6 @@ Et comme nous l’avons déjà cité, on a un serveur Discord ou on parle tech, 
 
 ---
 
-## Sponsors {#sponsors}
-
-<!-- split -->
-
-> **Learn more about sponsorships:**
-> Pour plus d’informations concernant nos sponsors et leurs impact sur notre site, vous pouvez consulter [les divulgations que nous avons publiées sur GitHub](https://github.com/unicorn-utterances/unicorn-utterances/issues?q=is%3Aissue+label%3Adisclosure+is%3Aclosed).
->
-> **Les sponsors n'ont pas un effet direct sur le contenu du site.**
-
----
-
 ## Code d’éthique {#ethics}
 
 Nous ne voudrions jamais nous retrouver dans un endroit où le contenu ou la communauté sont compromis par des influences financières, ou bien des individus potentiellement nuisibles. Pour cela, nous avons adopté le

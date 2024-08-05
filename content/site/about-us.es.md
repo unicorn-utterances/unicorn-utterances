@@ -18,17 +18,6 @@ Como lo mencionamos antes, también tenemos un servidor de Discord donde podemos
 
 ---
 
-## Patrocinadores {#sponsors}
-
-<!-- split -->
-
-> **Más información sobre patrocinios:**
-> Si quieres conocer más sobre los patrocinios y su impacto en nuestro sitio, puedes leer [los detalles que publicamos en GitHub](https://github.com/unicorn-utterances/unicorn-utterances/issues?q=is%3Aissue+label%3Adisclosure+is%3Aclosed).
->
-> **En pocas palabras: ningún patrocinador toma decisiones sobre el contenido publicado en el sitio.**
-
----
-
 ## Declaración de Ética {#ethics}
 
 Nunca queremos terminar en un lugar en el que nuestro contenido educativo, la experiencia,

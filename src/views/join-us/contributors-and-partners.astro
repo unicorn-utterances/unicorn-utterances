@@ -1,0 +1,76 @@
+---
+import * as api from "../../utils/api";
+import { translate } from "../../utils";
+
+import { LargeButton } from "../../components/button/button";
+import ContributorCard from "./contributor-card.astro";
+
+import style from "./contributors-and-partners.module.scss";
+
+const people = api.getUnicornsByLang("en");
+
+const { partners, nonPartners } = people.reduce(
+	(prev, person) => {
+		if (person.achievements.includes("partner")) {
+			prev.partners.push(person);
+		} else {
+			prev.nonPartners.push(person);
+		}
+		return prev;
+	},
+	{
+		partners: [] as typeof people,
+		nonPartners: [] as typeof people,
+	},
+);
+---
+
+<section>
+	<div class={style.becomeAPartnerContainer}>
+		<h2 class={`text-style-headline-1 ${style.becomeAPartnerTitle}`}>
+			<!--<span>Become a partner</span>-->
+			<span>Our partners</span>
+		</h2>
+		<p class={`text-style-body-large ${style.becomeAPartnerBody}`}>
+			Unicorn Utterances Partners reflect the very best our community has to
+			offer; experienced, knowledgeable, and compassionate members that are the
+			lifeblood of our project.
+			<!--<br />-->
+			<!--<br />-->
+			<!--<span>-->
+			<!--	Own a stake of the project and leverage our existing infrastructure and-->
+			<!--	community to help you grow!</span-->
+			<!--&gt;-->
+		</p>
+		<!--<LargeButton-->
+		<!--	variant="primary-emphasized"-->
+		<!--	tag="button"-->
+		<!--	class={style.becomeAPartnerButton}>Show me how</LargeButton-->
+		<!--&gt;-->
+	</div>
+</section>
+
+<div class={style.allPeopleContainer}>
+	<ul class={style.peopleContainer} role="list" aria-label="Partners">
+		{partners.map((unicornInfo) => <ContributorCard unicorn={unicornInfo} />)}
+	</ul>
+	<section>
+		<h2
+			class={`text-style-headline-3 ${style.contributorsTitle}`}
+			id="contributors"
+		>
+			{translate(Astro, "title.contributors")}
+		</h2>
+		<ul
+			class={style.peopleContainer}
+			role="list"
+			aria-labelledby="contributors"
+		>
+			{
+				nonPartners.map((unicornInfo) => (
+					<ContributorCard unicorn={unicornInfo} />
+				))
+			}
+		</ul>
+	</section>
+</div>

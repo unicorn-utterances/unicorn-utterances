@@ -1,0 +1,50 @@
+---
+import style from "./ready-to-level-up.module.scss";
+import { Button } from "components/index";
+---
+
+<section class={style.container}>
+	<h2 class={`text-style-headline-1 ${style.header}`}>
+		Ready to level-up as a contributor and gain access to private channels?
+	</h2>
+	<div class={style.typesContainer}>
+		<section class={style.typeContainer}>
+			<div class={style.badgesContainer}>
+				<img class={style.sticker} src="/stickers/role_author.svg" alt="" />
+				<img class={style.sticker} src="/stickers/role_community.svg" alt="" />
+				<img class={style.sticker} src="/stickers/role_translator.svg" alt="" />
+			</div>
+			<h3 class={`text-style-headline-3 ${style.typeTitle}`}>
+				Publish content
+			</h3>
+			<p class={`text-style-body-large ${style.typeBody}`}>
+				Write articles tackling computer science topics and help others learn
+				from your insights. Reposting content is welcomed & encouraged!
+			</p>
+			<Button
+				tag="a"
+				href="https://github.com/unicorn-utterances/unicorn-utterances/blob/main/CONTRIBUTING.md#writing-a-new-post"
+				>Submit an article</Button
+			>
+		</section>
+		<section class={style.typeContainer}>
+			<div class={style.badgesContainer}>
+				<img class={style.sticker} src="/stickers/role_devops.svg" alt="" />
+				<img class={style.sticker} src="/stickers/role_developer.svg" alt="" />
+				<img class={style.sticker} src="/stickers/role_designer.svg" alt="" />
+			</div>
+			<h3 class={`text-style-headline-3 ${style.typeTitle}`}>
+				Improve the site
+			</h3>
+			<p class={`text-style-body-large ${style.typeBody}`}>
+				Help us develop and improve the website for everyone. Design new
+				sections, help fix bugs, and anything in-between. Mentoring provided.
+			</p>
+			<Button
+				tag="a"
+				href="https://github.com/unicorn-utterances/unicorn-utterances"
+				>View repository</Button
+			>
+		</section>
+	</div>
+</section>

@@ -1,0 +1,32 @@
+---
+import style from "../views/join-us/get-involved.module.scss";
+import Document from "../layouts/document.astro";
+import GetInvolvedHeader from "../views/join-us/get-involved-header.astro";
+import SEO from "components/seo/seo.astro";
+import WhyGetInvolved from "../views/join-us/why-get-involved.astro";
+import WelcomeToEveryone from "../views/join-us/welcome-to-everyone.astro";
+import ReadyToLevelUp from "../views/join-us/ready-to-level-up.astro";
+import SupportUs from "../views/join-us/support-us.astro";
+import ContributorsAndPartners from "../views/join-us/contributors-and-partners.astro";
+import Hr from "../views/join-us/hr.astro";
+---
+
+<Document>
+	<SEO
+		title={"Join Us"}
+		description={`Get involved with the community and help us make learning programming more accessible.`}
+		slot="head"
+	/>
+	<GetInvolvedHeader />
+	<WhyGetInvolved />
+	<WelcomeToEveryone />
+	<ReadyToLevelUp />
+	<div class={style.container}>
+		<Hr />
+	</div>
+	<SupportUs />
+	<div class={style.container}>
+		<Hr />
+	</div>
+	<ContributorsAndPartners />
+</Document>

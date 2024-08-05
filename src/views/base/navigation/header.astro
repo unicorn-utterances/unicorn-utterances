@@ -13,6 +13,7 @@ import { SEARCH_QUERY_KEY } from "src/views/search/search";
 const path = removePrefixLanguageFromPath(Astro.url.pathname);
 const isHome = path === "/";
 const isAbout = /^\/about\/?/.test(path);
+const isJoinUs = /^\/join-us\/?/.test(path);
 const isSearch = /^\/search\/?/.test(path);
 
 const props = Astro.props as {
@@ -44,9 +45,16 @@ const props = Astro.props as {
 
 		<div class={`d-flex ${style.nav}`}>
 			{
-				!isHome && !isAbout && (
+				!isAbout && (
 					<Button href="/about" variant="primary">
 						{translate(Astro, "title.about_us")}
+					</Button>
+				)
+			}
+			{
+				!isJoinUs && (
+					<Button href="/join-us" variant="primary">
+						{translate(Astro, "title.join_us")}
 					</Button>
 				)
 			}

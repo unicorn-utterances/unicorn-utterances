@@ -149,9 +149,9 @@
 
 	:global(.post-body) {
 		display: grid;
-		grid-template-columns: calc(
-				var(--license-modal_icon-size) + var(--license-modal_icon-gap)
-			) 1fr;
+		grid-template-columns:
+			calc(var(--license-modal_icon-size) + var(--license-modal_icon-gap))
+			1fr;
 		grid-template-rows: minmax(var(--license-modal_icon-size), auto) repeat(
 				10,
 				auto

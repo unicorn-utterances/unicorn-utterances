@@ -1,0 +1,56 @@
+@import "src/tokens/index";
+
+.container {
+	max-width: var(--max-width_m);
+	padding: var(--site-spacing);
+	padding-top: calc(var(--site-spacing) * 2);
+	margin: 0 auto;
+}
+
+.colorContainer {
+	background: var(--surface_secondary_emphasis-low);
+	width: 100%;
+	border-radius: var(--corner-radius_xl);
+	padding: calc(var(--site-spacing) * 1.5);
+	display: flex;
+	flex-direction: column;
+
+	@include from($tabletSmall) {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
+
+.textContainer {
+	max-width: var(--max-width_xs);
+	margin-bottom: calc(var(--site-spacing) * 1.5);
+
+	@include from($tabletSmall) {
+		margin-bottom: 0;
+		margin-right: calc(var(--site-spacing) * 1.5);
+	}
+}
+
+.title {
+	margin: 0;
+	margin-bottom: var(--spc-2x);
+	color: var(--foreground_emphasis-high);
+}
+
+.explainer {
+	margin: 0;
+	color: var(--secondary_on-variant);
+}
+
+.buttonContainer {
+	display: inline-flex;
+	align-items: center;
+}
+
+.button {
+	width: 100%;
+
+	@include from($mobile) {
+		width: auto;
+	}
+}
