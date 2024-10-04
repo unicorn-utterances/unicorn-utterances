@@ -510,7 +510,7 @@ This means that when the user clicks on the red square, you'll see the following
 
 You won't see anything from the green square's `eventListener`, however.
 
-<iframe src="https://stackblitz.com/edit/event-capture-demo?embed=1&file=index.js&hideExplorer=1&hideNavigation=1" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://stackblitz.com/edit/event-capture-demo-jxb7wg?embed=1&file=index.js&hideExplorer=1&hideNavigation=1" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 You'll also notice that if you click on the green square, you'll never see the `"A click handled on green using capture"` message. This is due to the `stopPropagation`, as mentioned before. The click is being registered on the red square first and then stopped on the blue square.
 
