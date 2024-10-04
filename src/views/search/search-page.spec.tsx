@@ -1,21 +1,25 @@
 /* eslint-disable no-var */
-import { beforeAll, beforeEach, test, describe, expect } from "vitest";
+import { beforeAll, beforeEach, afterEach, afterAll, test, describe, expect, vi } from "vitest";
 import {
 	findByText as findByTextFrom,
-	queryByText as queryByTextFrom,
 	render,
 	waitFor,
 	cleanup,
 } from "@testing-library/preact";
-import SearchPage from "./search-page";
-import type { ServerReturnType } from "./types";
+import { SearchPageBase } from "./search-page";
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 import { MockCanonicalPost, MockPost } from "../../../__mocks__/data/mock-post";
 import userEvent from "@testing-library/user-event";
 import { MockCollection } from "../../../__mocks__/data/mock-collection";
 import { MockPerson, MockPersonTwo } from "../../../__mocks__/data/mock-person";
-import { buildSearchQuery } from "./search";
+import { buildSearchQuery } from "src/views/search/search";
+import { PersonInfo } from "types/PersonInfo";
+import { PostInfo } from "types/PostInfo";
+import { CollectionInfo } from "types/CollectionInfo";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SearchClient, SearchContext } from "./orama";
+import { ClientSearchParams, OramaClient } from "@oramacloud/client";
 
 const user = userEvent.setup();
 
@@ -33,44 +37,150 @@ beforeEach(() => {
 
 afterAll(() => server.close());
 
-function mockFetch(fn: (searchStr: string) => ServerReturnType) {
+interface FnReply {
+	posts: PostInfo[];
+	totalPosts: number;
+	collections: CollectionInfo[];
+	totalCollections: number;
+	tags?: Record<string, number>;
+	authors?: Record<string, number>;
+}
+
+function mockOramaClient(partial: Partial<OramaClient>): OramaClient {
+	return {
+		search: vi.fn(),
+		...partial,
+	} as never as OramaClient;
+}
+
+function mockClients(fn: (searchStr: string) => FnReply): SearchContext {
+	const postClient = mockOramaClient({
+		search: vi.fn().mockImplementation(async (query: ClientSearchParams) => {
+			const searchString = query.term!;
+			const res = fn(searchString);
+			const count = res.totalPosts;
+			let id = 1;
+			const hits =
+				res.posts.map((post) => {
+					return {
+						id: ++id,
+						score: 2,
+						document: post,
+					};
+				}) || [];
+			return {
+				hits,
+				count,
+				facets: {
+					tags: {
+						count: 0,
+						values: res.tags ?? {},
+					},
+					authors: {
+						count: 0,
+						values: res.authors ?? {},
+					},
+				},
+				elapsed: { raw: 0, formatted: "0ms" },
+			};
+		}),
+	});
+
+	const collectionClient = mockOramaClient({
+		search: vi.fn().mockImplementation(async (query: ClientSearchParams) => {
+			const searchString = query.term!;
+			const res = fn(searchString);
+			const count = res.totalCollections;
+			let id = 1;
+			const hits =
+				res.collections.map((collection) => {
+					return {
+						id: ++id,
+						score: 2,
+						document: collection,
+					};
+				}) || [];
+			return {
+				hits,
+				count,
+				facets: {
+					tags: {
+						count: 0,
+						values: {},
+					},
+					authors: {
+						count: 0,
+						values: {},
+					},
+				},
+				elapsed: { raw: 0, formatted: "0ms" },
+			};
+		}),
+	});
+
+	return { postClient, collectionClient };
+}
+
+function mockPeopleIndex(
+	people: PersonInfo[],
+) {
 	server.use(
-		http.get(`*/api/search`, async ({ request }) => {
-			const searchString = new URL(request.url).searchParams.get("query")!;
-			return HttpResponse.json(fn(searchString));
+		http.get(`*/searchFilters.json`, async () => {
+			return HttpResponse.json({
+				people,
+				tags: [
+					{
+						displayName: "Angular",
+						id: "angular",
+						image: "/stickers/angular.svg",
+						shownWithBranding: true,
+						totalPostCount: 32,
+					}
+				],
+			});
 		}),
 	);
 }
 
-function mockFetchWithStatus(
-	status: number,
-	fn: (searchStr: string) => unknown,
-) {
-	server.use(
-		http.get(`*/api/search`, async ({ request }) => {
-			const searchString = new URL(request.url).searchParams.get("query")!;
-			return HttpResponse.json({ body: fn(searchString) }, { status });
-		}),
+function SearchPage(props: { mockClients: SearchContext }) {
+	const queryClient = new QueryClient();
+	return (
+		<SearchClient.Provider value={props.mockClients}>
+			<QueryClientProvider client={queryClient}>
+				<SearchPageBase />
+			</QueryClientProvider>
+		</SearchClient.Provider>
 	);
 }
 
 describe("Search page", () => {
-	test("Should show initial results", () => {
-		const { getByText } = render(<SearchPage />);
+	test("Should show initial results", async () => {
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
+			people: [],
+			posts: [],
+			totalPosts: 0,
+			totalCollections: 0,
+			collections: [],
+		}));
 
-		expect(getByText("What would you like to find?")).toBeInTheDocument();
+		const { getByText } = render(<SearchPage mockClients={clients} />);
+
+		await waitFor(() =>
+			expect(getByText("What would you like to find?")).toBeInTheDocument(),
+		);
 	});
 
 	test("Should show search results for posts", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [MockPost],
 			totalPosts: 1,
 			totalCollections: 0,
 			collections: [],
 		}));
 
-		const { getByText, getByTestId } = render(<SearchPage />);
+		const { getByText, getByTestId } = render(<SearchPage mockClients={clients} />);
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, MockPost.title);
 		await user.type(searchInput, "{enter}");
@@ -78,15 +188,15 @@ describe("Search page", () => {
 	});
 
 	test("Should show search results for collections", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [],
 			totalPosts: 0,
 			totalCollections: 1,
 			collections: [MockCollection],
 		}));
 
-		const { getByText, getByTestId } = render(<SearchPage />);
+		const { getByText, getByTestId } = render(<SearchPage mockClients={clients} />);
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, MockCollection.title);
 		await user.type(searchInput, "{enter}");
@@ -96,10 +206,9 @@ describe("Search page", () => {
 	});
 
 	test("Should show error screen when 500", async () => {
-		mockFetchWithStatus(500, () => ({
-			error: "There was an error fetching your search results.",
-		}));
-		const { getByText, getByTestId } = render(<SearchPage />);
+		mockPeopleIndex([]);
+		const clients = mockClients(() => { throw "oops"; });
+		const { getByText, getByTestId } = render(<SearchPage mockClients={clients} />);
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, MockPost.title);
 		await user.type(searchInput, "{enter}");
@@ -111,15 +220,15 @@ describe("Search page", () => {
 	});
 
 	test("Should show 'nothing found'", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [],
 			totalPosts: 0,
 			totalCollections: 0,
 			collections: [],
 		}));
 
-		const { getByText, getByTestId } = render(<SearchPage />);
+		const { getByText, getByTestId } = render(<SearchPage mockClients={clients} />);
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "Asdfasdfasdf");
 		await user.type(searchInput, "{enter}");
@@ -129,15 +238,16 @@ describe("Search page", () => {
 	});
 
 	test("Remove collections header when none found", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
+			people: [],
 			posts: [MockPost],
 			totalPosts: 1,
 			totalCollections: 0,
 			collections: [],
 		}));
 
-		const { getByTestId, queryByTestId } = render(<SearchPage />);
+		const { getByTestId, queryByTestId } = render(<SearchPage mockClients={clients} />);
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, MockPost.title);
 		await user.type(searchInput, "{enter}");
@@ -148,15 +258,15 @@ describe("Search page", () => {
 	});
 
 	test("Remove posts header when none found", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [],
 			totalPosts: 0,
 			totalCollections: 1,
 			collections: [MockCollection],
 		}));
 
-		const { getByTestId, queryByTestId } = render(<SearchPage />);
+		const { getByTestId, queryByTestId } = render(<SearchPage mockClients={clients} />);
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, MockCollection.title);
 		await user.type(searchInput, "{enter}");
@@ -167,8 +277,8 @@ describe("Search page", () => {
 	});
 
 	test("Filter by tag works on desktop sidebar", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [
 				{ ...MockPost, tags: ["Angular"], title: "One blog post" },
 				{ ...MockCanonicalPost, tags: [], title: "Two blog post" },
@@ -176,9 +286,11 @@ describe("Search page", () => {
 			totalPosts: 2,
 			totalCollections: 0,
 			collections: [],
+			tags: { angular: 1 },
+			authors: {},
 		}));
 
-		const { getByTestId, queryByTestId, getByText } = render(<SearchPage />);
+		const { getByTestId, queryByTestId, getByText } = render(<SearchPage mockClients={clients} />);
 
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
@@ -197,11 +309,8 @@ describe("Search page", () => {
 	});
 
 	test("Filter by author works on desktop sidebar", async () => {
-		mockFetch(() => ({
-			people: {
-				[MockPerson.id]: MockPerson,
-				[MockPersonTwo.id]: MockPersonTwo,
-			},
+		mockPeopleIndex([MockPerson, MockPersonTwo]);
+		const clients = mockClients(() => ({
 			posts: [
 				{
 					...MockPost,
@@ -221,7 +330,7 @@ describe("Search page", () => {
 			collections: [],
 		}));
 
-		const { getByTestId, getByText, queryByTestId } = render(<SearchPage />);
+		const { getByTestId, getByText, queryByTestId } = render(<SearchPage mockClients={clients} />);
 
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
@@ -240,16 +349,16 @@ describe("Search page", () => {
 	});
 
 	test("Filter by content type work on radio group buttons", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [{ ...MockPost, title: "One blog post" }],
 			totalPosts: 1,
 			totalCollections: 1,
 			collections: [{ ...MockCollection, title: "One collection" }],
 		}));
 
-		const { getByTestId, getByText, getByLabelText, queryByTestId } = render(
-			<SearchPage />,
+		const { getByTestId, getByText, queryByTestId } = render(
+			<SearchPage mockClients={clients} />,
 		);
 
 		const searchInput = getByTestId("search-input");
@@ -281,10 +390,10 @@ describe("Search page", () => {
 	});
 
 	test("Sort by date works on desktop radio group buttons", async () => {
-		global.innerWidth = 2000;
+		(global as { innerWidth: number }).innerWidth = 2000;
 
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [
 				{
 					...MockPost,
@@ -304,11 +413,15 @@ describe("Search page", () => {
 			collections: [],
 		}));
 
-		const { getByTestId, getByText } = render(<SearchPage />);
+		const { getByTestId } = render(<SearchPage mockClients={clients} />);
 
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
 		await user.type(searchInput, "{enter}");
+
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledTimes(1)
+		);
 
 		const container = getByTestId("sort-order-group-sidebar");
 
@@ -319,30 +432,56 @@ describe("Search page", () => {
 
 		await user.selectOptions(select, "newest");
 
-		await waitFor(() => {
-			const html = document.body.innerHTML;
-			const a = html.search("One blog post");
-			const b = html.search("Two blog post");
-			expect(a).toBeLessThan(b);
-		});
-
-		await waitFor(() => expect(getByText("One blog post")).toBeInTheDocument());
-		expect(getByText("Two blog post")).toBeInTheDocument();
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledTimes(2)
+		);
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 0,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "desc",
+				},
+				where: {
+					authors: undefined,
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
+		);
 
 		await user.selectOptions(select, "oldest");
 
-		await waitFor(() => {
-			const html = document.body.innerHTML;
-			const a = html.search("Two blog post");
-			const b = html.search("One blog post");
-			expect(a).toBeLessThan(b);
-		});
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledTimes(3)
+		);
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 0,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "asc",
+				},
+				where: {
+					authors: undefined,
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
+		);
 	});
 
 	test("Sort by date works on mobile radio group buttons", async () => {
-		global.innerWidth = 500;
-		mockFetch(() => ({
-			people: {},
+		(global as { innerWidth: number }).innerWidth = 500;
+
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [
 				{
 					...MockPost,
@@ -362,11 +501,15 @@ describe("Search page", () => {
 			collections: [],
 		}));
 
-		const { getByTestId, getByText } = render(<SearchPage />);
+		const { getByTestId } = render(<SearchPage mockClients={clients} />);
 
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
 		await user.type(searchInput, "{enter}");
+
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledTimes(1)
+		);
 
 		const container = getByTestId("sort-order-group-topbar");
 
@@ -377,30 +520,55 @@ describe("Search page", () => {
 
 		user.selectOptions(select, "newest");
 
-		await waitFor(() => {
-			const html = document.body.innerHTML;
-			const a = html.search("One blog post");
-			const b = html.search("Two blog post");
-			expect(a).toBeLessThan(b);
-		});
-
-		await waitFor(() => expect(getByText("One blog post")).toBeInTheDocument());
-		expect(getByText("Two blog post")).toBeInTheDocument();
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledTimes(2)
+		);
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 0,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "desc",
+				},
+				where: {
+					authors: undefined,
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
+		);
 
 		user.selectOptions(select, "oldest");
 
-		await waitFor(() => {
-			const html = document.body.innerHTML;
-			const a = html.search("Two blog post");
-			const b = html.search("One blog post");
-			expect(a).toBeLessThan(b);
-		});
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledTimes(3)
+		);
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 0,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "asc",
+				},
+				where: {
+					authors: undefined,
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
+		);
 	});
 
 	test("Pagination - Changing pages to page 2 shows second page of results", async () => {
 		// 6 posts per page
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [
 				{ ...MockPost, slug: `blog-post-1`, title: "One blog post" },
 				{ ...MockPost, slug: `blog-post-2`, title: "Two blog post" },
@@ -420,23 +588,37 @@ describe("Search page", () => {
 			collections: [],
 		}));
 
-		const { findByTestId, getByText, getByTestId, queryByText } = render(
-			<SearchPage />,
+		const { findByTestId, getByText, getByTestId } = render(
+			<SearchPage mockClients={clients} />,
 		);
 
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
 		await user.type(searchInput, "{enter}");
 
-		await waitFor(() => expect(getByText("One blog post")).toBeInTheDocument());
-		await waitFor(() => expect(getByText("Six blog post")).toBeInTheDocument());
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledOnce()
+		);
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 0,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "desc",
+				},
+				where: {
+					authors: undefined,
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
+		);
 
-		await waitFor(() =>
-			expect(queryByText("Seven blog post")).not.toBeInTheDocument(),
-		);
-		await waitFor(() =>
-			expect(queryByText("Twelve blog post")).not.toBeInTheDocument(),
-		);
+		expect(getByText("One blog post")).toBeInTheDocument();
+		expect(getByText("Six blog post")).toBeInTheDocument();
 
 		const container = await findByTestId("pagination");
 
@@ -445,28 +627,32 @@ describe("Search page", () => {
 		await user.click(page2);
 
 		await waitFor(() =>
-			expect(getByText("Seven blog post")).toBeInTheDocument(),
+			expect(clients.postClient.search).toHaveBeenCalledTimes(2)
 		);
-		await waitFor(() =>
-			expect(getByText("Twelve blog post")).toBeInTheDocument(),
-		);
-
-		await waitFor(() =>
-			expect(queryByText("One blog post")).not.toBeInTheDocument(),
-		);
-		await waitFor(() =>
-			expect(queryByText("Six blog post")).not.toBeInTheDocument(),
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 6,
+				sortBy: {
+					order: "desc",
+					property: "publishedTimestamp",
+				},
+				where: {
+					authors: undefined,
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
 		);
 	});
 
 	test("Pagination - Filters impact pagination", async () => {
-		global.innerWidth = 2000;
+		(global as { innerWidth: number }).innerWidth = 2000;
 		// 6 posts per page
-		mockFetch(() => ({
-			people: {
-				[MockPerson.id]: MockPerson,
-				[MockPersonTwo.id]: MockPersonTwo,
-			},
+		mockPeopleIndex([MockPerson, MockPersonTwo]);
+		const clients = mockClients(() => ({
 			posts: [
 				{
 					...MockPost,
@@ -558,20 +744,39 @@ describe("Search page", () => {
 			collections: [],
 		}));
 
-		const { findByTestId, getByText, getByTestId, queryByText } = render(
-			<SearchPage />,
+		const { findByTestId, getByText, getByTestId } = render(
+			<SearchPage mockClients={clients} />,
 		);
 
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
 		await user.type(searchInput, "{enter}");
 
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledOnce()
+		);
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 0,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "desc",
+				},
+				where: {
+					authors: undefined,
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
+		);
+
 		const container = await findByTestId("pagination");
 
-		await waitFor(() => expect(getByText("One blog post")).toBeInTheDocument());
-		await waitFor(() =>
-			expect(getByText("Four blog post")).toBeInTheDocument(),
-		);
+		expect(getByText("One blog post")).toBeInTheDocument();
+		expect(getByText("Four blog post")).toBeInTheDocument();
 
 		expect(await findByTextFrom(container, "2")).toBeInTheDocument();
 
@@ -581,20 +786,33 @@ describe("Search page", () => {
 
 		await user.click(author);
 
-		await waitFor(() => expect(getByText("One blog post")).toBeInTheDocument());
+		// Invokes the expected post query
 		await waitFor(() =>
-			expect(queryByText("Five blog post")).not.toBeInTheDocument(),
+			expect(clients.postClient.search).toHaveBeenCalledTimes(2)
 		);
-
-		await waitFor(() =>
-			expect(queryByTextFrom(container, "2")).not.toBeInTheDocument(),
+		expect(clients.postClient.search).toHaveBeenLastCalledWith(
+			{
+				term: "",
+				limit: 6,
+				offset: 0,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "desc",
+				},
+				where: {
+					authors: [MockPerson.id],
+					tags: undefined,
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
 		);
 	});
 
 	// Search page, sort order, etc
 	test("Make sure that initial search props are not thrown away", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [
 				{
 					...MockPost,
@@ -718,44 +936,59 @@ describe("Search page", () => {
 
 		window.location.assign(`?${searchQuery}`);
 
-		const { getByTestId, getByText, queryByText } = render(<SearchPage />);
+		const { getByTestId } = render(<SearchPage mockClients={clients} />);
 
 		// Persists search query
 		const searchInput = getByTestId("search-input");
 		expect(searchInput).toHaveValue("blog");
 
-		// Persists page
-		await waitFor(() =>
-			expect(getByText("Seven blog post")).toBeInTheDocument(),
+		// Invokes the expected post query
+		expect(clients.postClient.search).toHaveBeenCalledOnce()
+		expect(clients.postClient.search).toHaveBeenCalledWith(
+			{
+				term: "blog",
+				limit: 6,
+				offset: 6,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "asc",
+				},
+				where: {
+					tags: ["angular"],
+					authors: [MockPerson.id],
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
 		);
-		expect(queryByText("One blog post")).not.toBeInTheDocument();
 
-		// Persists content type
-		expect(queryByText("One collection")).not.toBeInTheDocument();
-
-		// Persists tags
-		expect(queryByText("Eight blog post")).not.toBeInTheDocument();
-
-		// Persists authors
-		expect(queryByText("Nine blog post")).not.toBeInTheDocument();
-
-		// Persists sort order
-		await waitFor(() => {
-			const html = document.body.innerHTML;
-			const a = html.search("Ten blog post");
-			const b = html.search("Seven blog post");
-			expect(a).toBeLessThan(b);
-		});
+		// Invokes the expected collections query
+		expect(clients.collectionClient.search).toHaveBeenCalledOnce()
+		expect(clients.collectionClient.search).toHaveBeenCalledWith(
+			{
+				term: "blog",
+				limit: 4,
+				offset: 4,
+				sortBy: {
+					property: "publishedTimestamp",
+					order: "asc",
+				},
+				where: {
+					tags: ["angular"],
+					authors: [MockPerson.id],
+				},
+				facets: expect.anything(),
+			},
+			expect.anything(),
+		);
 	});
 
 	test("Make sure that complete re-renders preserve tags, authors, etc", async () => {
-		global.innerWidth = 2000;
+		(global as { innerWidth: number }).innerWidth = 2000;
 
-		mockFetch(() => ({
-			people: {
-				[MockPerson.id]: MockPerson,
-				[MockPersonTwo.id]: MockPersonTwo,
-			},
+		mockPeopleIndex([MockPerson, MockPersonTwo]);
+		const clients = mockClients(() => ({
+			people: [MockPerson, MockPersonTwo],
 			posts: [
 				{
 					...MockPost,
@@ -773,9 +1006,11 @@ describe("Search page", () => {
 			totalPosts: 2,
 			totalCollections: 0,
 			collections: [],
+			tags: { angular: 1 },
+			authors: { [MockPerson.id]: 1 },
 		}));
 
-		var { getByTestId, getByText } = render(<SearchPage />);
+		var { getByTestId, getByText } = render(<SearchPage mockClients={clients} />);
 
 		var searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
@@ -801,7 +1036,7 @@ describe("Search page", () => {
 		cleanup();
 
 		// Re-render
-		var { getByTestId, getByText } = render(<SearchPage />);
+		var { getByTestId, getByText } = render(<SearchPage mockClients={clients} />);
 
 		var searchInput = getByTestId("search-input");
 		await user.type(searchInput, "*");
@@ -817,8 +1052,8 @@ describe("Search page", () => {
 	});
 
 	test("Make sure that re-searches reset page to 1 and preserve tags, authors, etc", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [
 				{
 					...MockPost,
@@ -950,7 +1185,11 @@ describe("Search page", () => {
 
 		window.location.assign(`?${searchQuery}`);
 
-		const { getByTestId, getByText } = render(<SearchPage />);
+		const { getByTestId, getByText } = render(<SearchPage mockClients={clients} />);
+
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledOnce()
+		);
 
 		await waitFor(() => expect(getByText("Ten blog post")).toBeInTheDocument());
 
@@ -958,6 +1197,26 @@ describe("Search page", () => {
 		expect(searchInput).toHaveValue("blog");
 
 		await user.type(searchInput, "other");
+		await user.type(searchInput, "{enter}");
+
+		await waitFor(() =>
+			expect(clients.postClient.search).toHaveBeenCalledTimes(2)
+		);
+
+		expect(clients.postClient.search).toHaveBeenLastCalledWith({
+			term: "blogother",
+			limit: 6,
+			offset: 0,
+			sortBy: {
+				property: "publishedTimestamp",
+				order: "asc",
+			},
+			where: {
+				authors: ["joe"],
+				tags: ["angular"],
+			},
+			facets: expect.anything(),
+		}, expect.anything());
 
 		await waitFor(() => expect(getByText("One blog post")).toBeInTheDocument());
 
@@ -970,8 +1229,8 @@ describe("Search page", () => {
 	});
 
 	test("Make sure that re-searches to empty string reset page, tags, authors, etc", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [
 				{
 					...MockPost,
@@ -1103,7 +1362,7 @@ describe("Search page", () => {
 
 		window.location.assign(`?${searchQuery}`);
 
-		const { getByTestId, getByText } = render(<SearchPage />);
+		const { getByTestId, getByText } = render(<SearchPage mockClients={clients} />);
 
 		await waitFor(() => expect(getByText("Ten blog post")).toBeInTheDocument());
 
@@ -1123,29 +1382,33 @@ describe("Search page", () => {
 	});
 
 	test("Back button should show last query", async () => {
-		mockFetch(() => ({
-			people: {},
+		mockPeopleIndex([]);
+		const clients = mockClients(() => ({
 			posts: [],
 			totalPosts: 0,
 			totalCollections: 0,
 			collections: [],
+			tags: {},
+			authors: {},
 		}));
 
-		const { getByTestId, getByText } = render(<SearchPage />);
+		const { getByTestId, getByText } = render(<SearchPage mockClients={clients} />);
 
 		const searchInput = getByTestId("search-input");
 		await user.type(searchInput, "blog");
 
-		await waitFor(() =>
-			expect(getByText("No results found...")).toBeInTheDocument(),
-		);
+		await waitFor(() => {
+			expect(window.location.search).toBe("?q=blog");
+			expect(getByText("No results found...")).toBeInTheDocument();
+		}, { timeout: 1500 });
 
 		await user.type(searchInput, "other");
 
-		await waitFor(() => expect(window.location.search).toBe("?q=blogother"));
+		await waitFor(() =>
+			expect(window.location.search).toBe("?q=blogother")
+		, { timeout: 1500 });
 
 		history.back();
-
-		await waitFor(() => expect(window.location.search).toBe("?q=blog"));
+		expect(window.location.search).toBe("?q=blog");
 	});
 });

@@ -1,7 +1,5 @@
-import { PostInfo } from "types/PostInfo";
-import { CollectionInfo } from "types/CollectionInfo";
 import { useMemo } from "preact/hooks";
-import { PersonInfo } from "types/PersonInfo";
+import { PersonInfo, TagInfo } from "types/index";
 import { CSSProperties } from "preact/compat";
 import { useWindowSize } from "../../../hooks/use-window-size";
 import { tabletLarge } from "../../../tokens/breakpoints";
@@ -9,13 +7,13 @@ import { FilterDialog } from "./filter-dialog";
 import { FilterSidebar } from "./filter-sidebar";
 import tagsObj from "../../../../content/data/tags.json";
 import { SortType } from "src/views/search/search";
+import { ExtendedTag, ExtendedUnicorn } from "./types";
 
-const tagsMap = new Map(Object.entries(tagsObj));
+const tagsMap: Map<string, TagInfo> = new Map(Object.entries(tagsObj));
 
 interface FilterDisplayProps {
-	posts: PostInfo[];
-
-	collections: CollectionInfo[];
+	tagCounts: Record<string, number>,
+	authorCounts: Record<string, number>,
 	peopleMap: Map<string, PersonInfo>;
 	selectedTags: string[];
 	setSelectedTags: (tags: string[]) => void;
@@ -32,9 +30,9 @@ interface FilterDisplayProps {
 }
 
 export const FilterDisplay = ({
-	collections,
+	tagCounts,
+	authorCounts,
 	peopleMap,
-	posts,
 	sort,
 	setSort,
 	selectedAuthorIds,
@@ -48,51 +46,42 @@ export const FilterDisplay = ({
 	setContentToDisplay,
 	contentToDisplay,
 }: FilterDisplayProps) => {
-	const tags = useMemo(() => {
-		const tagToPostNumMap = new Map<string, number>();
+	const tags: ExtendedTag[] = useMemo(() => {
+		const totalEntries = {
+			// Ensure that selected tags are included in the filter list
+			...Object.fromEntries(
+				selectedTags.map(tag => [tag, 0])
+			),
+			...tagCounts,
+		};
 
-		const tags = new Set<string>();
-		posts.forEach((post) => {
-			post.tags.forEach((tag) => {
-				tags.add(tag);
-
-				const numPosts = tagToPostNumMap.get(tag) || 0;
-				tagToPostNumMap.set(tag, numPosts + 1);
-			});
-		});
-
-		collections.forEach((collection) => {
-			collection.tags.forEach((tag) => {
-				tags.add(tag);
-			});
-		});
-
-		return Array.from(tags)
-			.sort((a, b) => a.localeCompare(b))
-			.map((tag) => ({
+		return Object.entries(totalEntries)
+			.sort(([a], [b]) => a.localeCompare(b))
+			.map(([tag, count]) => ({
 				tag,
-				numPosts: tagToPostNumMap.get(tag) || 0,
+				numPosts: count,
 				...tagsMap.get(tag),
-			}));
-	}, [posts]);
+			}) satisfies Partial<ExtendedTag>)
+			.filter((a): a is ExtendedTag => !!(a.displayName));
+	}, [tagCounts]);
 
-	const authors = useMemo(() => {
-		const postAuthorIdToPostNumMap = new Map<string, number>();
+	const authors: ExtendedUnicorn[] = useMemo(() => {
+		const totalEntries = {
+			// Ensure that selected authors are included in the filter list
+			...Object.fromEntries(
+				selectedAuthorIds.map(author => [author, 0])
+			),
+			...authorCounts,
+		};
 
-		posts.forEach((post) => {
-			post.authors.forEach((author) => {
-				const numPosts = postAuthorIdToPostNumMap.get(author) || 0;
-				postAuthorIdToPostNumMap.set(author, numPosts + 1);
-			});
-		});
-
-		return Array.from(peopleMap.values())
-			.sort((a, b) => a.name.localeCompare(b.name))
-			.map((author) => ({
-				...author,
-				numPosts: postAuthorIdToPostNumMap.get(author.id) || 0,
-			}));
-	}, [posts, collections]);
+		return Object.entries(totalEntries)
+			.map(([author, count]) => ({
+				numPosts: count,
+				...peopleMap.get(author),
+			}) satisfies Partial<ExtendedUnicorn>)
+			.filter((a): a is ExtendedUnicorn => !!(a.name))
+			.sort((a, b) => a.name.localeCompare(b.name));
+	}, [authorCounts, peopleMap]);
 
 	const onSelectedAuthorChange = (id: string) => {
 		const isPresent = selectedAuthorIds.includes(id);

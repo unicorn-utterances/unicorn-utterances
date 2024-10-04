@@ -1,0 +1,30 @@
+.footer {
+	text-align: center;
+}
+
+.orama {
+	display: inline-flex;
+	flex-direction: row;
+	gap: .5em;
+	align-items: center;
+	justify-content: center;
+
+	text-decoration: none;
+	color: var(--foreground_emphasis-high);
+
+	// needed to round the focus outline
+	border-radius: 1px;
+	&:focus-visible {
+		outline: var(--border-width_focus) solid var(--focus-outline_primary);
+		outline-offset: var(--border-width_focus);
+	}
+}
+
+.orama__logo {
+	height: 2em;
+}
+
+.orama__duration {
+	font-weight: bold;
+	color: var(--primary_default);
+}

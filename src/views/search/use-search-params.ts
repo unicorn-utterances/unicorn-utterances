@@ -46,7 +46,7 @@ export function useSearchParams<T>(
 		return () => {
 			window.removeEventListener("popstate", onPopState);
 		};
-	});
+	}, [setUrlParams]);
 
 	const params = useMemo(() => deserialize(urlParams), [urlParams]);
 

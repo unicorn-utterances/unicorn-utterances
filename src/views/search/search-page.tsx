@@ -13,7 +13,6 @@ import {
 	QueryClientProvider,
 	useQuery,
 } from "@tanstack/react-query";
-import { useDebouncedValue } from "./use-debounced-value";
 
 import style from "./search-page.module.scss";
 import { PostCardGrid } from "components/post-card/post-card-grid";
@@ -36,137 +35,182 @@ import {
 	deserializeParams,
 	DisplayContentType,
 	SortType,
+	SearchFiltersData,
 } from "./search";
 import { SearchResultCount } from "./components/search-result-count";
-import { ServerReturnType } from "./types";
-import { CollectionInfo } from "types/CollectionInfo";
 import { isDefined } from "utils/is-defined";
+import { OramaClientProvider, useOramaSearch } from "./orama";
+import { SearchFooter } from "./components/search-footer";
 
 const MAX_POSTS_PER_PAGE = 6;
 
-function SearchPageBase() {
-	const [query, setQuery] = useSearchParams<SearchQuery>(
+function usePersistedEmptyRef<T extends object>(value: T) {
+	const ref = useRef<T>();
+	return useMemo(() => {
+		if (Object.entries(value).length) {
+			ref.current = value;
+			return value;
+		} else {
+			return ref.current ?? value;
+		}
+	}, [value]);
+}
+
+const fetchSearchFilters = async ({ signal }: { signal: AbortSignal }) => {
+	return fetch("/searchFilters.json", { signal, method: "GET" }).then(
+		(res) => {
+			if (!res.ok) {
+				return res.text().then((text) => Promise.reject(text));
+			}
+			return res.json() as Promise<SearchFiltersData>;
+		},
+	);
+};
+
+export function SearchPageBase() {
+	const [query, setQueryState] = useSearchParams<SearchQuery>(
 		serializeParams,
 		deserializeParams,
 	);
 
-	const search = query.searchQuery ?? "";
+	const setQuery = useCallback((newQuery: Partial<SearchQuery>) => {
+		const queryToSet = {
+			...query,
+			...newQuery,
+		};
 
-	/**
-	 * Derive state and setup for search
-	 */
-	const setSearch = useCallback(
-		(str: string) => {
-			const newQuery = {
-				...query,
-				searchQuery: str,
-				searchPage: 1,
-			};
+		if (queryToSet.searchQuery.length == 0) {
+			// Remove tags and authors when no value is present
+			queryToSet.filterTags = [];
+			queryToSet.filterAuthors = [];
+		}
 
-			if (!str) {
-				// Remove tags and authors when no value is present
-				newQuery.filterTags = [];
-				newQuery.filterAuthors = [];
-			}
-
-			setQuery(newQuery);
-		},
-		[query, setQuery],
-	);
-
-	const [debouncedSearch, immediatelySetDebouncedSearch] = useDebouncedValue(
-		search,
-		500,
-	);
+		setQueryState(queryToSet);
+	}, [query, setQueryState]);
 
 	const resultsHeading = useRef<HTMLDivElement | null>(null);
 
+	const setSearch = useCallback((str: string) => setQuery({ searchQuery: str, searchPage: 1 }), [setQuery]);
+
 	const onManualSubmit = useCallback(
 		(str: string) => {
-			immediatelySetDebouncedSearch(str);
+			setQuery({ searchQuery: str, searchPage: 1 });
 			resultsHeading.current?.focus();
 		},
-		[immediatelySetDebouncedSearch],
+		[setQuery],
 	);
 
 	/**
 	 * Fetch data
 	 */
-	const enabled = !!debouncedSearch;
+	const enabled = !!query.searchQuery;
 
-	const { isLoading, isFetching, isError, error, data, refetch } = useQuery({
-		queryFn: ({ signal }) => {
-			// Analytics go brr
-			plausible &&
-				plausible("search", { props: { searchVal: debouncedSearch } });
-
-			return fetch(`/api/search?query=${debouncedSearch}`, {
-				signal: signal,
-				method: "GET",
-			}).then((res) => {
-				if (!res.ok) {
-					return res.text().then((text) => Promise.reject(text));
-				}
-				return res.json() as Promise<ServerReturnType>;
-			});
-		},
-		queryKey: ["search", debouncedSearch],
+	const {
+		isLoading: isLoadingPeople,
+		isFetching: isFetchingPeople,
+		isError: isErrorPeople,
+		error: errorPeople,
+		data: people,
+	} = useQuery({
+		queryFn: fetchSearchFilters,
+		queryKey: ["people"],
 		initialData: {
-			people: {},
-			posts: [],
-			totalPosts: 0,
-			collections: [],
-			totalCollections: 0,
-		} as ServerReturnType,
+			people: [],
+			tags: [],
+		} as SearchFiltersData,
 		refetchOnWindowFocus: false,
 		retry: false,
 		enabled,
 	});
 
-	useEffect(() => {
-		if (error) {
-			console.error("There was an error", { error });
-		}
-	}, [error]);
+	const { searchForTerm } = useOramaSearch();
+	const fetchSearchQuery = useCallback(({ signal, queryKey: [_, query] }: { signal: AbortSignal, queryKey: [string, SearchQuery]}) => {
+		// Analytics go brr
+		plausible &&
+			plausible("search", { props: { searchVal: query.searchQuery } });
 
-	const isContentLoading = isLoading || isFetching;
+		return searchForTerm(query, signal);
+	}, [searchForTerm]);
+
+	const {
+		isLoading: isLoadingData,
+		isFetching: isFetchingData,
+		isError: isErrorData,
+		error: errorData,
+		data,
+		refetch,
+	} = useQuery({
+		queryFn: fetchSearchQuery,
+		queryKey: ["search", query],
+		initialData: {
+			posts: [],
+			totalPosts: 0,
+			collections: [],
+			totalCollections: 0,
+			tags: {},
+			authors: {},
+			duration: 0,
+		},
+		refetchOnWindowFocus: false,
+		retry: false,
+		enabled,
+	});
+
+	const isWildcardSearch = query.searchQuery === "*";
+	// If the search is a wildcard, we want to use *every* tag/person filter (the search API returns a limited amount)
+	const tagCounts = usePersistedEmptyRef(isWildcardSearch ? Object.fromEntries(people.tags.map(tag => [tag.id, tag.totalPostCount])) : data.tags);
+	const authorCounts = usePersistedEmptyRef(isWildcardSearch ? Object.fromEntries(people.people.map(person => [person.id, person.totalPostCount])) : data.authors);
+
+	const isError = isErrorPeople || isErrorData;
+
+	useEffect(() => {
+		if (errorPeople) {
+			console.error("There was an error", { error: errorPeople });
+		}
+	}, [errorPeople]);
+
+	useEffect(() => {
+		if (errorData) {
+			console.error("There was an error", { error: errorData });
+		}
+	}, [errorData]);
+
+	const isContentLoading =
+		isLoadingData || isFetchingData || isLoadingPeople || isFetchingPeople;
 
 	const setSelectedPeople = useCallback(
 		(authors: string[]) => {
 			setQuery({
-				...query,
 				filterAuthors: authors,
 				searchPage: 1, // reset to page 1
 			});
 		},
-		[query, setQuery],
+		[setQuery],
 	);
 
 	const setSelectedTags = useCallback(
 		(tags: string[]) => {
 			setQuery({
-				...query,
 				filterTags: tags,
 				searchPage: 1, // reset to page 1
 			});
 		},
-		[query, setQuery],
+		[setQuery],
 	);
 
 	const setContentToDisplay = useCallback(
 		(display: DisplayContentType) => {
 			setQuery({
-				...query,
 				display: display,
 				searchPage: 1, // reset to page 1
 			});
 		},
-		[query, setQuery],
+		[setQuery],
 	);
 
 	const peopleMap = useMemo(() => {
-		return new Map(Object.entries(data.people));
-	}, [data.people]);
+		return new Map(people.people.map((person) => [person.id, person]));
+	}, [people.people]);
 
 	const showArticles = query.display === "all" || query.display === "articles";
 
@@ -176,94 +220,19 @@ function SearchPageBase() {
 	const setSort = useCallback(
 		(sort: SortType) => {
 			setQuery({
-				...query,
 				sort: sort,
 				searchPage: 1, // reset to page 1
 			});
 		},
-		[query, setQuery],
+		[setQuery],
 	);
-
-	/**
-	 * Filter and sort posts
-	 */
-	const filteredAndSortedPosts = useMemo(() => {
-		const posts = [...data.posts];
-		if (query.sort !== "relevance") {
-			posts.sort(
-				(a, b) =>
-					(query.sort === "newest" ? -1 : 1) *
-					(new Date(a.published).getTime() - new Date(b.published).getTime()),
-			);
-		}
-
-		return posts.filter((post) => {
-			if (
-				query.filterTags.length > 0 &&
-				!post.tags.some((tag) => query.filterTags.includes(tag))
-			) {
-				return false;
-			}
-
-			if (
-				query.filterAuthors.length > 0 &&
-				!post.authors.some((person) => query.filterAuthors.includes(person))
-			) {
-				return false;
-			}
-
-			return true;
-		});
-	}, [data, query.sort, query.filterTags, query.filterAuthors]);
-
-	const filteredAndSortedCollections: CollectionInfo[] = useMemo(() => {
-		const collections = [...data.collections];
-
-		if (query.sort !== "relevance") {
-			collections.sort(
-				(a, b) =>
-					(query.sort === "newest" ? -1 : 1) *
-					(new Date(a.published).getTime() - new Date(b.published).getTime()),
-			);
-		}
-
-		return collections.filter((collection) => {
-			if (
-				query.filterTags.length > 0 &&
-				!collection.tags.some((tag) => query.filterTags.includes(tag))
-			) {
-				return false;
-			}
-
-			if (
-				query.filterAuthors.length > 0 &&
-				!collection.authors.some((person) =>
-					query.filterAuthors.includes(person),
-				)
-			) {
-				return false;
-			}
-
-			return true;
-		});
-	}, [data, query.sort, query.filterTags, query.filterAuthors]);
-
-	/**
-	 * Paginate posts
-	 */
-	const posts = useMemo(() => {
-		return filteredAndSortedPosts.slice(
-			(query.searchPage - 1) * MAX_POSTS_PER_PAGE,
-			query.searchPage * MAX_POSTS_PER_PAGE,
-		);
-	}, [filteredAndSortedPosts, query.searchPage]);
 
 	/**
 	 * Calculate the last page based on the number of posts.
 	 */
 	const lastPage = useMemo(
-		() => Math.ceil(filteredAndSortedPosts.length / MAX_POSTS_PER_PAGE),
-		[filteredAndSortedPosts],
+		() => Math.ceil(data.totalPosts / MAX_POSTS_PER_PAGE),
+		[data.totalPosts],
 	);
 
 	/**
@@ -283,29 +252,29 @@ function SearchPageBase() {
 	const noResults =
 		enabled &&
 		!isContentLoading &&
-		((posts.length === 0 && showArticles && !showCollections) ||
-			(filteredAndSortedCollections.length === 0 &&
+		((data.posts.length === 0 && showArticles && !showCollections) ||
+			(data.collections.length === 0 &&
 				showCollections &&
 				!showArticles) ||
 			(showCollections &&
 				showArticles &&
-				posts.length === 0 &&
-				filteredAndSortedCollections.length === 0));
+				data.posts.length === 0 &&
+				data.collections.length === 0));
 
 	const numberOfCollections = showCollections
-		? filteredAndSortedCollections.length
+		? data.totalCollections
 		: 0;
 
-	const numberOfPosts = showArticles ? filteredAndSortedPosts.length : 0;
+	const numberOfPosts = showArticles ? data.totalPosts : 0;
 
 	return (
-		<main className={style.fullPageContainer} data-hide-sidebar={!search}>
+		<main className={style.fullPageContainer} data-hide-sidebar={!query.searchQuery}>
 			<h1 className={"visually-hidden"}>Search</h1>
 			<FilterDisplay
 				isFilterDialogOpen={isFilterDialogOpen}
 				setFilterIsDialogOpen={setFilterIsDialogOpen}
-				collections={data.collections}
-				posts={data.posts}
+				tagCounts={tagCounts}
+				authorCounts={authorCounts}
 				peopleMap={peopleMap}
 				selectedTags={query.filterTags}
 				setSelectedTags={setSelectedTags}
@@ -324,13 +293,13 @@ function SearchPageBase() {
 					// https://github.com/playfulprogramming/playfulprogramming/issues/653
 					overflow: "clip",
 				}}
-				searchString={search}
+				searchString={query.searchQuery}
 			/>
 			<div className={style.mainContents}>
 				<SearchTopbar
-					onSubmit={(val) => onManualSubmit(val)}
-					onBlur={(val) => immediatelySetDebouncedSearch(val)}
-					search={search}
+					onSubmit={onManualSubmit}
+					onBlur={setSearch}
+					search={query.searchQuery}
 					setSearch={setSearch}
 					setContentToDisplay={setContentToDisplay}
 					contentToDisplay={query.display}
@@ -379,7 +348,7 @@ function SearchPageBase() {
 								description={"Please adjust your query or your active filters!"}
 							/>
 						)}
-						{isError && !isContentLoading && (
+						{isError && (
 							<SearchHero
 								imageSrc={scaredUnicorn.src}
 								imageAlt={""}
@@ -412,7 +381,7 @@ function SearchPageBase() {
 					{enabled &&
 						!isContentLoading &&
 						showCollections &&
-						Boolean(filteredAndSortedCollections.length) && (
+						Boolean(data.collections.length) && (
 							<Fragment>
 								<SubHeader
 									tag="h2"
@@ -425,12 +394,12 @@ function SearchPageBase() {
 									role="list"
 									className={style.collectionsGrid}
 								>
-									{filteredAndSortedCollections.map((collection) => (
+									{data.collections.map((collection) => (
 										<li>
 											<CollectionCard
 												collection={collection}
 												authors={collection.authors
-													.map((id) => peopleMap.get(id))
+													.map((id) => peopleMap.get(id + ""))
 													.filter(isDefined)}
 												headingTag="h3"
 											/>
@@ -442,7 +411,7 @@ function SearchPageBase() {
 					{enabled &&
 						!isContentLoading &&
 						showArticles &&
-						Boolean(posts.length) && (
+						Boolean(data.posts.length) && (
 							<Fragment>
 								<SubHeader
 									tag="h2"
@@ -452,15 +421,15 @@ function SearchPageBase() {
 								/>
 								<PostCardGrid
 									aria-labelledby={"articles-header"}
-									postsToDisplay={posts}
+									postsToDisplay={data.posts}
 									postAuthors={peopleMap}
 									postHeadingTag="h3"
 								/>
 								<Pagination
 									testId="pagination"
 									softNavigate={(_href, pageNum) => {
+										window.scrollTo(0, 0);
 										setQuery({
-											...query,
 											searchPage: pageNum,
 										});
 									}}
@@ -480,6 +449,10 @@ function SearchPageBase() {
 								/>
 							</Fragment>
 						)}
+
+					{!isContentLoading && (
+						<SearchFooter duration={data.duration} />
+					)}
 				</section>
 			</div>
 		</main>
@@ -490,8 +463,10 @@ const queryClient = new QueryClient();
 
 export default function SearchPage() {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<SearchPageBase />
-		</QueryClientProvider>
+		<OramaClientProvider>
+			<QueryClientProvider client={queryClient}>
+				<SearchPageBase />
+			</QueryClientProvider>
+		</OramaClientProvider>
 	);
 }

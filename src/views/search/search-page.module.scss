@@ -88,6 +88,10 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	opacity: 0;
+	animation: fadeIn 1s;
+	animation-fill-mode: forwards;
 }
 
 .loadingText {
@@ -123,5 +127,40 @@
 		transform: scale(12);
 		margin-bottom: calc(24px * 11);
 		margin-right: calc(24px * 11);
+	}
+}
+
+@media screen and not (prefers-reduced-motion) {
+	:global(#post-list-container) > li, .collectionsGrid > li {
+		animation: fadeAndSlideIn .5s;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease-out;
+		opacity: 0;
+	}
+
+	@for $i from 1 through 6 {
+		:global(#post-list-container) > li:nth-of-type(#{$i}), .collectionsGrid > li:nth-of-type(#{$i}) {
+			animation-delay: #{($i - 1) * 0.05s};
+		}
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0%;
+	}
+	to {
+		opacity: 100%;
+	}
+}
+
+@keyframes fadeAndSlideIn {
+	from {
+		opacity: 0%;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 100%;
+		transform: translateY(0);
 	}
 }

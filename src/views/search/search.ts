@@ -1,3 +1,6 @@
+import { PersonInfo } from "types/PersonInfo";
+import { TagInfo } from "types/TagInfo";
+
 export const SEARCH_QUERY_KEY = "q";
 export const SEARCH_PAGE_KEY = "page";
 export const CONTENT_TO_DISPLAY_KEY = "display";
@@ -8,6 +11,16 @@ export const SORT_KEY = "sort";
 export type SortType = "relevance" | "newest" | "oldest";
 
 export type DisplayContentType = "all" | "articles" | "collections";
+
+export interface TagFilterInfo extends TagInfo {
+	id: string;
+	totalPostCount: number;
+}
+
+export interface SearchFiltersData {
+	people: PersonInfo[];
+	tags: TagFilterInfo[];
+}
 
 export interface SearchQuery {
 	searchQuery: string;
