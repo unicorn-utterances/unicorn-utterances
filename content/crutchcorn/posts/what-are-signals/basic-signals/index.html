@@ -1,0 +1,41 @@
+<html>
+
+<head>
+	<title>Basic Signals</title>
+</head>
+
+<body>
+	<button id="clicker">0</button>
+	<script>
+		const clickerBtn = document.getElementById("clicker");
+
+		const countSignal = signal(0);
+
+		countSignal.subscribe(() => {
+			clickerBtn.innerText = countSignal.get();
+		});
+
+		clickerBtn.addEventListener("click", () => {
+			countSignal.set(countSignal.get() + 1);
+		});
+
+		function signal(initialValue) {
+			let value = initialValue;
+			const subscribers = new Set();
+
+			return {
+				get: () => value,
+				set: (newValue) => {
+					value = newValue;
+					subscribers.forEach(fn => fn());
+				},
+				subscribe: (listener) => {
+					subscribers.add(listener);
+					return () => subscribers.delete(listener);
+				}
+			}
+		}	
+	</script>
+</body>
+
+</html>
