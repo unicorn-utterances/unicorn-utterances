@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link href="stylesheet.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="controls">
+			<div id="slider-wrapper">
+			  <input type="range" id="rem-slider" min="14" max="24" step="2" value="16">
+			  <label for="rem-slider">rem: <b><span id="rem-value">16</span>px</b></label>
+			  <br><br>
+			  <input type="range" id="h1-slider" min="2.0" max="4.0" step="0.1" value="2.0">
+			  <label for="h1-slider">font-size: <b><span id="h1-value">2</span>rem</b></label>
+			  <br><br>
+			  <input type="range" id="highlight-slider" min="0.0" max="0.5" step="0.1" value="0.0">
+			  <label for="highlight-slider">Highlight padding: <b><span id="highlight-value">0</span></b></label>
+			</div>
+			  <button id="modeButton">Set padding to rem</button>
+		  </div>
+		  
+		  <h1 id="headline1" style="padding: 5vw;">Sentence <span class="span" id="highlight">with spans</span>.</h1>
+		  <script src="script.js"></script>
+	</body>
+</html>

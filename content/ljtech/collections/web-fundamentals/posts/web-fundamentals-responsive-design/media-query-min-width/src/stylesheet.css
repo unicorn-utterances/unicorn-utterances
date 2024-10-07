@@ -1,0 +1,52 @@
+:root {
+	--primary95: #E5F2FF;
+	--primary90: #C8E6FF;
+	--primary80: #87CEFF;
+	--primary20: #00344D;
+  }
+  
+  * {
+	font-family: Figtree;
+	box-sizing: border-box;
+	margin: 0 auto;
+  }
+  
+  body {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--primary95);
+  }
+  
+  .tooltip {
+	display: flex;
+	position: absolute;
+	transform: translate(-50%, 0%);
+	top: 0%;
+	left: 50%;
+	width: 100vw;
+	padding: 24px 24px;
+	background-color: var(--primary90);
+	color: var(--primary20);
+	text-align: center;
+  }
+  
+  .pfp-btn {
+	display: none;
+	width: fit-content;
+	height: fit-content;
+	padding: 12px 24px;
+	background-color: var(--primary80);
+	color: var(--primary20);
+	font-weight: 700;
+	border-radius: 96px;
+	border: none;
+  }
+  
+  @media screen and (min-width: 360px) {
+	.pfp-btn {
+	  display: inline-block;
+	}
+  }

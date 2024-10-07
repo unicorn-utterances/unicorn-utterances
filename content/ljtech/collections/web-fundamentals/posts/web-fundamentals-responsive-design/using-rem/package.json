@@ -1,0 +1,10 @@
+{
+	"name": "@playfulprogramming/using-rem",
+	"private": true,
+	"scripts": {
+		"start": "http-server src"
+	},
+	"devDependencies": {
+		"http-server": "^14.1.1"
+	}
+}

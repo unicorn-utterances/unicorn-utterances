@@ -1,0 +1,72 @@
+* {
+	font-family: Figtree;
+	margin: 0;
+  }
+  
+  body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+	align-items: center;
+	justify-content: center;
+	background-color: #E5F2FF;
+  }
+  
+  .pfp-card {
+	border: 3px solid #87CEFF;
+	padding: 16px;
+	border-radius: 24px;
+	box-sizing: border-box;
+	resize: horizontal;
+	margin: 48px;
+  }
+  
+  #illustration {
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	width: 100%;
+	border-radius: 8px;
+	margin-bottom: 16px;
+	transition: aspect-ratio 0.5s ease;
+  }
+  
+  button {
+	padding: 12px 20px;
+	border: none;
+	border-radius: 99px;
+	font-weight: 700;
+	transition-duration: 0.1s;
+	background-color: rgba(200, 230, 255, 1);
+  }
+  
+  button:hover {
+	transition-duration: 0.1s;
+	background-color: rgba(135, 206, 255, 1);
+  }
+  
+  .ratio-controls {
+	display: flex;
+	gap: 12px;
+  }
+  
+  .fit-controls {
+	box-sizing: border-box;
+	display: flex;
+	position: absolute;
+	bottom: 0px;
+	flex-flow: row wrap;
+	gap: 12px;
+	align-content: center;
+	justify-content: center;
+	width: 100vw;
+	height: fit-content;
+	padding: 24px 16px;
+	background-color: rgba(229, 242, 255, 1);
+	box-shadow: 0 -1px 0px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+  }
+  
+  .fit-controls > button {
+	flex-grow: 1;
+  }

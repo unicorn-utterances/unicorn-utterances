@@ -1,0 +1,28 @@
+* {
+	font-family: Figtree;
+	margin: 0 auto;
+  }
+  
+  body {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	background-color: #E5F2FF;
+	overflow: hidden;
+  }
+  
+  .controls {
+	box-sizing: border-box;
+	display: flex;
+	position: absolute;
+	bottom: 0px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: fit-content;
+	padding: 24px 16px;
+	background-color: rgba(229, 242, 255, 1);
+	box-shadow: 0 -1px 0px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+  }

@@ -1,0 +1,49 @@
+* {
+	font-family: Figtree;
+	margin: 0 auto;
+  }
+  
+  body {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+	background-color: #E5F2FF;
+	overflow: hidden;
+  }
+  
+  .controls {
+	box-sizing: border-box;
+	display: flex;
+	position: absolute;
+	bottom: 0px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: fit-content;
+	padding: 24px 16px;
+	background-color: rgba(229, 242, 255, 1);
+	box-shadow: 0 -1px 0px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+  }
+  
+  .span {
+	background-color: #C8E6FF;
+	padding: 0.25em;
+	border-radius: 0.25em;
+	z-index: -2;
+  }
+  
+  button {
+	padding: 12px 20px;
+	border: none;
+	border-radius: 99px;
+	font-weight: 700;
+	transition-duration: 0.1s;
+	background-color: rgba(200, 230, 255, 1);
+  }
+  
+  button:hover {
+	transition-duration: 0.1s;
+	background-color: rgba(135, 206, 255, 1);
+  }
